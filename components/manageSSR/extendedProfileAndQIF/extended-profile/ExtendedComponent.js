@@ -1,5 +1,5 @@
 import React from "react";
-import FormsSSR from "./Forms";
+import FormsSSR from "./Forms/FormsSSR";
 import DocumentTemplate from "./Forms/documentTemplate";
 
 const ExtendedComponent = ({

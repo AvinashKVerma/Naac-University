@@ -19,9 +19,21 @@ const Criteria1 = (prop, ref) => {
       doc: [""],
       link: [""],
     },
+    "1.1.2": {
+      para: "",
+      doc: [""],
+      link: [""],
+    },
     "1.2.1": {
       link: [""], //Link
       "1.2.1.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "1.2.1.2": {
         year1: "",
         year2: "",
         year3: "",
@@ -53,6 +65,24 @@ const Criteria1 = (prop, ref) => {
       },
       doc: ["", ""],
     },
+    "1.3.3": {
+      link: [""],
+      "1.3.3.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "1.3.3.2": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      doc: ["", "", "", ""],
+    },
     "1.4.1": {
       link: [""], //Link
       doc: ["", "", "", ""],
@@ -67,6 +97,7 @@ const Criteria1 = (prop, ref) => {
       year4: "",
       year5: "",
     },
+
     "1.2.2.1": {
       year1: "",
       year2: "",
@@ -76,25 +107,74 @@ const Criteria1 = (prop, ref) => {
     },
   });
   const keyIndicators = {
-    "Curriculum Planning and Implementation": {
+    "Curriculum Design and Development": {
       "1.1.1": [
         "QIM",
-        "The Institution ensures effective curriculum planning and delivery through a well-planned and documented process including Academic calendar and conduct of continuous internal Assessment",
+        "Curricula developed and implemented have relevance to the local, regional, national, and global developmental needs, which is reflected in the Programme outcomes (POs), and Course Outcomes(COs) of the Programmes offered by the University",
         {
           "Upload Additional information": ["Upload", "documents_CA"],
-          "Link for Additional Information": ["Link"],
+          "Provide Link for Additional information": ["Link"],
+        },
+      ],
+      "1.1.2": [
+        "QIM",
+        "The Programmes offered by the institution focus on employability/ entrepreneurship/ skill development and their course syllabi are adequately revised to incorporate contemporary requirements",
+        {
+          "Upload Additional information": ["Upload", "documents_CA"],
+          "Provide Link for Additional information": ["Link"],
         },
       ],
     },
     "Academic Flexibility": {
       "1.2.1": [
         "QnM",
-        "Number of Certificate/Value added courses offered and online courses of MOOCs, SWAYAM, NPTEL etc.  where the students of the institution have enrolled and successfully completed during the last five years)",
+        "Percentage of new courses introduced out of the total number of courses across all programmes offered during the last five years",
         {
           "Institutional data in the prescribed format": [
             "Data Template",
             "institutionalDataFormatDocs_AF",
           ],
+          "Provide the relevant information in institutional website as part of public disclosure":
+            ["Upload", "programBrochureDoc_AF"],
+          "Minutes of Board of Studies meeting clearly specifying the syllabus of approval of new cources":
+            ["Upload", "studentAttendanceList_AF"],
+          "Subsequent Academic Council meeting extracts endorsing the descision of BOS":
+            ["Upload", "courseCompletionEvidenceDoc_AF"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "1.2.1.1",
+            "1.2.1.1: Number of new courses introduced during the last five years",
+            true,
+          ],
+          [
+            "1.2.1.2",
+            "1.2.1.2: Consolidated number of courses offered by the institution across all Programmes (without repeat count) during the last five years",
+            true,
+          ],
+        ],
+      ],
+    },
+    "Curriculum Enrichment": {
+      "1.3.1": [
+        "QIM",
+        "Institution integrates cross-cutting issues relevant to Professional Ethics, Gender, Human Values, Environment & Sustainability and other value framework enshrined in Sustainable Development goals and National Education Policy 2020 into the Curriculum",
+        {
+          "Upload Additional information": ["Upload", "supportingDocs_CE"],
+          "Link for Additional Information": ["Link"],
+        },
+      ],
+      "1.3.2": [
+        "Number of certificate / value-added courses / Diploma Programmes offered by the institutions and online courses of MOOCs, SWAYAM / e_Pathshala/ NPTEL and other recognised platforms where the students of the institution have enrolled and successfully completed during the last five years",
+        {
+          "Institutional data in the prescribed format": [
+            "Data Template",
+            "institutionalDataFormatDocs_AF",
+          ],
+          "Provide the relevant information in institutional website as part of public disclosure":
+            ["Upload", "dummy"],
           "Institutional programme brochure/notice for Certificate/Value added programs with course modules and outcomes":
             ["Upload", "programBrochureDoc_AF"],
           "List of students and the attendance sheet for the above mentioned programs":
@@ -106,55 +186,42 @@ const Criteria1 = (prop, ref) => {
         },
         [
           [
-            "1.2.1.1",
-            "1.2.1.1: Number of Certificate/Value added courses offered and online courses of MOOCs, SWAYAM, NPTEL etc. where the students of the institution have enrolled and successfully completed during the last five years:",
+            "1.3.2.1",
+            "1.3.2.1: Number of certificate / value-added courses / Diploma Programmes offered by the institutions and online courses of MOOCs, SWAYAM / e_Pathshala/ NPTEL and other recognised platforms where the students of the institution have enrolled and successfully completed during the last five years",
             true,
           ],
         ],
       ],
-      "1.2.2": [
+      "1.3.3": [
         "QnM",
-        "Percentage of students enrolled in Certificate/ Value added courses and also completed online courses of MOOCs, SWAYAM, NPTEL etc. as against the total number of students during the last five years",
-        {
-          "Institutional data in the prescribed format": [
-            "Data Template",
-            "institutionalDataFormatDoc_AF",
-          ],
-          "Upload supporting document": ["Upload", "supportingDoc_AF"],
-        },
-        [
-          [
-            "1.2.2.1",
-            "1.2.2.1. Number of students enrolled in Certificate/ Value added courses and also completed online courses of MOOCs, SWAYAM, NPTEL etc. as against the total number of students during the last five years",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Curriculum Enrichment": {
-      "1.3.1": [
-        "QIM",
-        "Institution integrates crosscutting issues relevant to Professional Ethics, Gender, Human Values, Environment and Sustainability in transacting the Curriculum",
-        {
-          "Upload Additional information": ["Upload", "supportingDocs_CE"],
-          "Link for Additional Information": ["Link"],
-        },
-      ],
-      "1.3.2": [
-        "QnM",
-        "Percentage of students undertaking project work/field work/ internships (Data for the latest completed academic year)",
-
+        "Percentage of Programmes that have components of field projects / research projects / internships during last five years",
         {
           "Institutional data in the prescribed format": [
             "Data Template",
             "institutionalDataFormatDoc_CE",
           ],
-          "Upload supporting document": ["Upload", "supportingDoc_CE"],
+          "Program and cource contents having element of field projects/research projects/internships as approved by BOS":
+            ["Upload", "dummy"],
+          "Sample internship completion letter provided by host institutions": [
+            "Upload",
+            "dummy",
+          ],
+          "Sample Evaluated Project/field work report submitted by students": [
+            "Upload",
+            "dummy",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
         },
         [
           [
-            "1.3.2.1",
-            "1.3.2.1. Number of students undertaking project work/field work/internships:",
+            "1.3.3.1",
+            "1.3.3.1: Total Number of programmes that have components of field projects/research projects/internships (without repeat count) during last five years",
+            true,
+          ],
+          [
+            "1.3.3.2",
+            "1.3.3.2: Total Number of programmes offered (without repeat count) during the last five years",
             true,
           ],
         ],
@@ -163,7 +230,7 @@ const Criteria1 = (prop, ref) => {
     "Feedback System": {
       "1.4.1": [
         "QnM",
-        "Institution obtains feedback on the academic performance and ambience of the institution from various stakeholders, such as Students, Teachers, Employers, Alumni etc. and action taken report on the feedback is made available on institutional website",
+        "Structured feedback for curriculum and its transactions is regularly obtained from stakeholders like Students, Teachers, Employers, Alumni, Academic peers etc., and Feedback processes of the institution may be classified as follows:",
         {
           "Institutional data in the prescribed format": [
             "Data Template",
@@ -181,6 +248,8 @@ const Criteria1 = (prop, ref) => {
           ],
           "Link of institution’s website where comprehensive feedback, its analytics and action taken report are hosted":
             ["Link"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
         },
         [
           [
@@ -189,8 +258,7 @@ const Criteria1 = (prop, ref) => {
             "select",
             "",
             [
-              "Feedback processes of the institution may be classified as follows: ",
-              "Feedback collected, analysed, action taken& communicated to the relevant bodies and feedback hosted on the institutional website.",
+              "Feedback collected, analysed, action taken & communicated to the relevant bodies and feedback hosted on the institutional website.",
               "Feedback collected, analysed and action has been taken and communicated to the relevant bodies.",
               "Feedback collected and analysed.",
               "Feedback collected.",

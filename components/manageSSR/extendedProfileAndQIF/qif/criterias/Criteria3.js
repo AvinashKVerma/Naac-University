@@ -15,8 +15,43 @@ const Criteria3 = (prop, ref) => {
   const { collegeData, ssrID } = contextManager();
   const [formData, setFormData] = useState({
     "3.1.1": {
+      para: "",
       doc: ["", ""],
-      "3.1.1.1": {
+      link: [""],
+    },
+    "3.1.2": {
+      doc: [""],
+      link: [""],
+      "3.1.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "3.1.3": {
+      doc: [""],
+      link: [""],
+      "3.1.3.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "3.1.4": {
+      doc: [""],
+      link: [""],
+      "3.1.4.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "3.1.4.2": {
         year1: "",
         year2: "",
         year3: "",
@@ -25,13 +60,27 @@ const Criteria3 = (prop, ref) => {
       },
     },
     "3.2.1": {
-      para: "",
       doc: [""],
       link: [""],
+      "3.2.1.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
     },
     "3.2.2": {
-      doc: ["", ""],
+      doc: [""],
+      link: [""],
       "3.2.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "3.2.2.2": {
         year1: "",
         year2: "",
         year3: "",
@@ -40,18 +89,12 @@ const Criteria3 = (prop, ref) => {
       },
     },
     "3.3.1": {
-      doc: [""],
-      "3.3.1.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-      link: ["", "", "", ""],
+      doc: ["", ""],
+      para: "",
+      link: [""],
     },
     "3.3.2": {
-      doc: ["", "", "", ""],
+      doc: [""],
       "3.3.2.1": {
         year1: "",
         year2: "",
@@ -62,18 +105,31 @@ const Criteria3 = (prop, ref) => {
       link: [""],
     },
     "3.4.1": {
-      para: "",
       doc: [""],
       link: [""],
+      select: "",
     },
     "3.4.2": {
-      para: "",
       doc: [""],
       link: [""],
+      "3.4.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
     },
     "3.4.3": {
-      doc: ["", "", ""],
+      doc: [""],
       "3.4.3.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "3.4.3.2": {
         year1: "",
         year2: "",
         year3: "",
@@ -82,8 +138,35 @@ const Criteria3 = (prop, ref) => {
       },
       link: [""],
     },
+    "3.4.4": {
+      doc: [""],
+      link: [""],
+      "3.4.4.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "3.4.5": {
+      doc: [""],
+      link: [""],
+      "3.4.5.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "3.4.6": {
+      doc: [""],
+      link: [""],
+      select: "",
+    },
     "3.5.1": {
-      doc: ["", "", "", ""],
+      doc: [""],
       "3.5.1.1": {
         year1: "",
         year2: "",
@@ -93,9 +176,71 @@ const Criteria3 = (prop, ref) => {
       },
       link: [""],
     },
+    "3.6.1": {
+      para: "",
+      doc: ["", ""],
+      link: [""],
+    },
+    "3.6.2": {
+      doc: [""],
+      link: [""],
+      "3.6.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "3.7.1": {
+      doc: [""],
+      link: [""],
+      "3.7.1.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
   });
   const [relatedInput, setRelatedInput] = useState({
-    "3.3.1.1": {
+    "3.1.2.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.1.3.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.1.4.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.1.4.2": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.2.1.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.2.2.1": {
       year1: "",
       year2: "",
       year3: "",
@@ -109,167 +254,400 @@ const Criteria3 = (prop, ref) => {
       year4: "",
       year5: "",
     },
+    "3.4.1.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.2.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.3.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.3.2": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.4.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.5.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.5.1.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.6.2.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.7.1.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
   });
 
   const keyIndicators = {
-    "Resource Mobilization for Research": {
+    "Promotions of Research and Facilities": {
       "3.1.1": [
+        "QIM",
+        "The institution's Research facilities are frequently updated and there are well defined policy for promotion of research which is uploaded on the institutional website and implemented",
+        {
+          "Upload any additional information": [
+            "Upload",
+            "instDataTemplate_doc",
+          ],
+          "Provide links as Additional Information": ["Upload", "dummy"],
+          "Upload supporting document": ["Upload", "supporting_doc"],
+        },
+      ],
+      "3.1.2": [
         "QnM",
-        "Grants received from Government and non-governmental agencies for research projects / endowments in the institution during the last five years",
+        "The institution provides seed money to its teachers for research (average per year)",
         {
           "Institutional data in the prescribed format (data template)": [
             "Data Template",
             "instDataTemplate_doc",
           ],
-          "Upload supporting document": ["Upload", "supporting_doc"],
-        },
-        [
-          [
-            "3.1.1.1",
-            "3.1.1.1 Total Grants from Government and non-governmental agencies for research projects / endowments in the institution during the last five years (INR in Lakhs)",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Innovation Ecosystem": {
-      "3.2.1": [
-        "QIM",
-        "Institution has created an ecosystem for innovations, Indian Knowledge System (IKS),including awareness about IPR, establishment of IPR cell, Incubation centre and other initiatives for the creation and transfer of knowledge/technology and the outcomes of the same are evident",
-        {
-          "Upload Additional information": ["Upload", "additionalInfo_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "3.2.2": [
-        "QnM",
-        "Number of workshops/seminars/conferences including programs conducted on Research Methodology, Intellectual Property Rights (IPR) and entrepreneurship during the last five years",
-        {
-          "Institutional data in the prescribed format": [
-            "Upload",
-            "institutionalDataFormat_doc",
-          ],
-          "Upload supporting document": ["Upload", "supporting_doc2"],
-        },
-        [
-          [
-            "3.2.2.1",
-            "3.2.2.1 Total number of workshops/seminars/conferences including programs conducted on Research Methodology, Intellectual Property Rights (IPR) and entrepreneurship year wise during last five years",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Research Publication and Awards": {
-      "3.3.1": [
-        "QnM",
-        "Number of research papers published per teacher in the Journals as notified on UGC CARE list during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataFormat_doc2",
-          ],
-          "Links to the paper published in journals listed in UGC CARE list": [
-            "Link",
-          ],
-          "Link to the uploaded papers, the first page/full paper (with author and affiliation details) on the institutional website":
-            ["Link"],
-          "Link re-directing to journal source-cite website in case of digital journals":
-            ["Link"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
         [
           [
-            "3.3.1.1",
-            "3.3.1.1 Number of research papers in the Journals notified on UGC CARE list year wise during the last five years",
+            "3.1.2.1",
+            "3.1.2.1: Amount of seed money provided by institution to its teachers for research year- wise during the last five years(INR in lakhs)",
             true,
-            "Number of full time teachers year wise during last five years",
           ],
         ],
       ],
-      "3.3.2": [
+      "3.1.3": [
         "QnM",
-        "Number of books and chapters in edited volumes/books published and papers published in national/ international conference proceedings per teacher during last five years",
+        "Percentage of teachers receiving national/ international fellowship/financial support by various agencies for advanced studies/ research during the last five years",
         {
           "Institutional data in the prescribed format (data template)": [
             "Data Template",
-            "institutionalDataFormat_doc3",
+            "instDataTemplate_doc",
           ],
-          "Copy of the Cover page, content page and first page of the publication indicating ISBN number and year of publication for books/chapters":
-            ["Upload", "firstPageWithISBN_doc"],
-          "List of chapter/book along with the links redirecting to the source website.":
-            ["Upload", "sourceWebsiteLink"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.1.3.1",
+            "3.1.3.1: Number of teachers who received national/ international fellowship/financial support from various agencies, for advanced studies /research, year-wise during the last five years",
+            true,
+            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
+          ],
+        ],
+      ],
+      "3.1.4": [
+        "QnM",
+        "Percentage of JRFs, SRFs among the enrolled PhD scholars in the institution during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.1.4.1",
+            "3.1.4.1: The Number of JRFs, SRFs among the enrolled PhD scholars in the institution during the last five years",
+            true,
+          ],
+          [
+            "3.1.4.2",
+            "3.1.4.2: Number of PhD Scholars enrolled during last five years",
+            true,
+          ],
+        ],
+      ],
+    },
+    "Resource Mobilization for Research": {
+      "3.2.1": [
+        "QnM",
+        "Research funding received by the institution and its faculties through Government and non-government sources such as industry, corporate houses, international bodies for research project, Endowment Research Chairs during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.2.1.1",
+            "3.2.1.1: Total Grants for Research funding received by the institution and its faculties through Government and non-government sources such as industry, corporate houses, international bodies for research project, Endowment Research Chairs during the last five years (INR in Lakhs)",
+            true,
+          ],
+        ],
+      ],
+      "3.2.2": [
+        "QnM",
+        "Number of research projects per teacher funded by government, nongovernment, industry, corporate houses, international bodies during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.2.2.1",
+            "3.2.2.1: Number of research projects funded by government and nongovernment agencies during the last five years",
+            true,
+            "Number of Full-time teachers in the institution year-wise during last five year",
+          ],
+          [
+            "3.2.2.2",
+            "",
+            "",
+            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
+          ],
+        ],
+      ],
+    },
+    "Innovation Ecosystem": {
+      "3.3.1": [
+        "QIM",
+        "Institution has created an ecosystem for innovations, Indian Knowledge System (IKS) including awareness about IPR, establishment of IPR cell, Incubation centre and other initiatives for the creation and transfer of technology/knowledge and the outcomes the same are evident",
+        {
+          "Upload any additional information": ["Upload", "dummy"],
+          "Upload database of all currently enrolled students (data template)":
+            ["Data Template", "institutionalDataFormat_doc2"],
+        },
+      ],
+      "3.3.2": [
+        "QnM",
+        "Number of awards received for research/innovations by the institution/teachers/research scholars/students during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
         [
           [
             "3.3.2.1",
-            "3.3.2.1. Total number of books and chapters in edited volumes/books published and papers in national/ international conference proceedings year wise during last five years",
+            "3.3.2.1: Total number of awards received for research/innovations by institution/teachers/research scholars/students during the last five years",
             true,
-            "Number of full time teachers year wise during last five years",
           ],
         ],
       ],
     },
-    "Extension Activities": {
+    "Research Publications and Awards": {
       "3.4.1": [
-        "QIM",
-        "Outcomes of Extension activities in the neighborhood community in terms of impact and sensitizing the students to social issues for their holistic development during the last five years.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "3.4.2": [
-        "QIM",
-        "Awards and recognitions received for extension activities from government / government recognised bodies.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc2"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "3.4.3": [
         "QnM",
-        "Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community during the last five years",
+        "The institution ensures implementation of its stated Code of Ethics for research",
         {
           "Institutional data in the prescribed format (data template)": [
             "Data Template",
-            "institutionalDataFormat_doc5",
+            "instDataTemplate_doc",
           ],
-          "Detailed report for each extension and outreach program to be made available, with specific mention of number of students participate and the details of the collaborating agency":
-            ["Upload", "extensionOutreachProgramDetails_doc"],
-          "Photographs and any other supporting document of relevance should have proper captions and dates.":
-            ["Upload", "docWithCaptionsAndDates_doc"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.4.1.1",
+            "3.4.1.1 The institution has a stated Code of Ethics for research and the implementation of which is ensured through the following",
+            "select",
+            "",
+            [
+              "Inclusion of research ethics in the research methodology course work",
+              "Presence of institutional Ethics committees (Animal, chemical,bio-ethics etc.,)",
+              "Plagiarism check through sofware",
+              "Research Advisory Committee",
+            ],
+          ],
+        ],
+      ],
+      "3.4.2": [
+        "QnM",
+        "Number of Patents awarded during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.4.2.1",
+            "3.4.2.1: Total number of Patents awarded during the last five years",
+            true,
+          ],
+        ],
+      ],
+      "3.4.3": [
+        "QnM",
+        "Number of Ph.Ds awarded per recognized guide during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
         [
           [
             "3.4.3.1",
-            "3.4.3.1 Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community during the last five years.",
+            "3.4.3.1 How many Ph.D s were awarded during last 5 years",
+            true,
+          ],
+          [
+            "3.4.3.2",
+            "3.4.3.2 Number of teachers recognized as guides during the last five years",
             true,
           ],
         ],
       ],
-    },
-    Collaboration: {
-      "3.5.1": [
+      "3.4.4": [
         "QnM",
-        "Number of functional MoUs/linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
+        "Number of research papers published per teacher in the Journals as notified on UGC CARE list during the last five years",
         {
           "Institutional data in the prescribed format (data template)": [
             "Data Template",
-            "institutionalDataFormat_doc4",
+            "instDataTemplate_doc",
           ],
-          "List and Copies of documents indicating the functional MoUs/linkage/collaborations activity-wise and year-wise":
-            ["Upload", "collaborationsByActivity_doc"],
-          "Summary of the functional MoUs/linkage/collaboration indicating start date, end date, nature of collaboration etc.":
-            ["Upload", "collaborationDetails_doc"],
-          "List of year wise activities and exchange should be provided": [
-            "Upload",
-            "activitiesByYear_doc",
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.4.4.1",
+            "3.4.4.1 Number of research papers published in the Journals as notified on UGC CARE list during the last five years",
+            true,
+            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
+          ],
+        ],
+      ],
+      "3.4.5": [
+        "QnM",
+        "Number of books and chapters in edited volumes published per teacher during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.4.5.1",
+            "3.4.5.1 Total number of books and chapters in edited volumes / books published during the last five years",
+            true,
+            "Number of Full-time teachers in the institution year-wise during last five year",
+          ],
+          [
+            "3.4.5.2",
+            "",
+            "",
+            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
+          ],
+        ],
+      ],
+      "3.4.6": [
+        "QnM",
+        "E-content is developed by teachers :",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "",
+            "",
+            "select",
+            "Number of Full-time teachers in the institution year-wise during last five year",
+            [
+              "For e-PG-Pathshala",
+              "For CEC (Undergraduate)",
+              "For SWAYAM",
+              "For other MOOCs platforms",
+              "Any other Government Initiatives",
+              "For Institutional LMS",
+            ],
+          ],
+        ],
+      ],
+      // "3.4.7": [
+      //   "QnM",
+      //   "Bibliometrics of the publications during the last five years based on average Citation Index in Scopus/ Web of Science",
+      //   {
+      //     "Institutional data in the prescribed format (data template)": [
+      //       "Data Template",
+      //       "instDataTemplate_doc",
+      //     ],
+      //     "Provide Links for any other relevant document to support the claim (if any)":
+      //       ["Link"],
+      //   },
+      //   [
+      //     [
+      //       "3.4.4.1",
+      //       "3.4.4.1 Number of research papers published in the Journals as notified on UGC CARE list during the last five years",
+      //       true,
+      //       "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
+      //     ],
+      //   ],
+      // ],
+      // 3.4.8 also left
+    },
+    Consultancy: {
+      "3.5.1": [
+        "QnM",
+        "Revenue generated from consultancy and corporate training during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
           ],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
@@ -277,7 +655,59 @@ const Criteria3 = (prop, ref) => {
         [
           [
             "3.5.1.1",
-            "3.5.1.1 Number of functional MoUs / linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
+            "3.5.1.1 Total amount generated from consultancy and corporate training year-wise during the last five years (INR in lakhs)",
+            true,
+          ],
+        ],
+      ],
+    },
+    "Extension Activities": {
+      "3.6.1": [
+        "QIM",
+        "Outcomes of Extension activities in the neighborhood community in terms of impact and sensitizing the students to social issues for their holistic development and awards received if any during the last five years.",
+        {
+          "Provide Link for Additional information": ["Link"],
+          "Upload Additional information": ["Upload", "addInfo_doc"],
+          "Provide the relevant information in intitutional website as part of public disclosure":
+            ["Upload", "dummy"],
+        },
+      ],
+      "3.6.2": [
+        "QnM",
+        "Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.6.2.1",
+            "3.6.2.1 Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community year wise during the last five years.",
+            true,
+          ],
+        ],
+      ],
+    },
+    Collaboration: {
+      "3.7.1": [
+        "QnM",
+        "Number of functional MoUs/linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "3.7.1.1",
+            "3.7.1.1 Number of functional MoUs with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
             true,
           ],
         ],
@@ -308,7 +738,7 @@ const Criteria3 = (prop, ref) => {
         "GET",
         `qif/data-c3/${collegeData.collegId}`
       );
-      console.log(response);
+
       const updatedFormData = { ...formData };
       updatedFormData.qifId = response.qifId;
       updatedFormData.criteriaIII_Id = response.criteriaIII_Id;
@@ -464,7 +894,6 @@ const Criteria3 = (prop, ref) => {
 
   useEffect(() => {
     const totalFilledElements = countFilledElements(formData);
-    console.log(totalFilledElements);
     setAnsQs({ ...ansQs, 3: totalFilledElements });
   }, [formData]);
 

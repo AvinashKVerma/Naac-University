@@ -197,16 +197,16 @@ const ExtendedProfile = ({ setActiveButton }) => {
   };
   return (
     <>
-      {/* Programs */}
+      {/* Students */}
       <div className="p-2 ">
         <h1 className="bg-[#337ab7] p-2 border border-[#337ab7] rounded-b-none rounded-lg text-white">
-          1 . Program
+          1 . Students
         </h1>
         <ul className="border border-[#337ab7] p-3 rounded-b-lg bg-white">
           <li className="p-3 pt-2 border rounded-lg mb-4">
             <ExtendedComponent
               title={
-                "1.1 . Numbers of courses offered by the institution across all programs during the last five years"
+                "1.1 . Number of students on rolls year-wise during the last five years"
               }
               index={"1.1"}
               formData={formData.programCourseYear}
@@ -223,26 +223,32 @@ const ExtendedProfile = ({ setActiveButton }) => {
           <li className="p-3 pt-2 border rounded-lg mb-4">
             <ExtendedComponent
               title={
-                "1.2 . Number of Programmes offered year-wise during the last five years"
+                "1.2 . Number of final year outgoing students year wise during last five years"
               }
               formData={formData.programYear}
               setFormData={setFormData}
               field={"programYear"}
+              upload={true}
+              doc={[
+                "programCourseInstDataDoc",
+                `document-programInstructional`,
+              ]}
+              extendedID={formData.extendedProfileSSRId}
             />
           </li>
         </ul>
       </div>
 
-      {/* Students */}
+      {/* Academic Data */}
       <div className="p-2">
         <h1 className="bg-[#337ab7] p-2 border border-[#337ab7] rounded-b-none rounded-lg text-white">
-          2 . Students
+          2 . Academic Data
         </h1>
         <ul className="border border-[#337ab7] p-3 rounded-b-lg bg-white">
           <li className="p-3 pt-2 border rounded-lg mb-4">
             <ExtendedComponent
               title={
-                "2.1 . Number of students year-wise during the last five years"
+                "2.1 . Number of Full-time teachers in the institution year-wise during last five year"
               }
               index={"2.1"}
               formData={formData.studentYear}
@@ -256,7 +262,7 @@ const ExtendedProfile = ({ setActiveButton }) => {
           <li className="p-3 pt-2 border rounded-lg mb-4">
             <ExtendedComponent
               title={
-                "2.2 . Number of students appeared in the University examination year- wise during the last five years"
+                "2.2 . Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years"
               }
               index={"2.2"}
               formData={formData.stuAppearedYear}
@@ -269,51 +275,19 @@ const ExtendedProfile = ({ setActiveButton }) => {
               extendedID={formData.extendedProfileSSRId}
             />
           </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "2.3 . Number of revaluation applications received year-wise during the last 5 years"
-              }
-              index={"2.3"}
-              formData={formData.stuRevalApplicationsYear}
-              setFormData={setFormData}
-              field={"stuRevalApplicationsYear"}
-              doc={[
-                "stuRevalApplicationsInstDataDoc",
-                `document-stu-rev-appInst`,
-              ]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "2.4 . Number of outgoing / final year students year- wise during the last five years"
-              }
-              index={"2.4"}
-              formData={formData.stuOutgoingYear}
-              setFormData={setFormData}
-              field={"stuOutgoingYear"}
-              doc={[
-                "stuOutgoingInstDataDoc",
-                `document-stu-outgoing-instructional`,
-              ]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
         </ul>
       </div>
 
-      {/* Academic Data */}
+      {/* Expenditure */}
       <div className="p-2 ">
         <h1 className="bg-[#337ab7] p-2 border border-[#337ab7] rounded-b-none rounded-lg text-white">
-          3 . Academic Data
+          3 . Expenditure
         </h1>
         <ul className="border border-[#337ab7] p-3 rounded-b-lg bg-white">
           <li className="p-3 pt-2 border rounded-lg mb-4">
             <ExtendedComponent
               title={
-                "3.1 . Number of courses in all Programmes year-wise during the last five years"
+                "3.1 . Total Expenditure excluding salary year wise during the last five years (INR in lakhs)"
               }
               index={"3.1"}
               formData={formData.acadCoursesInAllProgsYear}
@@ -326,129 +300,9 @@ const ExtendedProfile = ({ setActiveButton }) => {
               extendedID={formData.extendedProfileSSRId}
             />
           </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "3.2 . Number of full time teachers year-wise during the last five years"
-              }
-              index={"3.2"}
-              formData={formData.acadFullTimeTeachYear}
-              setFormData={setFormData}
-              field={"acadFullTimeTeachYear"}
-              doc={[
-                "acadFullTimeTeachInstDataDoc",
-                `acad-full-time-teach-inst`,
-              ]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "3.3 . Number of sanctioned posts year-wise during the last five years"
-              }
-              index={"3.3"}
-              formData={formData.acadSanctionedPostsYear}
-              setFormData={setFormData}
-              field={"acadSanctionedPostsYear"}
-              doc={[
-                "acadSanctionedPostsInstDataDoc",
-                `acad-sanctioned-posts-inst`,
-              ]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
         </ul>
       </div>
 
-      {/* Admission data */}
-      <div className="p-2 ">
-        <h1 className="bg-[#337ab7] p-2 border border-[#337ab7] rounded-b-none rounded-lg text-white">
-          4 . Admission data
-        </h1>
-        <ul className="border border-[#337ab7] p-3 rounded-b-lg bg-white">
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "4.1 . Number of eligible applications received for all the Programmes year-wise during the last five years"
-              }
-              index={"4.1"}
-              formData={formData.addmAppliReceviedYear}
-              setFormData={setFormData}
-              field={"addmAppliReceviedYear"}
-              doc={["addmAppliReceviedInstDataDoc", `addm-appli-recevied-inst`]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "4.2 . Number of seats earmarked for reserved category as per the GOI/State Govt. rules year- wise during the last five years"
-              }
-              index={"4.2"}
-              formData={formData.addmReservedSeatsYear}
-              setFormData={setFormData}
-              field={"addmReservedSeatsYear"}
-              doc={["addmReservedSeatsInstDataDoc", `addm-reserved-seats-inst`]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
-
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <div className="w-full">
-              4.3 .
-              <div className="flex w- full">
-                <div className="w-3/5">Total number of classrooms</div>
-                <input
-                  type="text"
-                  className="w-2/5 border border-black"
-                  name="addmNumOfClassrooms"
-                  value={formData.addmNumOfClassrooms}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex w- full pt-2">
-                <div className="w-3/5">Total number of Seminar Halls</div>
-                <input
-                  type="text"
-                  className="w-2/5 border border-black"
-                  name="addmNumOfSeminarHall"
-                  value={formData.addmNumOfSeminarHall}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4 flex">
-            <div className="w-3/5">
-              4.4 . Total number of computers in the campus for academic purpose
-            </div>
-            <input
-              type="text"
-              className=" border border-black w-2/5"
-              name="addmNumOfComputer"
-              value={formData.addmNumOfComputer}
-              onChange={handleChange}
-            />
-          </li>
-          <li className="p-3 pt-2 border rounded-lg mb-4">
-            <ExtendedComponent
-              title={
-                "4.5 . Total Expenditure excluding salary year-wise during the last five years (INR in Lakhs) years"
-              }
-              index={"4.5"}
-              formData={formData.expenditureWithoutSalaryYear}
-              setFormData={setFormData}
-              field={"expenditureWithoutSalaryYear"}
-              doc={[
-                "expenditureWithoutSalaryInstDataDoc",
-                `expenditure-without-salary-inst`,
-              ]}
-              extendedID={formData.extendedProfileSSRId}
-            />
-          </li>
-        </ul>
-      </div>
       <div className="flex justify-end pr-2 pb-2">
         <button
           className="px-3 py-1 bg-blue-600 rounded-lg"

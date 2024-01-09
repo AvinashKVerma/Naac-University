@@ -67,18 +67,18 @@ const DocumentTemplate = ({
     <div className="mt-4">
       <ul>
         <li className="border border-black w-full flex">
-          <div className="w-1/4 border-black border-r pl-2">
+          <div className="w-[40%] border-black border-r pl-2">
             File Description
           </div>
-          <div className="w-1/4 border-black border-r pl-2">Template</div>
-          <div className="w-1/2 border-black pl-2">Documents</div>
+          <div className="w-[30%] border-black border-r pl-2">Template</div>
+          <div className="w-[30%] border-black pl-2">Documents</div>
         </li>
         <li className="border border-t-0 border-black w-full flex">
-          <div className="w-1/4 border-black border-r pl-2">
+          <div className="w-[40%] border-black border-r pl-2">
             Institutional data prescribed format
             <span className="text-red-600">*</span>
           </div>
-          <div className="w-1/4 border-black border-r pl-2">
+          <div className="w-[30%] border-black border-r pl-2">
             <a
               href={
                 index
@@ -90,7 +90,7 @@ const DocumentTemplate = ({
               Data Template
             </a>
           </div>
-          <div className="w-1/2 border-black p-2">
+          <div className="w-[30%] border-black p-2">
             {formData[doc[0]] &&
             formData[doc[0]] !== "" &&
             formData[doc[0]] !== undefined ? (
@@ -112,7 +112,7 @@ const DocumentTemplate = ({
               </div>
             ) : (
               <label
-                className="custom-file-upload border bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer shadow-xl shadow-slate-300/60 p-1"
+                className="custom-file-upload border bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer shadow-md shadow-slate-300/60 p-1"
                 onChange={handleDocUpload}
               >
                 <input
@@ -125,6 +125,16 @@ const DocumentTemplate = ({
                 Upload File
               </label>
             )}
+          </div>
+        </li>
+        <li className="border border-t-0 border-black w-full flex">
+          <div className="w-[40%] border-black border-r pl-2 pb-1">
+            Provide Links for any other relevant document to support the claim
+            (if any)
+          </div>
+          <div className="w-[30%] border-black border-r pl-2"></div>
+          <div className="w-[30%] border-black p-2">
+            <input type="text" className="w-full h-full border border-black" />
           </div>
         </li>
       </ul>

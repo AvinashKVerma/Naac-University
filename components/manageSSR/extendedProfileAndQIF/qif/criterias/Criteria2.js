@@ -44,10 +44,34 @@ const Criteria2 = (prop, ref) => {
       link: [""],
     },
     "2.2.1": {
+      para: "",
       doc: [""],
       link: [""],
     },
+    "2.2.2": {
+      doc: [""],
+      "2.2.1.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "2.2.1.2": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      link: [""],
+    },
     "2.3.1": {
+      para: "",
+      doc: [""],
+      link: [""],
+    },
+    "2.3.2": {
       para: "",
       doc: [""],
       link: [""],
@@ -64,23 +88,69 @@ const Criteria2 = (prop, ref) => {
         year4: "",
         year5: "",
       },
-      doc: ["", "", ""],
-      link: [""],
-    },
-    "2.5.1": {
-      para: "",
       doc: [""],
       link: [""],
+    },
+    "2.4.3": {
+      doc: [""],
+      link: [""],
+      "2.4.3.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "2.5.1": {
+      doc: [""],
+      link: [""],
+      "2.5.1.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "2.5.2": {
+      doc: [""],
+      link: [""],
+      "2.5.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+      "2.5.2.2": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "2.5.3": {
+      doc: [""],
+      link: [""],
+      select: "",
     },
     "2.6.1": {
       para: "",
-      doc: [""],
+      doc: ["", ""],
       link: [""],
     },
     "2.6.2": {
-      para: "",
       doc: [""],
       link: [""],
+      "2.6.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
     },
     "2.6.3": {
       doc: ["", "", ""],
@@ -99,6 +169,10 @@ const Criteria2 = (prop, ref) => {
         year4: "",
         year5: "",
       },
+    },
+    "2.7.1": {
+      doc: [""],
+      link: [""],
     },
   });
   const [relatedInput, setRelatedInput] = useState({
@@ -144,6 +218,20 @@ const Criteria2 = (prop, ref) => {
       year4: "",
       year5: "",
     },
+    "2.4.3.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "2.6.2.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
   });
   const keyIndicators = {
     "Student Enrolment and Profile ": {
@@ -157,7 +245,7 @@ const Criteria2 = (prop, ref) => {
           ],
           "Document relating to sanction of intake as approved by competent authority":
             ["Upload", "intakeSanctionApproval_doc"],
-          "Final admission list as published by the HEI and endorsed by the competent authority.":
+          "Admission extract signed by the component authority (only fresh admission to be considered":
             ["Upload", "finalAdmissionList_doc"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
@@ -165,12 +253,12 @@ const Criteria2 = (prop, ref) => {
         [
           [
             "2.1.1.1",
-            "2.1.1.1 Number of seats filled year wise during last five years (Only first year admissions to be considered)",
+            "2.1.1.1 Number of sanctioned seats year wise during last five years",
             true,
           ],
           [
             "2.1.1.2",
-            "2.1.1.2 Number of sanctioned seats year wise during last five years",
+            "2.1.1.2 Number of seats filled year wise during last five years (Only first year admissions to be considered)",
             true,
           ],
         ],
@@ -200,8 +288,16 @@ const Criteria2 = (prop, ref) => {
         ],
       ],
     },
-    "Student Teacher Ratio": {
+    "Catering to Student Diversity": {
       "2.2.1": [
+        "QIM",
+        "The institution assesses the learning levels of the students and organises special Programmes to cater to differential learning needs of the student",
+        {
+          "Provide Link for Additional information": ["Link"],
+          "Upload Additional information": ["Upload", "additionalInfo_doc2"],
+        },
+      ],
+      "2.2.2": [
         "QnM",
         "Student – Full time Teacher Ratio",
         {
@@ -213,23 +309,32 @@ const Criteria2 = (prop, ref) => {
             "2.2.1.1",
             "",
             false,
-            "Number of students year wise during last five years",
+            "Number of students on rolls year-wise during the last five years",
           ],
           [
             "2.2.1.2",
             "",
             false,
-            "Number of full time teachers year wise during last five years",
+            "Number of Full-time teachers in the institution year-wise during last five year",
           ],
         ],
       ],
     },
-    "Teaching- Learning Process": {
+    "Teaching-Learning Process": {
       "2.3.1": [
         "QIM",
-        "Student centric methods, such as experiential learning, participative learning and problem solving methodologies are used for enhancing learning experiences and teachers use ICT- enabled tools including online resources for effective teaching and learning process",
+        "Student centric methods, such as experiential learning, participative learning and problem solving methodologies are used for enhancing learning experience and teachers use ICT-enabled tools including online resources for effective teaching learning process",
         {
           "Upload Additional information": ["Upload", "additionalInfo_doc2"],
+          "Provide Link for Additional information": ["Link"],
+        },
+      ],
+      "2.3.2": [
+        "QIM",
+        "The institution adopts effective Mentor-Mentee Schemes to address academics and student-psychological issues",
+        {
+          "Upload Additional information": ["Upload", "additionalInfo_doc2"],
+          "List of Active mentors": ["Upload", "dummy"],
           "Provide Link for Additional information": ["Link"],
         },
       ],
@@ -237,7 +342,7 @@ const Criteria2 = (prop, ref) => {
     "Teacher Profile and Quality": {
       "2.4.1": [
         "QnM",
-        "Percentage of full-time teachers against sanctioned posts during the last five years",
+        "Average percentage of full time teachers appointed against the number of sanctioned posts year wise during the last five years",
         {
           "Sanction letters indicating number of posts sanctioned by the competent authority (including Management sanctioned posts)":
             ["Upload", "sanctionedPostsMap_doc"],
@@ -249,65 +354,139 @@ const Criteria2 = (prop, ref) => {
             "2.4.1.1",
             "",
             false,
-            "Number of full time teachers year wise during last five years",
-          ],
-          [
-            "2.4.1.2",
-            "",
-            false,
-            "Number of sanctioned posts year wise during the last five years",
+            "Number of Full-time teachers in the institution year-wise during last five year",
           ],
         ],
       ],
       "2.4.2": [
         "QnM",
-        "Percentage of full time teachers with NET/SET/SLET/ Ph. D./D.Sc. /D.Litt./L.L.D. during the last five years (consider only highest degree for count)",
+        "Percentage of full time teachers with Ph.D./D.M/M.Ch./D.N.B/ Superspeciality/L.L.D/D.S.C/D.Litt. during the last five years",
         {
           "Institutional data in the prescribed format (data template merged with 2.1)":
             ["Data Template", "instDataTemplate_doc3"],
-          "List of faculty having Ph.D./D.Sc. / D.Litt./ L.L.D along with particulars of the degree awarding university, subject and the year of award per academic year.":
-            ["Upload", "facultyPhDList_doc"],
-          "Copies of Ph.D./D.Sc. / D.Litt./ L.L.D awarded by UGC recognized universities":
-            ["Upload", "ugcRecognizedPhdDegrees_doc"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
         [
           [
             "2.4.2.1",
-            "2.4.2.1 Number of full time teachers with NET/SET/SLET/Ph. D./ D.Sc. / D.Litt./L.L.D year wise during the last five years",
+            "2.4.2.1 Number of full time teachers with Ph.D./D.M/M.Ch./D.N.B/ Superspeciality/L.L.D/D.S.C/D.Litt Superspecialist during the last five years",
             true,
-            "Number of full time teachers year wise during last five years",
+            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
+          ],
+        ],
+      ],
+      "2.4.3": [
+        "QnM",
+        "Average teaching experience of full time teachers (Data to be provided only for the latest completed academic year, in number of years)",
+        {
+          "Institutional data in the prescribed format (data template merged with 2.1)":
+            ["Data Template", "instDataTemplate_doc3"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "2.4.3.1",
+            "2.4.3.1: Total teaching experience of full-time teachers (for the latest completed academic year)",
+            true,
+            "Number of Full-time teachers in the institution year-wise during last five year",
           ],
         ],
       ],
     },
     "Evaluation Process and Reforms": {
       "2.5.1": [
-        "QIM",
-        "Mechanism of internal/ external assessment is transparent and the grievance redressal system is time- bound and efficient",
+        "QnM",
+        "Average number of days from the date of last semester-end/ year- end examination till the last date of declaration of results year-wise during last five years",
         {
-          "Upload Additional information": ["Upload", "additionalInfo_doc3"],
+          "Institutional data in the prescribed format (data template merged with 2.1)":
+            ["Data Template", "instDataTemplate_doc3"],
           "Provide Link for Additional information": ["Link"],
         },
+        [
+          [
+            "2.5.1.1",
+            "2.5.1.1: Number of days from the date of last semester-end/ year- end examination till the last date declaration of results year-wise during the last five years",
+            true,
+          ],
+        ],
+      ],
+      "2.5.2": [
+        "QnM",
+        "Percentage of student complaints/grievances about evaluation against total number of students appeared in the examinations during the last five years",
+        {
+          "Institutional data in the prescribed format (data template merged with 2.1)":
+            ["Data Template", "instDataTemplate_doc3"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "2.5.2.1",
+            "2.5.2.1: Number of complaints/grievances about evaluation year-wise during the last five years",
+            true,
+          ],
+          [
+            "2.5.2.2",
+            "2.5.2.2: Number of students appeared in the examination conducted by the institution year wise during the last five years",
+            true,
+          ],
+        ],
+      ],
+      "2.5.3": [
+        "QnM",
+        "Status of automation of Examination division along with approved Examination Manual/ordinance",
+        {
+          "Institutional data in the prescribed format (data template merged with 2.1)":
+            ["Data Template", "instDataTemplate_doc3"],
+          "Provide Link for Additional information": ["Link"],
+        },
+        [
+          [
+            "",
+            "",
+            "select",
+            "",
+            [
+              "100% automation of entire division & implementation of Examination Management System (EMS)",
+              "Only student registration, Hall ticket issue & Result Processing",
+              "Only student registration and result processing",
+              "Only result processing",
+              "Only manual methodology",
+            ],
+          ],
+        ],
       ],
     },
     "Student Performance and Learning Outcome": {
       "2.6.1": [
         "QIM",
-        "Programme Outcomes (POs) and Course Outcomes (COs) for all Programmes offered by the institution are stated and displayed on website",
+        "The institution has stated learning outcomes (Program and Course outcomes)/graduate attributes which are integrated into the assessment process and widely publicized through the website and other documents and the attainment of the same are evaluated by the institution",
         {
           "Upload Additional information": ["Upload", "additionalInfo_doc4"],
           "Provide Link for Additional information": ["Link"],
+          "Upload COs for all courses (exemplars from Glossary)": [
+            "Upload",
+            "dummy",
+          ],
         },
       ],
       "2.6.2": [
-        "QIM",
-        "Attainment of POs and COs are evaluated.",
+        "QnM",
+        "Pass percentage of students (excluding backlog students) (Data to be provided only for the latest completed academic year)",
         {
           "Upload Additional information": ["Upload", "additionalInfo_doc5"],
           "Provide Link for Additional information": ["Link"],
         },
+        [
+          [
+            "2.6.2.1",
+            "2.6.2.1: Total number of final year students who passed the examination conducted by Institution",
+            true,
+            "Number of final year outgoing students year wise during last five years",
+          ],
+        ],
       ],
       "2.6.3": [
         "QnM",
@@ -336,6 +515,17 @@ const Criteria2 = (prop, ref) => {
             true,
           ],
         ],
+      ],
+    },
+    "Student Satisfaction Survey": {
+      "2.7.1": [
+        "QnM",
+        "Online Student Satisfaction Survey regarding the teaching-learning process.",
+        {
+          "Upload any additional information": ["Upload", "dummy"],
+          "Upload database of all currently enrolled students (Data Template)":
+            ["Data Template", "dummy"],
+        },
       ],
     },
   };
@@ -717,11 +907,9 @@ const Criteria2 = (prop, ref) => {
                                             {extractLastTwoDigits(currentYear)}
                                           </div>
                                           <div className="border border-black px-1">
-                                            {
-                                              relatedInput[elem[0]][
-                                                `year${index + 1}`
-                                              ]
-                                            }
+                                            {relatedInput[elem[0]][
+                                              `year${index + 1}`
+                                            ] || 0}
                                           </div>
                                         </div>
                                       ))}
