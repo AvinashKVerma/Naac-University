@@ -247,6 +247,13 @@ const Criteria3 = (prop, ref) => {
       year4: "",
       year5: "",
     },
+    "3.2.2.2": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
     "3.3.2.1": {
       year1: "",
       year2: "",
@@ -290,6 +297,27 @@ const Criteria3 = (prop, ref) => {
       year5: "",
     },
     "3.4.5.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.5.2": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.6.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "3.4.6.2": {
       year1: "",
       year2: "",
       year3: "",
@@ -603,7 +631,7 @@ const Criteria3 = (prop, ref) => {
         },
         [
           [
-            "",
+            "3.4.6.1",
             "",
             "select",
             "Number of Full-time teachers in the institution year-wise during last five year",
@@ -614,6 +642,14 @@ const Criteria3 = (prop, ref) => {
               "For other MOOCs platforms",
               "Any other Government Initiatives",
               "For Institutional LMS",
+            ],
+          ],
+          [
+            [
+              "3.4.6.2",
+              "",
+              "",
+              "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
             ],
           ],
         ],
@@ -716,139 +752,136 @@ const Criteria3 = (prop, ref) => {
   };
 
   useEffect(() => {
-    (async () => {
-      const response = await config.ssrAPIRequest(
-        "GET",
-        `extended-ssr/${collegeData.collegId}`
-      );
-      if (response) {
-        const updatedRelatedInput = { ...relatedInput };
-        updatedRelatedInput["3.3.1.1"].year1 = response.acadFullTimeTeachYear1;
-        updatedRelatedInput["3.3.1.1"].year2 = response.acadFullTimeTeachYear2;
-        updatedRelatedInput["3.3.1.1"].year3 = response.acadFullTimeTeachYear3;
-        updatedRelatedInput["3.3.1.1"].year4 = response.acadFullTimeTeachYear4;
-        updatedRelatedInput["3.3.1.1"].year5 = response.acadFullTimeTeachYear5;
-        updatedRelatedInput["3.3.2.1"] = updatedRelatedInput["3.3.1.1"];
-        setRelatedInput(updatedRelatedInput);
-      }
-    })();
-
-    (async () => {
-      const response = await config.ssrAPIRequest(
-        "GET",
-        `qif/data-c3/${collegeData.collegId}`
-      );
-
-      const updatedFormData = { ...formData };
-      updatedFormData.qifId = response.qifId;
-      updatedFormData.criteriaIII_Id = response.criteriaIII_Id;
-      updatedFormData["3.1.1"]["3.1.1.1"].year1 =
-        response.totGrantGovtNonGovtLastY1 || "";
-      updatedFormData["3.1.1"]["3.1.1.1"].year2 =
-        response.totGrantGovtNonGovtLastY2 || "";
-      updatedFormData["3.1.1"]["3.1.1.1"].year3 =
-        response.totGrantGovtNonGovtLastY3 || "";
-      updatedFormData["3.1.1"]["3.1.1.1"].year4 =
-        response.totGrantGovtNonGovtLastY4 || "";
-      updatedFormData["3.1.1"]["3.1.1.1"].year5 =
-        response.totGrantGovtNonGovtLastY5 || "";
-      updatedFormData["3.1.1"].doc[0] = response.instDataTemplate_doc || "";
-      updatedFormData["3.1.1"].doc[1] = response.supporting_doc || "";
-
-      updatedFormData["3.2.1"].para = response.devlopedKnowledgeSystem || "";
-      updatedFormData["3.2.1"].doc[0] = response.additionalInfo_doc || "";
-      updatedFormData["3.2.1"].link[0] = response.additionalInfoLink || "";
-      updatedFormData["3.2.2"]["3.2.2.1"].year1 =
-        response.totWorkshopOnResearchMetho_Y1 || "";
-      updatedFormData["3.2.2"]["3.2.2.1"].year2 =
-        response.totWorkshopOnResearchMetho_Y2 || "";
-      updatedFormData["3.2.2"]["3.2.2.1"].year3 =
-        response.totWorkshopOnResearchMetho_Y3 || "";
-      updatedFormData["3.2.2"]["3.2.2.1"].year4 =
-        response.totWorkshopOnResearchMetho_Y4 || "";
-      updatedFormData["3.2.2"]["3.2.2.1"].year5 =
-        response.totWorkshopOnResearchMetho_Y5 || "";
-      updatedFormData["3.2.2"].doc[0] =
-        response.institutionalDataFormat_doc || "";
-      updatedFormData["3.2.2"].doc[1] = response.supporting_doc2 || "";
-      updatedFormData["3.3.1"]["3.3.1.1"].year1 =
-        response.paperInUGCJournalByY1 || "";
-      updatedFormData["3.3.1"]["3.3.1.1"].year2 =
-        response.paperInUGCJournalByY2 || "";
-      updatedFormData["3.3.1"]["3.3.1.1"].year3 =
-        response.paperInUGCJournalByY3 || "";
-      updatedFormData["3.3.1"]["3.3.1.1"].year4 =
-        response.paperInUGCJournalByY4 || "";
-      updatedFormData["3.3.1"]["3.3.1.1"].year5 =
-        response.paperInUGCJournalByY5 || "";
-      updatedFormData["3.3.1"].doc[0] =
-        response.institutionalDataFormat_doc2 || "";
-      updatedFormData["3.3.1"].link[0] =
-        response.ugcCareJournalsPaperLinks || "";
-      updatedFormData["3.3.1"].link[1] =
-        response.paperLinkFirstPageOnInstitWeb || "";
-      updatedFormData["3.3.1"].link[2] = response.redirectLink || "";
-      updatedFormData["3.3.1"].link[3] = response.relivantDocLink || "";
-      updatedFormData["3.3.2"]["3.3.2.1"].year1 =
-        response.bookChaptPerTeachY1 || "";
-      updatedFormData["3.3.2"]["3.3.2.1"].year2 =
-        response.bookChaptPerTeachY2 || "";
-      updatedFormData["3.3.2"]["3.3.2.1"].year3 =
-        response.bookChaptPerTeachY3 || "";
-      updatedFormData["3.3.2"]["3.3.2.1"].year4 =
-        response.bookChaptPerTeachY4 || "";
-      updatedFormData["3.3.2"]["3.3.2.1"].year5 =
-        response.bookChaptPerTeachY5 || "";
-      updatedFormData["3.3.2"].doc[0] =
-        response.institutionalDataFormat_doc3 || "";
-      updatedFormData["3.3.2"].doc[1] = response.firstPageWithISBN_doc || "";
-      updatedFormData["3.3.2"].link[0] =
-        response.relevantDocumentSupport_Link || "";
-      updatedFormData["3.4.1"].para =
-        response.extActOutcome_neighComm_5yrs || "";
-      updatedFormData["3.4.1"].doc[0] = response.addInfo_doc || "";
-      updatedFormData["3.4.1"].link[0] = response.addInfoLink || "";
-      updatedFormData["3.4.2"].para = response.extActAwardsGovt || "";
-      updatedFormData["3.4.2"].doc[0] = response.addInfo_doc2 || "";
-      updatedFormData["3.4.2"].link[0] = response.addInfoLink3 || "";
-      updatedFormData["3.4.3"]["3.4.3.1"].year1 =
-        response.numExtOutreachProgramsY1 || "";
-      updatedFormData["3.4.3"]["3.4.3.1"].year2 =
-        response.numExtOutreachProgramsY2 || "";
-      updatedFormData["3.4.3"]["3.4.3.1"].year3 =
-        response.numExtOutreachProgramsY3 || "";
-      updatedFormData["3.4.3"]["3.4.3.1"].year4 =
-        response.numExtOutreachProgramsY4 || "";
-      updatedFormData["3.4.3"]["3.4.3.1"].year5 =
-        response.numExtOutreachProgramsY5 || "";
-      updatedFormData["3.4.3"].doc[0] =
-        response.institutionalDataFormat_doc5 || "";
-      updatedFormData["3.4.3"].doc[1] =
-        response.extensionOutreachProgramDetails_doc || "";
-      updatedFormData["3.4.3"].doc[2] =
-        response.docWithCaptionsAndDates_doc || "";
-      updatedFormData["3.4.3"].link[0] =
-        response.relevantDocumentSupport_Link3 || "";
-      updatedFormData["3.5.1"]["3.5.1.1"].year1 =
-        response.functLinkagesLastY1 || "";
-      updatedFormData["3.5.1"]["3.5.1.1"].year2 =
-        response.functLinkagesLastY2 || "";
-      updatedFormData["3.5.1"]["3.5.1.1"].year3 =
-        response.functLinkagesLastY3 || "";
-      updatedFormData["3.5.1"]["3.5.1.1"].year4 =
-        response.functLinkagesLastY4 || "";
-      updatedFormData["3.5.1"]["3.5.1.1"].year5 =
-        response.functLinkagesLastY5 || "";
-      updatedFormData["3.5.1"].doc[0] =
-        response.institutionalDataFormat_doc4 || "";
-      updatedFormData["3.5.1"].doc[1] =
-        response.collaborationsByActivity_doc || "";
-      updatedFormData["3.5.1"].doc[2] = response.collaborationDetails_doc || "";
-      updatedFormData["3.5.1"].doc[3] = response.activitiesByYear_doc || "";
-      updatedFormData["3.5.1"].link[0] =
-        response.relevantDocumentSupport_Link2 || "";
-      setFormData(updatedFormData);
-    })();
+    // (async () => {
+    //   const response = await config.ssrAPIRequest(
+    //     "GET",
+    //     `extended-ssr/${collegeData.collegId}`
+    //   );
+    //   if (response) {
+    //     const updatedRelatedInput = { ...relatedInput };
+    //     updatedRelatedInput["3.3.1.1"].year1 = response.acadFullTimeTeachYear1;
+    //     updatedRelatedInput["3.3.1.1"].year2 = response.acadFullTimeTeachYear2;
+    //     updatedRelatedInput["3.3.1.1"].year3 = response.acadFullTimeTeachYear3;
+    //     updatedRelatedInput["3.3.1.1"].year4 = response.acadFullTimeTeachYear4;
+    //     updatedRelatedInput["3.3.1.1"].year5 = response.acadFullTimeTeachYear5;
+    //     updatedRelatedInput["3.3.2.1"] = updatedRelatedInput["3.3.1.1"];
+    //     setRelatedInput(updatedRelatedInput);
+    //   }
+    // })();
+    // (async () => {
+    //   const response = await config.ssrAPIRequest(
+    //     "GET",
+    //     `qif/data-c3/${collegeData.collegId}`
+    //   );
+    //   const updatedFormData = { ...formData };
+    //   updatedFormData.qifId = response.qifId;
+    //   updatedFormData.criteriaIII_Id = response.criteriaIII_Id;
+    //   updatedFormData["3.1.1"]["3.1.1.1"].year1 =
+    //     response.totGrantGovtNonGovtLastY1 || "";
+    //   updatedFormData["3.1.1"]["3.1.1.1"].year2 =
+    //     response.totGrantGovtNonGovtLastY2 || "";
+    //   updatedFormData["3.1.1"]["3.1.1.1"].year3 =
+    //     response.totGrantGovtNonGovtLastY3 || "";
+    //   updatedFormData["3.1.1"]["3.1.1.1"].year4 =
+    //     response.totGrantGovtNonGovtLastY4 || "";
+    //   updatedFormData["3.1.1"]["3.1.1.1"].year5 =
+    //     response.totGrantGovtNonGovtLastY5 || "";
+    //   updatedFormData["3.1.1"].doc[0] = response.instDataTemplate_doc || "";
+    //   updatedFormData["3.1.1"].doc[1] = response.supporting_doc || "";
+    //   updatedFormData["3.2.1"].para = response.devlopedKnowledgeSystem || "";
+    //   updatedFormData["3.2.1"].doc[0] = response.additionalInfo_doc || "";
+    //   updatedFormData["3.2.1"].link[0] = response.additionalInfoLink || "";
+    //   updatedFormData["3.2.2"]["3.2.2.1"].year1 =
+    //     response.totWorkshopOnResearchMetho_Y1 || "";
+    //   updatedFormData["3.2.2"]["3.2.2.1"].year2 =
+    //     response.totWorkshopOnResearchMetho_Y2 || "";
+    //   updatedFormData["3.2.2"]["3.2.2.1"].year3 =
+    //     response.totWorkshopOnResearchMetho_Y3 || "";
+    //   updatedFormData["3.2.2"]["3.2.2.1"].year4 =
+    //     response.totWorkshopOnResearchMetho_Y4 || "";
+    //   updatedFormData["3.2.2"]["3.2.2.1"].year5 =
+    //     response.totWorkshopOnResearchMetho_Y5 || "";
+    //   updatedFormData["3.2.2"].doc[0] =
+    //     response.institutionalDataFormat_doc || "";
+    //   updatedFormData["3.2.2"].doc[1] = response.supporting_doc2 || "";
+    //   updatedFormData["3.3.1"]["3.3.1.1"].year1 =
+    //     response.paperInUGCJournalByY1 || "";
+    //   updatedFormData["3.3.1"]["3.3.1.1"].year2 =
+    //     response.paperInUGCJournalByY2 || "";
+    //   updatedFormData["3.3.1"]["3.3.1.1"].year3 =
+    //     response.paperInUGCJournalByY3 || "";
+    //   updatedFormData["3.3.1"]["3.3.1.1"].year4 =
+    //     response.paperInUGCJournalByY4 || "";
+    //   updatedFormData["3.3.1"]["3.3.1.1"].year5 =
+    //     response.paperInUGCJournalByY5 || "";
+    //   updatedFormData["3.3.1"].doc[0] =
+    //     response.institutionalDataFormat_doc2 || "";
+    //   updatedFormData["3.3.1"].link[0] =
+    //     response.ugcCareJournalsPaperLinks || "";
+    //   updatedFormData["3.3.1"].link[1] =
+    //     response.paperLinkFirstPageOnInstitWeb || "";
+    //   updatedFormData["3.3.1"].link[2] = response.redirectLink || "";
+    //   updatedFormData["3.3.1"].link[3] = response.relivantDocLink || "";
+    //   updatedFormData["3.3.2"]["3.3.2.1"].year1 =
+    //     response.bookChaptPerTeachY1 || "";
+    //   updatedFormData["3.3.2"]["3.3.2.1"].year2 =
+    //     response.bookChaptPerTeachY2 || "";
+    //   updatedFormData["3.3.2"]["3.3.2.1"].year3 =
+    //     response.bookChaptPerTeachY3 || "";
+    //   updatedFormData["3.3.2"]["3.3.2.1"].year4 =
+    //     response.bookChaptPerTeachY4 || "";
+    //   updatedFormData["3.3.2"]["3.3.2.1"].year5 =
+    //     response.bookChaptPerTeachY5 || "";
+    //   updatedFormData["3.3.2"].doc[0] =
+    //     response.institutionalDataFormat_doc3 || "";
+    //   updatedFormData["3.3.2"].doc[1] = response.firstPageWithISBN_doc || "";
+    //   updatedFormData["3.3.2"].link[0] =
+    //     response.relevantDocumentSupport_Link || "";
+    //   updatedFormData["3.4.1"].para =
+    //     response.extActOutcome_neighComm_5yrs || "";
+    //   updatedFormData["3.4.1"].doc[0] = response.addInfo_doc || "";
+    //   updatedFormData["3.4.1"].link[0] = response.addInfoLink || "";
+    //   updatedFormData["3.4.2"].para = response.extActAwardsGovt || "";
+    //   updatedFormData["3.4.2"].doc[0] = response.addInfo_doc2 || "";
+    //   updatedFormData["3.4.2"].link[0] = response.addInfoLink3 || "";
+    //   updatedFormData["3.4.3"]["3.4.3.1"].year1 =
+    //     response.numExtOutreachProgramsY1 || "";
+    //   updatedFormData["3.4.3"]["3.4.3.1"].year2 =
+    //     response.numExtOutreachProgramsY2 || "";
+    //   updatedFormData["3.4.3"]["3.4.3.1"].year3 =
+    //     response.numExtOutreachProgramsY3 || "";
+    //   updatedFormData["3.4.3"]["3.4.3.1"].year4 =
+    //     response.numExtOutreachProgramsY4 || "";
+    //   updatedFormData["3.4.3"]["3.4.3.1"].year5 =
+    //     response.numExtOutreachProgramsY5 || "";
+    //   updatedFormData["3.4.3"].doc[0] =
+    //     response.institutionalDataFormat_doc5 || "";
+    //   updatedFormData["3.4.3"].doc[1] =
+    //     response.extensionOutreachProgramDetails_doc || "";
+    //   updatedFormData["3.4.3"].doc[2] =
+    //     response.docWithCaptionsAndDates_doc || "";
+    //   updatedFormData["3.4.3"].link[0] =
+    //     response.relevantDocumentSupport_Link3 || "";
+    //   updatedFormData["3.5.1"]["3.5.1.1"].year1 =
+    //     response.functLinkagesLastY1 || "";
+    //   updatedFormData["3.5.1"]["3.5.1.1"].year2 =
+    //     response.functLinkagesLastY2 || "";
+    //   updatedFormData["3.5.1"]["3.5.1.1"].year3 =
+    //     response.functLinkagesLastY3 || "";
+    //   updatedFormData["3.5.1"]["3.5.1.1"].year4 =
+    //     response.functLinkagesLastY4 || "";
+    //   updatedFormData["3.5.1"]["3.5.1.1"].year5 =
+    //     response.functLinkagesLastY5 || "";
+    //   updatedFormData["3.5.1"].doc[0] =
+    //     response.institutionalDataFormat_doc4 || "";
+    //   updatedFormData["3.5.1"].doc[1] =
+    //     response.collaborationsByActivity_doc || "";
+    //   updatedFormData["3.5.1"].doc[2] = response.collaborationDetails_doc || "";
+    //   updatedFormData["3.5.1"].doc[3] = response.activitiesByYear_doc || "";
+    //   updatedFormData["3.5.1"].link[0] =
+    //     response.relevantDocumentSupport_Link2 || "";
+    //   setFormData(updatedFormData);
+    // })();
   }, []);
 
   const isElementFilled = (element) => {

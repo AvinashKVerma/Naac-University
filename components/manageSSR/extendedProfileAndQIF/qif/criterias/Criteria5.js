@@ -15,7 +15,7 @@ const Criteria5 = (prop, ref) => {
   const { collegeData, ssrID } = contextManager();
   const [formData, setFormData] = useState({
     "5.1.1": {
-      doc: ["", "", "", ""],
+      doc: [""],
       "5.1.1.1": {
         year1: "",
         year2: "",
@@ -26,27 +26,22 @@ const Criteria5 = (prop, ref) => {
       link: [""],
     },
     "5.1.2": {
-      select: "",
-      doc: ["", "", "", ""],
+      para: "",
+      doc: [""],
       link: [""],
     },
     "5.1.3": {
-      doc: ["", ""],
-      "5.1.3.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
+      doc: [""],
+      link: [""],
+      select: "",
     },
     "5.1.4": {
       select: "",
-      doc: ["", "", "", "", ""],
+      doc: [""],
       link: [""],
     },
     "5.2.1": {
-      doc: ["", "", ""],
+      doc: [""],
       "5.2.1.1": {
         year1: "",
         year2: "",
@@ -57,7 +52,7 @@ const Criteria5 = (prop, ref) => {
       link: [""],
     },
     "5.2.2": {
-      doc: ["", "", ""],
+      doc: [""],
       link: [""],
       "5.2.2.1": {
         year1: "",
@@ -67,8 +62,19 @@ const Criteria5 = (prop, ref) => {
         year5: "",
       },
     },
+    "5.2.3": {
+      doc: [""],
+      link: [""],
+      "5.2.3.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
     "5.3.1": {
-      doc: ["", ""],
+      doc: [""],
       "5.3.1.1": {
         year1: "",
         year2: "",
@@ -79,8 +85,19 @@ const Criteria5 = (prop, ref) => {
       link: [""],
     },
     "5.3.2": {
+      doc: [""],
+      para: "",
+      link: [""],
+    },
+    "5.3.3": {
+      doc: [""],
+      select: "",
+      link: [""],
+    },
+    "5.4.1": {
       doc: ["", ""],
-      "5.3.2.1": {
+      link: [""],
+      "5.3.1.1": {
         year1: "",
         year2: "",
         year3: "",
@@ -88,219 +105,13 @@ const Criteria5 = (prop, ref) => {
         year5: "",
       },
     },
-    "5.4.1": {
-      para: "",
+    "5.4.2": {
       doc: [""],
+      para: "",
       link: [""],
     },
   });
-  const keyIndicators = {
-    "Student Support": {
-      "5.1.1": [
-        "QnM",
-        "Percentage of students benefited by scholarships and freeships provided by the institution, government and non-government bodies, industries, individuals, philanthropists during the last five years.",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc",
-          ],
-          "Upload Sanction letter of scholarship and free ships (along with English translated version if it is in regional language).":
-            ["Upload", "sanctionLetter_doc"],
-          "Upload policy document of the HEI for award of scholarship and freeships.":
-            ["Upload", "heiScholarshipPolicy_doc"],
-          "Year-wise list of beneficiary students in each scheme duly signed by the competent authority.":
-            ["Upload", "beneficiaryListsByYear_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-        [
-          [
-            "5.1.1.1",
-            "5.1.1.1 Number of students benefited by scholarships and freeships provided by the institution, Government and non-government bodies, industries, individuals, philanthropists during the last five years",
-            true,
-            "Number of students year-wise during the last five years",
-          ],
-        ],
-      ],
-      "5.1.2": [
-        "QnM",
-        "Following capacity development and skills enhancement activities are are organised for improving students' capability",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc2",
-          ],
-          "Report with photographs on programmes/activities conducted to enhance soft skills, Language & communication skills, and Life skills (Yoga, physical fitness, health and hygiene, self-employment a entrepreneurial skills)":
-            ["Upload", "ReportEnhanceSkillsAndActivities_doc"],
-          "Report with photographs on programmes conducted for awareness of trends in technology":
-            ["Upload", "TechAwarenessProgramReport_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.1.2.1",
-            "4.1.2.1: Expenditure for infrastructure development and augmentation, excluding salary year wise during last five years (INR in lakhs)",
-            "select",
-            "",
-            [
-              "Soft skills",
-              "Language and communication skills",
-              "Life skills (Yoga, physical fitness, health and hygiene, selfemployment and entrepreneurial skills)",
-              "Awareness of trends in technology",
-            ],
-          ],
-        ],
-      ],
 
-      //
-      "5.1.3": [
-        "QnM",
-        "Percentage of students benefitted by guidance for competitive examinations and career counseling offered by the Institution during the last five years",
-        {
-          "Institutional data in the prescribed format": ["Upload"],
-          "Upload supporting document": ["Upload"],
-        },
-        [
-          [
-            "5.1.3.1",
-            "5.1.3.1 Number of students benefitted by guidance for competitive examinations and career counseling offered by the institution year wise during last five years",
-            true,
-          ],
-        ],
-      ],
-      "5.1.4": [
-        "QnM",
-        "The institution adopts the following for redressal of student grievances including sexual harassment and ragging cases",
-        {
-          "Details of statutory/regulatory Committees (to be notified in institutional website also)":
-            ["Upload", "institutionalDataTemplate_doc3"],
-          "Proof for Implementation of guidelines of statutory/regulatory bodies":
-            ["Upload", "GuidelineComplianceProof_doc"],
-          "Proof w.r.t Organisation wide awareness and undertakings on policies with zero tolerance":
-            ["Upload", "orgAwarenessPolicyZeroTol_doc"],
-          "Prof related to Mechanisms for submission if online/offline students' grievances":
-            ["Upload", "grievanceSubmitMech_doc"],
-          "Annual report of the committee monitoring the activities and number of grievances":
-            ["Upload", "cmagnogReport_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "",
-            "",
-            "select",
-            "",
-            [
-              "Implementation of guidelines of statutory/regulatory bodies",
-              "Organisation wide awareness and undertakings on policies with zero tolerance",
-              "Timely redressal of the grievances through appropriate committees",
-            ],
-          ],
-        ],
-      ],
-    },
-    StudentProgression: {
-      "5.2.1": [
-        "QnM",
-        "Percentage of placement of outgoing students and students progressing to higher education during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc4",
-          ],
-          "Number and List of students placed along with placement details such as  of the company, compensation, etc and links to Placement order (the above list should be available on institutional website)":
-            ["Upload", "placementInfoList_doc"],
-          "List of students progressing for Higher Education, with details of program and institution that they are/have enrolled along with links to proof of continuation in higher education.(the above list should be available on institutional website)":
-            ["Upload", "stdProgHighEdDetWithProofLinks"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "5.2.1.1",
-            "5.2.1.1 Number of outgoing students placed and progressed to higher education during the last five years",
-            true,
-            "Number of outgoing students year wise during the last five years",
-          ],
-        ],
-      ],
-      "5.2.2": [
-        "QnM",
-        "Percentage of students qualifying in state/national/ international level examinations during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc5",
-          ],
-          "List of students qualified year wise with details of examination and links to  Certificates of the students taking the examination":
-            ["Upload", "qualifiedStudentsByYear_link"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "5.2.2.1",
-            "5.2.2.1 Number of students qualifying in state/ national/ international level examinations year wise during last five years (eg: IIT/JAM/NET/SLET/GATE/GMAT/GPAT/CLAT/CAT/ GRE/TOEFL/ IELTS/Civil Services/State government examinations etc.)",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Student Participation and Activities": {
-      "5.3.1": [
-        "QnM",
-        "Number of awards/medals for outstanding performance in sports/ cultural activities at University / state/ national / international level during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc6",
-          ],
-          "List and links to e-copies of award letters and certificates": [
-            "Upload",
-            "awardDocsLinks",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "5.3.1.1",
-            "5.3.1.1 Number of awards/medals for outstanding performance in sports/cultural activities at University/state/national/international level year wise during the last five years",
-            true,
-          ],
-        ],
-      ],
-      "5.3.2": [
-        "QnM",
-        "Average number of sports and cultural programs in which students of the Institution participated during last five years",
-        {
-          "Institutional data in the prescribed format": [
-            "Upload",
-            "institutionalDataTemplate_doc7",
-          ],
-          "Upload supporting document": ["Upload", "suporting_doc"],
-        },
-        [
-          [
-            "5.3.2.1",
-            "5.3.2.1 Number of sports and cultural programs in which students of the Institution participated year wise during last five years (organised by the institution/other institutions)",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Alumni Engagement": {
-      "5.4.1": [
-        "QIM",
-        "There is a registered Alumni Association that contributes significantly to the development of the institution through financial and/or other support services.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-    },
-  };
   const [relatedInput, setRelatedInput] = useState({
     "5.1.1.1": {
       year1: 0,
@@ -316,7 +127,255 @@ const Criteria5 = (prop, ref) => {
       year4: 0,
       year5: 0,
     },
+    "5.2.2.1": {
+      year1: 0,
+      year2: 0,
+      year3: 0,
+      year4: 0,
+      year5: 0,
+    },
+    "5.2.3.1": {
+      year1: 0,
+      year2: 0,
+      year3: 0,
+      year4: 0,
+      year5: 0,
+    },
   });
+
+  const keyIndicators = {
+    "Student Support": {
+      "5.1.1": [
+        "QnM",
+        "Percentage of students benefited by scholarships and freeships provided by the institution, Government and non-government , industries, individuals, philanthropists during the last five years.",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "institutionalDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "5.1.1.1",
+            "5.1.1.1: Number of students benefited by scholarships and freeships provided by the institution, Government and non-government bodies, industries, individuals, philanthropists year-wise during the last five years",
+            true,
+            "Number of students year-wise during the last five years",
+          ],
+        ],
+      ],
+      "5.1.2": [
+        "QIM",
+        "Efforts taken by the institution to provide career counseling including e-counseling and guidance for competitive examinations during the last five years",
+        {
+          "Provide the link for additional information": ["Upload", "dummy"],
+          "Upload any additional information": ["Link"],
+        },
+      ],
+      "5.1.3": [
+        "QnM",
+        "Following capacity development and skills enhancement activities are are organised for improving students' capability",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "",
+            "",
+            "select",
+            "",
+            [
+              "Soft skills",
+              "Language and communication skills",
+              "Life skills (Yoga, physical fitness, health and hygiene, selfemployment and entrepreneurial skills)",
+              "Awareness of trends in technology",
+            ],
+          ],
+        ],
+      ],
+      "5.1.4": [
+        "QnM",
+        "The Institution adopts the following for redressal of student grievances including sexual harassment and ragging cases",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "",
+            "",
+            "select",
+            "",
+            [
+              "Implementation of guidelines of statutory/regulatory bodies",
+              "Organisation wide awareness and undertakings on policies with zero tolerance",
+              "Mechanisms for submission of offline/online students' grievances",
+              "Timely redressal of the grievances through appropriate committees",
+            ],
+          ],
+        ],
+      ],
+    },
+    StudentProgression: {
+      "5.2.1": [
+        "QnM",
+        "Percentage of placement of outgoing students during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "5.2.1.1",
+            "5.2.1.1: Number of outgoing students placed year wise during the last five years",
+            true,
+            "Number of final year outgoing students year wise during last five years",
+          ],
+        ],
+      ],
+      "5.2.2": [
+        "QnM",
+        "Percentage of graduated students who have progressed to higher education year-wise during last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "5.2.2.1",
+            "5.2.2.1: Number of outgoing students progressing to higher education",
+            true,
+            "Number of final year outgoing students year wise during last five years",
+          ],
+        ],
+      ],
+      "5.2.3": [
+        "QnM",
+        "Percentage of students qualifying in state/ national/ international level examinations out of the graduated students during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "5.2.3.1",
+            "5.2.3.1: Number of students qualifying in state/National/International level Examination during last five years (eg. SLET, NET, UPSC etc)",
+            true,
+            "Number of final year outgoing students year wise during last five years",
+          ],
+        ],
+      ],
+    },
+    "Student Participation and Activities": {
+      "5.3.1": [
+        "QnM",
+        "Number of awards/medals won by students for outstanding performance in sports/cultural activities at inter-university/state/national/international events (award for a team event should be counted as one) during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "institutionalDataTemplate_doc6",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "5.3.1.1",
+            "5.3.1.1 Number of awards/medals for outstanding performance in sports/cultural activities at University/state/national/international level year wise during the last five years",
+            true,
+          ],
+        ],
+      ],
+      "5.3.2": [
+        "QIM",
+        "Presence of an active Student Council & representation of students on academic & administrative bodies/committees of the institution",
+        {
+          "Provide the link for additional information": ["Link"],
+          "Upload any additional information": ["Upload", "suporting_doc"],
+        },
+      ],
+      "5.3.3": [
+        "QnM",
+        "The institution conducts /organizes following activities",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "institutionalDataTemplate_doc6",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "",
+            "",
+            "select",
+            "",
+            [
+              "Sports competitions/events",
+              "Cultural competitions/events",
+              "Technical fest/academic fests",
+              "Any other events through active clubs and forums",
+            ],
+          ],
+        ],
+      ],
+    },
+    "Alumni Engagement": {
+      "5.4.1": [
+        "QnM",
+        "Alumni contribution during the last five years to the University through registered Alumni Association.",
+        {
+          "Annual audited statement of accounts of the HEI highlighting the Alumni contribution duly certified by the Chartered Accountant/ Finance Officer":
+            ["Upload", "addInfo_doc"],
+          "List of alumunus/ alumni with the amount contributed year wise": [
+            "Upload",
+            "addInfo_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "5.4.1.1",
+            "5.4.1.1. Total Amount of alumni contribution during the last five years (INR in lakhs) to the institution through registered Alumni association",
+            "true",
+          ],
+        ],
+      ],
+      "5.4.2": [
+        "QIM",
+        "Alumni contributes and engages significantly to the development of University through academic and other support system",
+        {
+          "Provide the link for additional information": ["Link"],
+          "Upload any additional information": ["Upload", "dummy"],
+        },
+      ],
+    },
+  };
+
   const options = [
     "A. All of the above",
     "B. Any 3 of the above",
@@ -326,128 +385,126 @@ const Criteria5 = (prop, ref) => {
   ];
 
   useEffect(() => {
-    (async () => {
-      const response = await config.ssrAPIRequest(
-        "GET",
-        `extended-ssr/${collegeData.collegId}`
-      );
-      if (response) {
-        const updatedRelatedInput = { ...relatedInput };
-        updatedRelatedInput["5.2.1.1"].year1 = response.stuOutgoingYear1;
-        updatedRelatedInput["5.2.1.1"].year2 = response.stuOutgoingYear2;
-        updatedRelatedInput["5.2.1.1"].year3 = response.stuOutgoingYear3;
-        updatedRelatedInput["5.2.1.1"].year4 = response.stuOutgoingYear4;
-        updatedRelatedInput["5.2.1.1"].year5 = response.stuOutgoingYear5;
-        updatedRelatedInput["5.1.1.1"].year1 = response.studentYear1;
-        updatedRelatedInput["5.1.1.1"].year2 = response.studentYear2;
-        updatedRelatedInput["5.1.1.1"].year3 = response.studentYear3;
-        updatedRelatedInput["5.1.1.1"].year4 = response.studentYear4;
-        updatedRelatedInput["5.1.1.1"].year4 = response.studentYear5;
-        setRelatedInput(updatedRelatedInput);
-      }
-    })();
-
-    (async () => {
-      const response = await config.ssrAPIRequest(
-        "GET",
-        `qif/data-c5/${collegeData.collegId}`
-      );
-
-      const updatedFormData = { ...formData };
-      updatedFormData.qifId = response.qifId;
-      updatedFormData.criteriaV_Id = response.criteriaV_Id;
-      updatedFormData["5.1.1"]["5.1.1.1"].year1 =
-        response.numBenefiScholarLastY1 || "";
-      updatedFormData["5.1.1"]["5.1.1.1"].year2 =
-        response.numBenefiScholarLastY2 || "";
-      updatedFormData["5.1.1"]["5.1.1.1"].year3 =
-        response.numBenefiScholarLastY3 || "";
-      updatedFormData["5.1.1"]["5.1.1.1"].year4 =
-        response.numBenefiScholarLastY4 || "";
-      updatedFormData["5.1.1"]["5.1.1.1"].year5 =
-        response.numBenefiScholarLastY5 || "";
-      updatedFormData["5.1.1"].doc[0] = response.institutionalDataTemplate_doc;
-      updatedFormData["5.1.1"].doc[1] = response.sanctionLetter_doc;
-      updatedFormData["5.1.1"].doc[2] = response.heiScholarshipPolicy_doc;
-      updatedFormData["5.1.1"].doc[3] = response.beneficiaryListsByYear_doc;
-      updatedFormData["5.1.1"].link[0] = response.addInfoLink;
-      updatedFormData["5.1.2"].select = response.skillType1;
-      updatedFormData["5.1.2"].doc[0] = response.institutionalDataTemplate_doc2;
-      updatedFormData["5.1.2"].doc[1] =
-        response.ReportEnhanceSkillsAndActivities_doc;
-      updatedFormData["5.1.2"].doc[2] = response.TechAwarenessProgramReport_doc;
-      updatedFormData["5.1.2"].link[0] = response.relivantDocSuportLink || "";
-      updatedFormData["5.1.3"]["5.1.3.1"].year1 =
-        response.stuBenefitByGuidanceY1 || "";
-      updatedFormData["5.1.3"]["5.1.3.1"].year2 =
-        response.stuBenefitByGuidanceY2 || "";
-      updatedFormData["5.1.3"]["5.1.3.1"].year3 =
-        response.stuBenefitByGuidanceY3 || "";
-      updatedFormData["5.1.3"]["5.1.3.1"].year4 =
-        response.stuBenefitByGuidanceY4 || "";
-      updatedFormData["5.1.3"]["5.1.3.1"].year5 =
-        response.stuBenefitByGuidanceY5 || "";
-      updatedFormData["5.1.3"].doc[0] = response.institutionalDataTemplate_doc3;
-      updatedFormData["5.1.3"].doc[1] = response.relivantDocSuportdoc;
-      updatedFormData["5.1.4"].select = response.grievanceResolutionTyp1;
-      updatedFormData["5.1.4"].doc[0] = response.statRegCommittees_doc;
-      updatedFormData["5.1.4"].doc[1] = response.GuidelineComplianceProof_doc;
-      updatedFormData["5.1.4"].doc[2] = response.orgAwarenessPolicyZeroTol_doc;
-      updatedFormData["5.1.4"].doc[3] = response.grievanceSubmitMech_doc;
-      updatedFormData["5.1.4"].doc[4] = response.cmagnogReport_doc;
-      updatedFormData["5.1.4"].link[0] = response.relivantDocSuportLink3 || "";
-      updatedFormData["5.2.1"]["5.2.1.1"].year1 =
-        response.outgoingPlacementProgY1 || "";
-      updatedFormData["5.2.1"]["5.2.1.1"].year2 =
-        response.outgoingPlacementProgY2 || "";
-      updatedFormData["5.2.1"]["5.2.1.1"].year3 =
-        response.outgoingPlacementProgY3 || "";
-      updatedFormData["5.2.1"]["5.2.1.1"].year4 =
-        response.outgoingPlacementProgY4 || "";
-      updatedFormData["5.2.1"]["5.2.1.1"].year5 =
-        response.outgoingPlacementProgY5 || "";
-      updatedFormData["5.2.1"].doc[0] = response.institutionalDataTemplate_doc4;
-      updatedFormData["5.2.1"].doc[1] = response.placementInfoList_doc;
-      updatedFormData["5.2.1"].doc[2] = response.stdProgHighEdDetWithProofLinks;
-      updatedFormData["5.2.1"].link[0] = response.relivantDocSuportLink4 | "";
-      updatedFormData["5.2.2"]["5.2.2.1"].year1 =
-        response.qualStudentsCountByY1 || "";
-      updatedFormData["5.2.2"]["5.2.2.1"].year2 =
-        response.qualStudentsCountByY2 || "";
-      updatedFormData["5.2.2"]["5.2.2.1"].year3 =
-        response.qualStudentsCountByY3 || "";
-      updatedFormData["5.2.2"]["5.2.2.1"].year4 =
-        response.qualStudentsCountByY4 || "";
-      updatedFormData["5.2.2"]["5.2.2.1"].year5 =
-        response.qualStudentsCountByY5 || "";
-      updatedFormData["5.2.2"].doc[0] = response.institutionalDataTemplate_doc5;
-      updatedFormData["5.2.2"].doc[1] = response.qualifiedStudentsByYear_link;
-      updatedFormData["5.2.2"].link[0] = response.relivantDocSuportLink5 || "";
-      updatedFormData["5.3.1"]["5.3.1.1"].year1 = response.awardsCountY1 || "";
-      updatedFormData["5.3.1"]["5.3.1.1"].year2 = response.awardsCountY2 || "";
-      updatedFormData["5.3.1"]["5.3.1.1"].year3 = response.awardsCountY3 || "";
-      updatedFormData["5.3.1"]["5.3.1.1"].year4 = response.awardsCountY4 || "";
-      updatedFormData["5.3.1"]["5.3.1.1"].year5 = response.awardsCountY5 || "";
-      updatedFormData["5.3.1"].doc[0] = response.institutionalDataTemplate_doc6;
-      updatedFormData["5.3.1"].doc[1] = response.awardDocsLinks;
-      updatedFormData["5.3.1"].link[0] = response.relivantDocSuportLink6 || "";
-      updatedFormData["5.3.2"]["5.3.2.1"].year1 =
-        response.numParticipationsByY1 || "";
-      updatedFormData["5.3.2"]["5.3.2.1"].year2 =
-        response.numParticipationsByY2 || "";
-      updatedFormData["5.3.2"]["5.3.2.1"].year3 =
-        response.numParticipationsByY3 || "";
-      updatedFormData["5.3.2"]["5.3.2.1"].year4 =
-        response.numParticipationsByY4 || "";
-      updatedFormData["5.3.2"]["5.3.2.1"].year5 =
-        response.numParticipationsByY5 || "";
-      updatedFormData["5.3.2"].doc[0] = response.institutionalDataTemplate_doc7;
-      updatedFormData["5.3.2"].doc[1] = response.suporting_doc;
-      updatedFormData["5.4.1"].para = response.alumniAssocContribution || "";
-      updatedFormData["5.4.1"].doc[0] = response.addInfo_doc;
-      updatedFormData["5.4.1"].doc[1] = response.addInfoLink2;
-      setFormData(updatedFormData);
-    })();
+    // (async () => {
+    //   const response = await config.ssrAPIRequest(
+    //     "GET",
+    //     `extended-ssr/${collegeData.collegId}`
+    //   );
+    //   if (response) {
+    //     const updatedRelatedInput = { ...relatedInput };
+    //     updatedRelatedInput["5.2.1.1"].year1 = response.stuOutgoingYear1;
+    //     updatedRelatedInput["5.2.1.1"].year2 = response.stuOutgoingYear2;
+    //     updatedRelatedInput["5.2.1.1"].year3 = response.stuOutgoingYear3;
+    //     updatedRelatedInput["5.2.1.1"].year4 = response.stuOutgoingYear4;
+    //     updatedRelatedInput["5.2.1.1"].year5 = response.stuOutgoingYear5;
+    //     updatedRelatedInput["5.1.1.1"].year1 = response.studentYear1;
+    //     updatedRelatedInput["5.1.1.1"].year2 = response.studentYear2;
+    //     updatedRelatedInput["5.1.1.1"].year3 = response.studentYear3;
+    //     updatedRelatedInput["5.1.1.1"].year4 = response.studentYear4;
+    //     updatedRelatedInput["5.1.1.1"].year4 = response.studentYear5;
+    //     setRelatedInput(updatedRelatedInput);
+    //   }
+    // })();
+    // (async () => {
+    //   const response = await config.ssrAPIRequest(
+    //     "GET",
+    //     `qif/data-c5/${collegeData.collegId}`
+    //   );
+    //   const updatedFormData = { ...formData };
+    //   updatedFormData.qifId = response.qifId;
+    //   updatedFormData.criteriaV_Id = response.criteriaV_Id;
+    //   updatedFormData["5.1.1"]["5.1.1.1"].year1 =
+    //     response.numBenefiScholarLastY1 || "";
+    //   updatedFormData["5.1.1"]["5.1.1.1"].year2 =
+    //     response.numBenefiScholarLastY2 || "";
+    //   updatedFormData["5.1.1"]["5.1.1.1"].year3 =
+    //     response.numBenefiScholarLastY3 || "";
+    //   updatedFormData["5.1.1"]["5.1.1.1"].year4 =
+    //     response.numBenefiScholarLastY4 || "";
+    //   updatedFormData["5.1.1"]["5.1.1.1"].year5 =
+    //     response.numBenefiScholarLastY5 || "";
+    //   updatedFormData["5.1.1"].doc[0] = response.institutionalDataTemplate_doc;
+    //   updatedFormData["5.1.1"].doc[1] = response.sanctionLetter_doc;
+    //   updatedFormData["5.1.1"].doc[2] = response.heiScholarshipPolicy_doc;
+    //   updatedFormData["5.1.1"].doc[3] = response.beneficiaryListsByYear_doc;
+    //   updatedFormData["5.1.1"].link[0] = response.addInfoLink;
+    //   updatedFormData["5.1.2"].select = response.skillType1;
+    //   updatedFormData["5.1.2"].doc[0] = response.institutionalDataTemplate_doc2;
+    //   updatedFormData["5.1.2"].doc[1] =
+    //     response.ReportEnhanceSkillsAndActivities_doc;
+    //   updatedFormData["5.1.2"].doc[2] = response.TechAwarenessProgramReport_doc;
+    //   updatedFormData["5.1.2"].link[0] = response.relivantDocSuportLink || "";
+    //   updatedFormData["5.1.3"]["5.1.3.1"].year1 =
+    //     response.stuBenefitByGuidanceY1 || "";
+    //   updatedFormData["5.1.3"]["5.1.3.1"].year2 =
+    //     response.stuBenefitByGuidanceY2 || "";
+    //   updatedFormData["5.1.3"]["5.1.3.1"].year3 =
+    //     response.stuBenefitByGuidanceY3 || "";
+    //   updatedFormData["5.1.3"]["5.1.3.1"].year4 =
+    //     response.stuBenefitByGuidanceY4 || "";
+    //   updatedFormData["5.1.3"]["5.1.3.1"].year5 =
+    //     response.stuBenefitByGuidanceY5 || "";
+    //   updatedFormData["5.1.3"].doc[0] = response.institutionalDataTemplate_doc3;
+    //   updatedFormData["5.1.3"].doc[1] = response.relivantDocSuportdoc;
+    //   updatedFormData["5.1.4"].select = response.grievanceResolutionTyp1;
+    //   updatedFormData["5.1.4"].doc[0] = response.statRegCommittees_doc;
+    //   updatedFormData["5.1.4"].doc[1] = response.GuidelineComplianceProof_doc;
+    //   updatedFormData["5.1.4"].doc[2] = response.orgAwarenessPolicyZeroTol_doc;
+    //   updatedFormData["5.1.4"].doc[3] = response.grievanceSubmitMech_doc;
+    //   updatedFormData["5.1.4"].doc[4] = response.cmagnogReport_doc;
+    //   updatedFormData["5.1.4"].link[0] = response.relivantDocSuportLink3 || "";
+    //   updatedFormData["5.2.1"]["5.2.1.1"].year1 =
+    //     response.outgoingPlacementProgY1 || "";
+    //   updatedFormData["5.2.1"]["5.2.1.1"].year2 =
+    //     response.outgoingPlacementProgY2 || "";
+    //   updatedFormData["5.2.1"]["5.2.1.1"].year3 =
+    //     response.outgoingPlacementProgY3 || "";
+    //   updatedFormData["5.2.1"]["5.2.1.1"].year4 =
+    //     response.outgoingPlacementProgY4 || "";
+    //   updatedFormData["5.2.1"]["5.2.1.1"].year5 =
+    //     response.outgoingPlacementProgY5 || "";
+    //   updatedFormData["5.2.1"].doc[0] = response.institutionalDataTemplate_doc4;
+    //   updatedFormData["5.2.1"].doc[1] = response.placementInfoList_doc;
+    //   updatedFormData["5.2.1"].doc[2] = response.stdProgHighEdDetWithProofLinks;
+    //   updatedFormData["5.2.1"].link[0] = response.relivantDocSuportLink4 | "";
+    //   updatedFormData["5.2.2"]["5.2.2.1"].year1 =
+    //     response.qualStudentsCountByY1 || "";
+    //   updatedFormData["5.2.2"]["5.2.2.1"].year2 =
+    //     response.qualStudentsCountByY2 || "";
+    //   updatedFormData["5.2.2"]["5.2.2.1"].year3 =
+    //     response.qualStudentsCountByY3 || "";
+    //   updatedFormData["5.2.2"]["5.2.2.1"].year4 =
+    //     response.qualStudentsCountByY4 || "";
+    //   updatedFormData["5.2.2"]["5.2.2.1"].year5 =
+    //     response.qualStudentsCountByY5 || "";
+    //   updatedFormData["5.2.2"].doc[0] = response.institutionalDataTemplate_doc5;
+    //   updatedFormData["5.2.2"].doc[1] = response.qualifiedStudentsByYear_link;
+    //   updatedFormData["5.2.2"].link[0] = response.relivantDocSuportLink5 || "";
+    //   updatedFormData["5.3.1"]["5.3.1.1"].year1 = response.awardsCountY1 || "";
+    //   updatedFormData["5.3.1"]["5.3.1.1"].year2 = response.awardsCountY2 || "";
+    //   updatedFormData["5.3.1"]["5.3.1.1"].year3 = response.awardsCountY3 || "";
+    //   updatedFormData["5.3.1"]["5.3.1.1"].year4 = response.awardsCountY4 || "";
+    //   updatedFormData["5.3.1"]["5.3.1.1"].year5 = response.awardsCountY5 || "";
+    //   updatedFormData["5.3.1"].doc[0] = response.institutionalDataTemplate_doc6;
+    //   updatedFormData["5.3.1"].doc[1] = response.awardDocsLinks;
+    //   updatedFormData["5.3.1"].link[0] = response.relivantDocSuportLink6 || "";
+    //   updatedFormData["5.3.2"]["5.3.2.1"].year1 =
+    //     response.numParticipationsByY1 || "";
+    //   updatedFormData["5.3.2"]["5.3.2.1"].year2 =
+    //     response.numParticipationsByY2 || "";
+    //   updatedFormData["5.3.2"]["5.3.2.1"].year3 =
+    //     response.numParticipationsByY3 || "";
+    //   updatedFormData["5.3.2"]["5.3.2.1"].year4 =
+    //     response.numParticipationsByY4 || "";
+    //   updatedFormData["5.3.2"]["5.3.2.1"].year5 =
+    //     response.numParticipationsByY5 || "";
+    //   updatedFormData["5.3.2"].doc[0] = response.institutionalDataTemplate_doc7;
+    //   updatedFormData["5.3.2"].doc[1] = response.suporting_doc;
+    //   updatedFormData["5.4.1"].para = response.alumniAssocContribution || "";
+    //   updatedFormData["5.4.1"].doc[0] = response.addInfo_doc;
+    //   updatedFormData["5.4.1"].doc[1] = response.addInfoLink2;
+    //   setFormData(updatedFormData);
+    // })();
   }, []);
 
   useEffect(() => {
@@ -659,6 +716,51 @@ const Criteria5 = (prop, ref) => {
                           </div>
                         </div>
                       </div>
+
+                      {keyIndicators[ele][e][3] &&
+                        keyIndicators[ele][e][3].map((elem, index) => {
+                          return (
+                            <div key={index}>
+                              {elem[2] === true && (
+                                <div className="p-4 bg-slate-300 rounded-md flex mb-4 mt-4">
+                                  <span className="w-3/5">{elem[1]}</span>
+
+                                  <FiveYearInput
+                                    e={e}
+                                    question={elem[0]}
+                                    formData={formData}
+                                    setFormData={setFormData}
+                                  />
+                                </div>
+                              )}
+
+                              {elem[3] && elem[0] && (
+                                <div className="p-4  rounded-md flex mb-4 mt-4">
+                                  <span className="w-3/5">{elem[3]}</span>
+                                  <div className="w-2/5 flex border border-black">
+                                    {elem[3] &&
+                                      Array.from({ length: 5 }, (_, index) => (
+                                        <div
+                                          key={index}
+                                          className="flex flex-col w-1/5 p-2 pt-0"
+                                        >
+                                          <div>
+                                            {currentYear - (index + 1)}-
+                                            {extractLastTwoDigits(currentYear)}
+                                          </div>
+                                          <div className="border border-black px-1">
+                                            {relatedInput[elem[0]][
+                                              `year${index + 1}`
+                                            ] || 0}
+                                          </div>
+                                        </div>
+                                      ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       {keyIndicators[ele][e][3][0][2] === "select" && (
                         <div className="my-4 rounded-lg flex bg-slate-300">
                           <ul className="my-2 p-2 w-3/4">
@@ -670,7 +772,7 @@ const Criteria5 = (prop, ref) => {
                               )
                             )}
                           </ul>
-                          <ul className="pb-4 w-1/4">
+                          <ul className="py-2 my-2 w-1/4">
                             {options.map((option, index) => (
                               <li className="px-2 " key={index}>
                                 <label>
@@ -700,91 +802,6 @@ const Criteria5 = (prop, ref) => {
                             ))}
                           </ul>
                         </div>
-                      )}
-                      {keyIndicators[ele][e][3] &&
-                        keyIndicators[ele][e][3].map((elem, index) => {
-                          return (
-                            <div key={index}>
-                              {elem[2] === true && (
-                                <div className="p-4 bg-slate-300 rounded-md flex mb-4 mt-4">
-                                  <span className="w-3/5">{elem[1]}</span>
-
-                                  <FiveYearInput
-                                    e={e}
-                                    question={elem[0]}
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                  />
-                                </div>
-                              )}
-
-                              {elem[3] && (
-                                <div className="p-4  rounded-md flex mb-4 mt-4">
-                                  <span className="w-3/5">{elem[3]}</span>
-                                  <div className="w-2/5 flex border border-black">
-                                    {elem[3] &&
-                                      Array.from({ length: 5 }, (_, index) => (
-                                        <div
-                                          key={index}
-                                          className="flex flex-col w-1/5 p-2 pt-0"
-                                        >
-                                          <div>
-                                            {currentYear - (index + 1)}-
-                                            {extractLastTwoDigits(currentYear)}
-                                          </div>
-                                          <div className="border border-black px-1">
-                                            {relatedInput[elem[0]][
-                                              `year${index + 1}`
-                                            ] || 0}
-                                          </div>
-                                        </div>
-                                      ))}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      {keyIndicators[ele][e][4] && (
-                        <>
-                          <div className="p-4 bg-slate-300 rounded-md flex">
-                            <div className="flex flex-col">
-                              <b>
-                                <i>{keyIndicators[ele][e][4][0]}</i>
-                              </b>
-                              <table>
-                                <tbody>
-                                  {Array.from({ length: 5 }, (_, index) => (
-                                    <tr key={`A${index}`}>
-                                      <td>
-                                        <input
-                                          type="radio"
-                                          name="option"
-                                          value={`option${index + 1}`}
-                                          checked={
-                                            formData["1.4.1"][3] ===
-                                            `option${index + 1}`
-                                          }
-                                          onChange={handleChange}
-                                        />
-                                      </td>
-                                      <td className="align-middle">
-                                        &nbsp;&nbsp;
-                                        <b>{index + 1}. </b>
-                                        &nbsp;
-                                      </td>
-                                      <td>
-                                        <label className="text-sm">
-                                          {keyIndicators[ele][e][4][index + 1]}
-                                        </label>
-                                      </td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </>
                       )}
                     </>
                   )}

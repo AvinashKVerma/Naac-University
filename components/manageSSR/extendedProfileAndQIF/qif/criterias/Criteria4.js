@@ -20,7 +20,7 @@ const Criteria4 = (prop, ref) => {
       link: [""],
     },
     "4.1.2": {
-      doc: ["", "", ""],
+      doc: ["", ""],
       link: [""],
       "4.1.2.1": {
         year1: "",
@@ -32,8 +32,19 @@ const Criteria4 = (prop, ref) => {
     },
     "4.2.1": {
       para: "",
+      doc: ["", ""],
+      link: [""],
+    },
+    "4.2.2": {
       doc: [""],
       link: [""],
+      "4.2.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
     },
     "4.3.1": {
       para: "",
@@ -41,7 +52,7 @@ const Criteria4 = (prop, ref) => {
       link: [""],
     },
     "4.3.2": {
-      doc: ["", "", ""],
+      doc: ["", ""],
       link: [""],
       "4.3.2.1": {
         year1: "",
@@ -50,6 +61,11 @@ const Criteria4 = (prop, ref) => {
         year4: "",
         year5: "",
       },
+    },
+    "4.3.3": {
+      doc: [""],
+      link: [""],
+      select: "",
     },
     "4.4.1": {
       doc: [""],
@@ -62,101 +78,22 @@ const Criteria4 = (prop, ref) => {
       },
       link: [""],
     },
+    "4.4.2": {
+      para: "",
+      doc: [""],
+      link: [""],
+    },
   });
-  const keyIndicators = {
-    "Physical Facilities": {
-      "4.1.1": [
-        "QIM",
-        "The Institution has adequate infrastructure and other facilities for (a). teaching learning, viz., classrooms, laboratories, computing equipment etc (b). ICT enabled facilities such as smart class, LMS etc. Facilities for Cultural and sports activities, yoga centre, games (indoor and outdoor), Gymnasium, auditorium etc Describe the adequacy of facilities in maximum of 500 words.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "4.1.2": [
-        "QnM",
-        "Percentage of expenditure for infrastructure development and augmentation excluding salary during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc",
-          ],
-          "Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for infrastructure augmentation should be clearly highlighted)":
-            ["Upload", "AudRep_incomExpendiState_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.1.2.1",
-            "4.1.2.1: Expenditure for infrastructure development and augmentation, excluding salary year wise during last five years (INR in lakhs)",
-            true,
-            "Total Expenditure excluding salary year-wise during the last five years (INR in Lakhs) years",
-          ],
-        ],
-      ],
-    },
-    "Library as a learning Resource": {
-      "4.2.1": [
-        "QIM",
-        "Library is automated with digital facilities using Integrated Library Management System (ILMS), adequate subscriptions to e-resources and journals are made. The library is optimally used by the faculty and students",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc2"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-    },
-    "IT Infrastructure": {
-      "4.3.1": [
-        "QIM",
-        "Institution frequently updates its IT facilities and provides sufficient bandwidth for internet connection (Describe IT facilities including Wi-Fi with date and nature of updation, available internet bandwidth within a maximum of 500 words)",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc3"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "4.3.2": [
-        "QnM",
-        "Student Computer ratio (Data for the latest completed academic year)",
-        {
-          "Extracts stock register/ highlighting the computers issued to respective departments for student's usage.":
-            ["Upload", "StockRegistryExtractor_doc"],
-          "Purchased Bills/Copies highlighting the number of computers purchased":
-            ["Upload", "numCompPurchased_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.3.2.1",
-            "4.3.2.1 Number of computers available for students usage during the latest completed academic year",
-            true,
-            "Number of students year-wise during the last five years",
-          ],
-        ],
-      ],
-    },
-    "Maintenance of Campus Infrastructure": {
-      "4.4.1": [
-        "QnM",
-        "Percentage expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component, during the last five years.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc4"],
-          "Provide Link for Additional information": ["Link"],
-        },
-        [
-          [
-            "4.4.1.1",
-            "4.4.1.1 Expenditure incurred on maintenance of physical facilities an academic support facilities excluding salary component year wise during last five years (INR in lakhs)",
-            true,
-            "Total Expenditure excluding salary year-wise during the last five years (INR in Lakhs) years",
-          ],
-        ],
-      ],
-    },
-  };
+
   const [relatedInput, setRelatedInput] = useState({
     "4.1.2.1": {
+      year1: "",
+      year2: "",
+      year3: "",
+      year4: "",
+      year5: "",
+    },
+    "4.2.2.1": {
       year1: "",
       year2: "",
       year3: "",
@@ -178,6 +115,173 @@ const Criteria4 = (prop, ref) => {
       year5: "",
     },
   });
+
+  const keyIndicators = {
+    "Physical Facilities": {
+      "4.1.1": [
+        "QIM",
+        `The Institution has adequate infrastructure and other facilities for (a). teaching learning, viz., classrooms, laboratories, computing equipment etc (b). ICT enabled facilities such as smart class, LMS etc. Facilities for Cultural and sports activities, yoga centre, games (indoor and outdoor), Gymnasium, auditorium etc`,
+        {
+          "Upload Additional information": ["Upload", "addInfo_doc"],
+          "Provide Link for Additional information": ["Link"],
+        },
+      ],
+      "4.1.2": [
+        "QnM",
+        "Percentage of expenditure excluding salary, for infrastructure development and augmentation year wise during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "institutionalDataTemplate_doc",
+          ],
+          "Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for infrastructure augmentation should be clearly highlighted)":
+            ["Upload", "AudRep_incomExpendiState_doc"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "4.1.2.1",
+            "4.1.2.1: Expenditure for infrastructure development and augmentation, excluding salary year wise during last five years (INR in lakhs)",
+            true,
+            "Total Expenditure excluding salary year wise during the last five years (INR in lakhs)",
+          ],
+        ],
+      ],
+    },
+    "Library as a learning Resource": {
+      "4.2.1": [
+        "QIM",
+        "Library is automated with digital facilities using Integrated Library Management System (ILMS), adequate subscription to e-resources and journals are made. The library is optimally used by the faculty and students",
+        {
+          "Upload any additional information": ["Upload", "addInfo_doc2"],
+          "Provide Link for Additional information": ["Link"],
+          "Provide the relevant information in institutional website as part of public disclosure":
+            ["Upload", "dummy"],
+        },
+      ],
+      "4.2.2": [
+        "QnM",
+        "Percentage expenditure for purchase of books/ e-books and subscription to journals/e-journals year wise during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "4.2.2.1",
+            "4.2.2.1: Annual expenditure for purchase of books and journals yearwise during the last five years (INR in lakhs)",
+            true,
+            "Total Expenditure excluding salary year wise during the last five years (INR in lakhs)",
+          ],
+        ],
+      ],
+    },
+    "IT Infrastructure": {
+      "4.3.1": [
+        "QIM",
+        "Institution frequently updates its IT facilities and provides sufficient bandwidth for internet connection",
+        {
+          "Upload Additional information": ["Upload", "addInfo_doc3"],
+          "Provide Link for Additional information": ["Link"],
+        },
+      ],
+      "4.3.2": [
+        "QnM",
+        "Student Computer ratio (Data for the latest completed academic year)",
+        {
+          "Stock register/extracts highlighting the computers issued to respective departments for student's usage.":
+            ["Upload", "StockRegistryExtractor_doc"],
+          "Purchased Bills/Copies highlighting the number of computers purchased":
+            ["Upload", "numCompPurchased_doc"],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "4.3.2.1",
+            "4.3.2.1: Number of computers available for student use",
+            true,
+            "Number of students year-wise during the last five years",
+          ],
+        ],
+      ],
+      "4.3.3": [
+        "QnM",
+        "Institution has the following Facilities for e-content development and other resource development",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "",
+            "",
+            "select",
+            "",
+            [
+              "Audio visual center, mixing equipment, editing facilities",
+              "Lecture Capturing System(LCS)",
+              "Central Instrumentation Centre",
+              "Animal House",
+              "Museum",
+              "Business Lab",
+              "Research/statistical database",
+              "Moot court",
+              "Theatre",
+              "Art Gallery",
+              "Any other facility to support research",
+            ],
+            [
+              "Any 7 or more of the above",
+              "Any 6 of the above",
+              "Any 5 of the above",
+              "Any 3-4 of the above",
+              "Any 2 or below",
+            ],
+          ],
+        ],
+      ],
+    },
+    "Maintenance of Campus Infrastructure": {
+      "4.4.1": [
+        "QnM",
+        "Percentage expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component during the last five years",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "4.4.1.1",
+            "4.4.1.1: Expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component year-wise during the last five years (INR in lakhs)",
+            true,
+            "Total Expenditure excluding salary year-wise during the last five years (INR in Lakhs) years",
+          ],
+        ],
+      ],
+      "4.4.2": [
+        "QIM",
+        "There are established s y s t e m s a n d procedures for maintaining and utilising physical, academic and support facilities - laboratory, library, sports complex, computers, classrooms etc.",
+        {
+          "Upload any additional information": ["Upload", "dummy"],
+          "Provide the link for additional information": ["Link"],
+        },
+      ],
+    },
+  };
 
   useEffect(() => {
     (async () => {
@@ -255,6 +359,14 @@ const Criteria4 = (prop, ref) => {
       setFormData(updatedFormData);
     })();
   }, []);
+
+  const options = [
+    "A. All of the above",
+    "B. Any 3 of the above",
+    "C. Any 2 of the above",
+    "D. Any 1 of the above",
+    "E. None of the above",
+  ];
 
   useEffect(() => {
     const isObjectFilled = (obj) => {
@@ -421,7 +533,7 @@ const Criteria4 = (prop, ref) => {
                                 </div>
                               )}
 
-                              {elem[3] && (
+                              {elem[3] && elem[0] && (
                                 <div className="p-4  rounded-md flex mb-4 mt-4">
                                   <span className="w-3/5">{elem[3]}</span>
                                   <div className="w-2/5 flex border border-black">
@@ -448,44 +560,77 @@ const Criteria4 = (prop, ref) => {
                             </div>
                           );
                         })}
-                      {keyIndicators[ele][e][4] && (
+                      {keyIndicators[ele][e][3][0][2] === "select" && (
                         <>
-                          <div className="p-4 bg-slate-300 rounded-md flex">
-                            <div className="flex flex-col">
-                              <b>
-                                <i>{keyIndicators[ele][e][4][0]}</i>
-                              </b>
-                              <table>
-                                <tbody>
-                                  {Array.from({ length: 5 }, (_, index) => (
-                                    <tr key={`A${index}`}>
-                                      <td>
+                          <div className="my-4 rounded-lg flex bg-slate-300">
+                            <ul className="my-2 p-2 w-3/4">
+                              {keyIndicators[ele][e][3][0][4].map(
+                                (item, index) => (
+                                  <li key={index}>
+                                    {index + 1}. {item}
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                            <ul className="my-2 py-2 w-1/4">
+                              {keyIndicators[ele][e][3][0][5]
+                                ? keyIndicators[ele][e][3][0][5].map(
+                                    (option, index) => (
+                                      <li className="px-2 " key={index}>
+                                        <label>
+                                          <input
+                                            className="mr-2"
+                                            type="radio"
+                                            name="option"
+                                            value={`option${index + 1}`}
+                                            checked={
+                                              formData[e].select ===
+                                              `option${index + 1}`
+                                            }
+                                            onChange={(event) => {
+                                              setFormData((prevData) => {
+                                                const updatedFormData = {
+                                                  ...prevData,
+                                                };
+                                                updatedFormData[e].select =
+                                                  event.target.value;
+                                                return updatedFormData;
+                                              });
+                                            }}
+                                          />
+                                          {option}
+                                        </label>
+                                      </li>
+                                    )
+                                  )
+                                : options.map((option, index) => (
+                                    <li className="px-2 " key={index}>
+                                      <label>
                                         <input
+                                          className="mr-2"
                                           type="radio"
                                           name="option"
                                           value={`option${index + 1}`}
                                           checked={
-                                            formData["1.4.1"][3] ===
+                                            formData[e].select ===
                                             `option${index + 1}`
                                           }
-                                          onChange={handleChange}
+                                          onChange={(event) => {
+                                            setFormData((prevData) => {
+                                              const updatedFormData = {
+                                                ...prevData,
+                                              };
+                                              updatedFormData[e].select =
+                                                event.target.value;
+                                              return updatedFormData;
+                                            });
+                                          }}
                                         />
-                                      </td>
-                                      <td className="align-middle">
-                                        &nbsp;&nbsp;
-                                        <b>{index + 1}. </b>
-                                        &nbsp;
-                                      </td>
-                                      <td>
-                                        <label className="text-sm">
-                                          {keyIndicators[ele][e][4][index + 1]}
-                                        </label>
-                                      </td>
-                                    </tr>
+                                        {option}
+                                      </label>
+                                    </li>
                                   ))}
-                                </tbody>
-                              </table>
-                            </div>
+                            </ul>
                           </div>
                         </>
                       )}

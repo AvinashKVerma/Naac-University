@@ -25,7 +25,7 @@ const Criteria6 = (prop, ref) => {
       link: [""],
     },
     "6.2.2": {
-      doc: ["", "", "", ""],
+      doc: [""],
       select: "",
       link: [""],
     },
@@ -35,7 +35,7 @@ const Criteria6 = (prop, ref) => {
       link: [""],
     },
     "6.3.2": {
-      doc: ["", "", "", ""],
+      doc: [""],
       "6.3.2.1": {
         year1: "",
         year2: "",
@@ -46,7 +46,7 @@ const Criteria6 = (prop, ref) => {
       link: [""],
     },
     "6.3.3": {
-      doc: ["", "", "", ""],
+      doc: [""],
       "6.3.3.1": {
         year1: "",
         year2: "",
@@ -61,6 +61,22 @@ const Criteria6 = (prop, ref) => {
       doc: [""],
       link: [""],
     },
+    "6.4.2": {
+      doc: [""],
+      link: [""],
+      "6.4.2.1": {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      },
+    },
+    "6.4.3": {
+      para: "",
+      doc: [""],
+      link: [""],
+    },
     "6.5.1": {
       para: "",
       doc: [""],
@@ -68,17 +84,22 @@ const Criteria6 = (prop, ref) => {
     },
     "6.5.2": {
       select: "",
-      doc: ["", "", ""],
-      link: ["", ""],
+      doc: [""],
+      link: [""],
+    },
+    "6.5.3": {
+      para: "",
+      doc: [""],
+      link: [""],
     },
   });
   const keyIndicators = {
     "Institutional Vision and Leadership": {
       "6.1.1": [
         "QIM",
-        "The institutional governance and leadership are in accordance with the vision and mission of the Institution and it is visible in various institutional practices such as NEP implementation, sustained institutional growth, decentralization, participation in the institutional governance and in their short term and long term Institutional Perspective Plan.",
+        "The Institutional governance and leadership are in accordance with Vision and mission of the institution and it is visible in various institutional practices such as NEP implementation, sustained institutional growth, de-centralization, participation in the institutional governance and in their Short term and Long term institutional perspective plan.",
         {
-          "Upload Additional information": ["Upload", "addInfo_doc"],
+          "Upload any Additional information": ["Upload", "addInfo_doc"],
           "Provide Link for Additional information": ["Link"],
         },
       ],
@@ -86,11 +107,13 @@ const Criteria6 = (prop, ref) => {
     "Strategy Development and Deployment": {
       "6.2.1": [
         "QIM",
-        "The institutional perspective plan is effectively deployed and functioning of the institutional bodies is effective and efficient as visible from policies, administrative setup, appointment, service rules, and procedures, etc.",
+        "The institutional perspective plan is effectively deployed and functioning of the Institutional bodies are effective and efficient as visible from policies, administrative set-up, appointment, service rules, procedures etc.",
         {
-          "Institutional perspective Plan and deployment documents on the website":
-            ["Upload", "webDocsPlan_doc"],
-          "Upload Additional information": ["Upload", "addInfo_doc2"],
+          "Strategic Plan and deployment documents on the website": [
+            "Upload",
+            "webDocsPlan_doc",
+          ],
+          "Upload any additional information": ["Upload", "addInfo_doc2"],
           "Provide Link for Additional information": ["Link"],
         },
       ],
@@ -98,21 +121,17 @@ const Criteria6 = (prop, ref) => {
         "QnM",
         "Institution implements e-governance in its operations",
         {
-          "Institution implements e-governance in its operations": [
-            "Upload",
-            "egovImplementation_doc",
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
           ],
-          "Institutional expenditure statements for the budget heads of egovernance implementation ERP Document":
-            ["Upload", "iegErpExpStatements_doc"],
-          "Annual e-governance report approved by the Governing Council/ Board of Management/ Syndicate Policy document on e-governance":
-            ["Upload", "egovReportApprovalPolicy_doc"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
         [
           [
             "",
-            "",
+            "6.2.2.1 e-governance is implemented covering the following areas of operations",
             "select",
             "",
             [
@@ -142,14 +161,6 @@ const Criteria6 = (prop, ref) => {
             "Data Template",
             "instDataTemplate_doc",
           ],
-          "Policy document on providing financial support to teachers": [
-            "Upload",
-            "teacherSupportPolicy_doc",
-          ],
-          "Copy of letter/s indicating financial assistance to teachers and list of teachers receiving financial support year-wise under each head.":
-            ["Upload", "financialAssistanceHead_doc"],
-          "Audited statement of account highlighting the financial support to teachers to attend conferences/workshops and towards membership fee for professional bodies.":
-            ["Upload", "auditStatementTeacherSupport"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
@@ -158,35 +169,27 @@ const Criteria6 = (prop, ref) => {
             "6.3.2.1",
             "6.3.2.1 Number of teachers provided with financial support to attend conferences/workshops and towards membership fee of professional bodies year wise during the last five years",
             true,
-            "Number of full time teachers year-wise during the last five years",
+            "Number of Full-time teachers in the institution year-wise during last five year",
           ],
         ],
       ],
       "6.3.3": [
         "QnM",
-        "Percentage of teaching and non-teaching staff participating in Faculty development Programmes (FDP), Management Development Programmes (MDPs) professional development /administrative training programs during the last five years",
+        "Percentage of teachers undergoing online/ face-to-face Faculty Development Programmes (FDP)/ Management Development Programs (MDP) during the last five years",
         {
           "Institutional data in the prescribed format (data template)": [
             "Data Template",
-            "instDataTemplate_doc2",
+            "instDataTemplate_doc",
           ],
-          "Refresher course/Faculty Orientation or other programmes as per UGC/AICTE stipulated periods, as participated by teachers yearwise.":
-            ["Upload", "facultyTrainingEvents_doc"],
-          "Copy of the certificates of the program attended by teachers.": [
-            "Upload",
-            "certificatesList_doc",
-          ],
-          "Annual reports highlighting the programmes undertaken by the teachers":
-            ["Upload", "teacherProgramReports_doc"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
         [
           [
             "6.3.3.1",
-            "6.3.3.1 Total number of teaching and non-teaching staff participating in Faculty development Programmes (FDP), Management Development Programmes (MDPs) professional development /administrative training programs during the last five years",
+            "6.3.3.1: Total number of teachers who have undergone online/ face-toface Faculty Development Programmes (FDP)/ Management Development Programs (MDP) during the last five years",
             true,
-            "Number of full time teachers year-wise during the last five years",
+            "Number of Full-time teachers in the institution year-wise during last five year",
           ],
         ],
       ],
@@ -194,17 +197,48 @@ const Criteria6 = (prop, ref) => {
     "Financial Management and Resource Mobilization": {
       "6.4.1": [
         "QIM",
-        "Institution has strategies for mobilization and optimal utilization of resources and funds from various sources (government/ nongovernment organizations) and it conducts financial audits regularly (internal and external).",
+        "Institutional strategies for mobilisation of funds other than salary and fees and the optimal utilisation of resources.",
         {
           "Upload Additional information": ["Upload", "addInfo_doc4"],
           "Provide Link for Additional information": ["Link"],
+        },
+      ],
+      "6.4.2": [
+        "QnM",
+        "Funds / Grants received from government bodies/non government and philanthropists during the last five years for development and maintenance of infrastructure (not covered under Criteria III and V )",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
+        },
+        [
+          [
+            "6.4.2.1",
+            "6.4.2.1: Total Grants received from government and non-government bodies and philanthropists for development and maintenance of infrastructure (not covered under Criteria III and V) year-wise during the last five years (INR in Lakhs)",
+            true,
+          ],
+        ],
+      ],
+      "6.4.3": [
+        "QIM",
+        "Institution regularly conducts internal and external financial audits",
+        {
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
+          ],
+          "Provide Links for any other relevant document to support the claim (if any)":
+            ["Link"],
         },
       ],
     },
     "Internal Quality Assurance System": {
       "6.5.1": [
         "QIM",
-        "Internal Quality Assurance Cell (IQAC) has contributed significantly for institutionalizing the quality assurance strategies and processes. It reviews teaching learning process, structures & methodologies of operations and learning outcomes at periodic intervals and records the incremental improvement in various activities.",
+        "Internal Quality Assurance Cell (IQAC)/ Internal Quality Assurance System (IQAS) has contributed significantly for institutionalizing the quality assurance strategies and processes, by constantly reviewing the teachinglearning process, structures & methodologies of operations and learning outcomes, at periodic intervals.",
         {
           "Upload Additional information": ["Upload", "addInfo_doc5"],
           "Provide Link for Additional information": ["Link"],
@@ -212,17 +246,12 @@ const Criteria6 = (prop, ref) => {
       ],
       "6.5.2": [
         "QnM",
-        "Quality assurance initiatives of the institution include:",
+        "Institution has adopted the following for Quality assurance:",
         {
-          "Link to Minute of IQAC meetings, hosted on HEI website": ["Link"],
-          "NIRF report, AAA report and details on follow up actions": [
-            "Upload",
-            "followUpActions_doc",
+          "Institutional data in the prescribed format (data template)": [
+            "Data Template",
+            "instDataTemplate_doc",
           ],
-          "Quality audit reports/certificate as applicable and valid for the assessment period.":
-            ["Upload", "qaReportCertValid_doc"],
-          "List of Collaborative quality initiatives with other institution(s)  with brochures and geo-tagged photos with caption and date.":
-            ["Upload", "CollabQualityInitData_doc"],
           "Provide Links for any other relevant document to support the claim (if any)":
             ["Link"],
         },
@@ -233,14 +262,30 @@ const Criteria6 = (prop, ref) => {
             "select",
             "",
             [
-              "Regular meeting of Internal Quality Assurance Cell (IQAC); quality improvement initiatives identified and implemented",
-              "Academic and Administrative Audit (AAA) and follow-up action taken",
+              "Academic and Administrative Audit (AAA) and follow up action taken",
+              "Conferences, Seminars, Workshops on quality conducted",
               "Collaborative quality initiatives with other institution(s)",
-              "Participation in NIRF and other recognized rankings",
-              "Any other quality audit/accreditation recognized by state, national or international agencies such as NAAC, NBA etc.",
+              "Orientation programme on quality issues for teachers and students",
+              "Participation in NIRF and other recognized ranking like Shanghai Ranking, QS Ranking Times Ranking etc",
+              "Any other quality audit recognized by state, national or international agencies",
+            ],
+            [
+              "Any 5 or more of the above",
+              "Any 4 of the above",
+              "Any 3 of the above",
+              "Any 2 of the above",
+              "Any 1 of the above",
             ],
           ],
         ],
+      ],
+      "6.5.3": [
+        "QIM",
+        "Incremental improvements made for the preceding five years with regard to quality (in case of first cycle NAAC A/A)",
+        {
+          "Upload Additional information": ["Upload", "addInfo_doc5"],
+          "Provide Link for Additional information": ["Link"],
+        },
       ],
     },
   };
@@ -270,90 +315,89 @@ const Criteria6 = (prop, ref) => {
   ];
 
   useEffect(() => {
-    (async () => {
-      const response = await config.ssrAPIRequest(
-        "GET",
-        `extended-ssr/${collegeData.collegId}`
-      );
-      if (response) {
-        const updatedRelatedInput = { ...relatedInput };
-        updatedRelatedInput["6.3.2.1"].year1 = response.acadFullTimeTeachYear1;
-        updatedRelatedInput["6.3.2.1"].year2 = response.acadFullTimeTeachYear2;
-        updatedRelatedInput["6.3.2.1"].year3 = response.acadFullTimeTeachYear3;
-        updatedRelatedInput["6.3.2.1"].year4 = response.acadFullTimeTeachYear4;
-        updatedRelatedInput["6.3.2.1"].year5 = response.acadFullTimeTeachYear5;
-        updatedRelatedInput["6.3.3.1"] = updatedRelatedInput["6.3.2.1"];
-        setRelatedInput(updatedRelatedInput);
-      }
-    })();
-
-    (async () => {
-      const response = await config.ssrAPIRequest(
-        "GET",
-        `qif/data-c6/${collegeData.collegId}`
-      );
-      const updatedFormData = { ...formData };
-      updatedFormData.qifId = response.qifId;
-      updatedFormData.criteriaVI_Id = response.criteriaVI_Id;
-      updatedFormData["6.1.1"].para = response.instGovPractices;
-      updatedFormData["6.1.1"].doc[0] = response.addInfo_doc;
-      updatedFormData["6.1.1"].link[0] = response.addInfo_link;
-      updatedFormData["6.2.1"].para = response.instPerspPlanEff;
-      updatedFormData["6.2.1"].doc[0] = response.webDocsPlan_doc;
-      updatedFormData["6.2.1"].doc[1] = response.addInfo_doc2;
-      updatedFormData["6.2.1"].link[0] = response.addInfo_link2;
-      updatedFormData["6.2.2"].select = response.eGovInstitutionTyp1;
-      updatedFormData["6.2.2"].doc[0] = response.egovImplementation_doc;
-      updatedFormData["6.2.2"].doc[1] = response.iegErpExpStatements_doc;
-      updatedFormData["6.2.2"].doc[2] = response.egovReportApprovalPolicy_doc;
-      updatedFormData["6.2.2"].link[0] = response.relivantDoc_link;
-      updatedFormData["6.3.1"].para = response.InstitutionAppraisalSystem;
-      updatedFormData["6.3.1"].doc[0] = response.addInfo_doc3;
-      updatedFormData["6.3.1"].link[0] = response.addInfo_link3;
-      updatedFormData["6.3.2"]["6.3.2.1"].year1 =
-        response.numTeachSupFinanForConfOrWorkY1;
-      updatedFormData["6.3.2"]["6.3.2.1"].year2 =
-        response.numTeachSupFinanForConfOrWorkY2;
-      updatedFormData["6.3.2"]["6.3.2.1"].year3 =
-        response.numTeachSupFinanForConfOrWorkY3;
-      updatedFormData["6.3.2"]["6.3.2.1"].year4 =
-        response.numTeachSupFinanForConfOrWorkY4;
-      updatedFormData["6.3.2"]["6.3.2.1"].year5 =
-        response.numTeachSupFinanForConfOrWorkY5;
-      updatedFormData["6.3.2"].doc[0] = response.instDataTemplate_doc;
-      updatedFormData["6.3.2"].doc[1] = response.teacherSupportPolicy_doc;
-      updatedFormData["6.3.2"].doc[2] = response.financialAssistanceHead_doc;
-      updatedFormData["6.3.2"].doc[3] = response.auditStatementTeacherSupport;
-      updatedFormData["6.3.2"].link[0] = response.relivantDoc_link2;
-      updatedFormData["6.3.3"]["6.3.3.1"].year1 =
-        response.staffTrainingPercentY1;
-      updatedFormData["6.3.3"]["6.3.3.1"].year2 =
-        response.staffTrainingPercentY2;
-      updatedFormData["6.3.3"]["6.3.3.1"].year3 =
-        response.staffTrainingPercentY3;
-      updatedFormData["6.3.3"]["6.3.3.1"].year4 =
-        response.staffTrainingPercentY4;
-      updatedFormData["6.3.3"]["6.3.3.1"].year5 =
-        response.staffTrainingPercentY5;
-      updatedFormData["6.3.3"].doc[0] = response.instDataTemplate_doc2;
-      updatedFormData["6.3.3"].doc[1] = response.facultyTrainingEvents_doc;
-      updatedFormData["6.3.3"].doc[2] = response.certificatesList_doc;
-      updatedFormData["6.3.3"].doc[3] = response.teacherProgramReports_doc;
-      updatedFormData["6.3.3"].link[0] = response.relivantDoc_link3;
-      updatedFormData["6.4.1"].para = response.resourceUtilizationStrategy;
-      updatedFormData["6.4.1"].doc[0] = response.addInfo_doc4;
-      updatedFormData["6.4.1"].link[0] = response.addInfo_link4;
-      updatedFormData["6.5.1"].para = response.IQACQualityAssurance;
-      updatedFormData["6.5.1"].doc[0] = response.addInfo_doc5;
-      updatedFormData["6.5.1"].link[0] = response.addInfo_link5;
-      updatedFormData["6.5.2"].select = response.qualityInitiativesTyp1;
-      updatedFormData["6.5.2"].doc[0] = response.followUpActions_doc;
-      updatedFormData["6.5.2"].doc[1] = response.qaReportCertValid_doc;
-      updatedFormData["6.5.2"].doc[2] = response.CollabQualityInitData_doc;
-      updatedFormData["6.5.2"].link[0] = response.iqacMeetingMinutesURL;
-      updatedFormData["6.5.2"].link[1] = response.relivantDoc_link4;
-      setFormData(updatedFormData);
-    })();
+    // (async () => {
+    //   const response = await config.ssrAPIRequest(
+    //     "GET",
+    //     `extended-ssr/${collegeData.collegId}`
+    //   );
+    //   if (response) {
+    //     const updatedRelatedInput = { ...relatedInput };
+    //     updatedRelatedInput["6.3.2.1"].year1 = response.acadFullTimeTeachYear1;
+    //     updatedRelatedInput["6.3.2.1"].year2 = response.acadFullTimeTeachYear2;
+    //     updatedRelatedInput["6.3.2.1"].year3 = response.acadFullTimeTeachYear3;
+    //     updatedRelatedInput["6.3.2.1"].year4 = response.acadFullTimeTeachYear4;
+    //     updatedRelatedInput["6.3.2.1"].year5 = response.acadFullTimeTeachYear5;
+    //     updatedRelatedInput["6.3.3.1"] = updatedRelatedInput["6.3.2.1"];
+    //     setRelatedInput(updatedRelatedInput);
+    //   }
+    // })();
+    // (async () => {
+    //   const response = await config.ssrAPIRequest(
+    //     "GET",
+    //     `qif/data-c6/${collegeData.collegId}`
+    //   );
+    //   const updatedFormData = { ...formData };
+    //   updatedFormData.qifId = response.qifId;
+    //   updatedFormData.criteriaVI_Id = response.criteriaVI_Id;
+    //   updatedFormData["6.1.1"].para = response.instGovPractices;
+    //   updatedFormData["6.1.1"].doc[0] = response.addInfo_doc;
+    //   updatedFormData["6.1.1"].link[0] = response.addInfo_link;
+    //   updatedFormData["6.2.1"].para = response.instPerspPlanEff;
+    //   updatedFormData["6.2.1"].doc[0] = response.webDocsPlan_doc;
+    //   updatedFormData["6.2.1"].doc[1] = response.addInfo_doc2;
+    //   updatedFormData["6.2.1"].link[0] = response.addInfo_link2;
+    //   updatedFormData["6.2.2"].select = response.eGovInstitutionTyp1;
+    //   updatedFormData["6.2.2"].doc[0] = response.egovImplementation_doc;
+    //   updatedFormData["6.2.2"].doc[1] = response.iegErpExpStatements_doc;
+    //   updatedFormData["6.2.2"].doc[2] = response.egovReportApprovalPolicy_doc;
+    //   updatedFormData["6.2.2"].link[0] = response.relivantDoc_link;
+    //   updatedFormData["6.3.1"].para = response.InstitutionAppraisalSystem;
+    //   updatedFormData["6.3.1"].doc[0] = response.addInfo_doc3;
+    //   updatedFormData["6.3.1"].link[0] = response.addInfo_link3;
+    //   updatedFormData["6.3.2"]["6.3.2.1"].year1 =
+    //     response.numTeachSupFinanForConfOrWorkY1;
+    //   updatedFormData["6.3.2"]["6.3.2.1"].year2 =
+    //     response.numTeachSupFinanForConfOrWorkY2;
+    //   updatedFormData["6.3.2"]["6.3.2.1"].year3 =
+    //     response.numTeachSupFinanForConfOrWorkY3;
+    //   updatedFormData["6.3.2"]["6.3.2.1"].year4 =
+    //     response.numTeachSupFinanForConfOrWorkY4;
+    //   updatedFormData["6.3.2"]["6.3.2.1"].year5 =
+    //     response.numTeachSupFinanForConfOrWorkY5;
+    //   updatedFormData["6.3.2"].doc[0] = response.instDataTemplate_doc;
+    //   updatedFormData["6.3.2"].doc[1] = response.teacherSupportPolicy_doc;
+    //   updatedFormData["6.3.2"].doc[2] = response.financialAssistanceHead_doc;
+    //   updatedFormData["6.3.2"].doc[3] = response.auditStatementTeacherSupport;
+    //   updatedFormData["6.3.2"].link[0] = response.relivantDoc_link2;
+    //   updatedFormData["6.3.3"]["6.3.3.1"].year1 =
+    //     response.staffTrainingPercentY1;
+    //   updatedFormData["6.3.3"]["6.3.3.1"].year2 =
+    //     response.staffTrainingPercentY2;
+    //   updatedFormData["6.3.3"]["6.3.3.1"].year3 =
+    //     response.staffTrainingPercentY3;
+    //   updatedFormData["6.3.3"]["6.3.3.1"].year4 =
+    //     response.staffTrainingPercentY4;
+    //   updatedFormData["6.3.3"]["6.3.3.1"].year5 =
+    //     response.staffTrainingPercentY5;
+    //   updatedFormData["6.3.3"].doc[0] = response.instDataTemplate_doc2;
+    //   updatedFormData["6.3.3"].doc[1] = response.facultyTrainingEvents_doc;
+    //   updatedFormData["6.3.3"].doc[2] = response.certificatesList_doc;
+    //   updatedFormData["6.3.3"].doc[3] = response.teacherProgramReports_doc;
+    //   updatedFormData["6.3.3"].link[0] = response.relivantDoc_link3;
+    //   updatedFormData["6.4.1"].para = response.resourceUtilizationStrategy;
+    //   updatedFormData["6.4.1"].doc[0] = response.addInfo_doc4;
+    //   updatedFormData["6.4.1"].link[0] = response.addInfo_link4;
+    //   updatedFormData["6.5.1"].para = response.IQACQualityAssurance;
+    //   updatedFormData["6.5.1"].doc[0] = response.addInfo_doc5;
+    //   updatedFormData["6.5.1"].link[0] = response.addInfo_link5;
+    //   updatedFormData["6.5.2"].select = response.qualityInitiativesTyp1;
+    //   updatedFormData["6.5.2"].doc[0] = response.followUpActions_doc;
+    //   updatedFormData["6.5.2"].doc[1] = response.qaReportCertValid_doc;
+    //   updatedFormData["6.5.2"].doc[2] = response.CollabQualityInitData_doc;
+    //   updatedFormData["6.5.2"].link[0] = response.iqacMeetingMinutesURL;
+    //   updatedFormData["6.5.2"].link[1] = response.relivantDoc_link4;
+    //   setFormData(updatedFormData);
+    // })();
   }, []);
 
   useEffect(() => {
