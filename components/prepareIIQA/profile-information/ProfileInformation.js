@@ -62,6 +62,20 @@ const ProfileInformation = ({ completedForm }) => {
       : true
   );
 
+  const [recogCampus, setRecogCampus] = useState([
+    {
+      campusState: false,
+      campus: "",
+      state: "",
+      city: "",
+      address: "",
+    },
+  ]);
+
+  const [recogCampusDoc, setRecogCampusDoc] = useState("");
+
+  const [campusList, setCampusList] = useState([]);
+
   const [variable, setVariable] = useState({
     section2f: {
       section2fState: (iiqa.documentOfRecognitionByUGC_2f && "1") || "0",
@@ -1209,25 +1223,51 @@ const ProfileInformation = ({ completedForm }) => {
               </label>
             </div>
             {nature.selectedOption && (
-              <div className="my-3">
-                <label
-                  className="my-2 custom-file-upload border bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer shadow-xl shadow-slate-300/60 p-2 w-1/3"
-                  onChange={(e) => {
-                    setNature((prevData) => ({
-                      ...prevData,
-                      doc: e.target.value,
-                    }));
-                  }}
-                >
-                  <input
-                    type="file"
-                    id="fileInputCE"
-                    name="fileInput"
-                    accept=".pdf"
-                    style={{ display: "none" }}
-                  />
-                  Upload File
-                </label>
+              <div className="flex my-2">
+                {nature.doc ? (
+                  <>
+                    <a
+                      className="cursor-pointer my-auto ml-2"
+                      href={config.RESOURCE_URL + "selfDoc"}
+                      target="_blank"
+                    >
+                      View Document
+                    </a>
+                    <div
+                      className="ml-2 my-auto cursor-pointer"
+                      name="mouDocument"
+                      onClick={() => {
+                        setNature((prevData) => ({
+                          ...prevData,
+                          doc: "",
+                        }));
+                      }}
+                    >
+                      <ImBin2 />
+                    </div>
+                  </>
+                ) : (
+                  <div className="my-3">
+                    <label
+                      className="my-2 custom-file-upload border bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer shadow-xl shadow-slate-300/60 p-2 w-1/3"
+                      onChange={(e) => {
+                        setNature((prevData) => ({
+                          ...prevData,
+                          doc: e.target.value,
+                        }));
+                      }}
+                    >
+                      <input
+                        type="file"
+                        id="fileInputCE"
+                        name="fileInput"
+                        accept=".pdf"
+                        style={{ display: "none" }}
+                      />
+                      Upload File
+                    </label>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -1255,7 +1295,7 @@ const ProfileInformation = ({ completedForm }) => {
                       className="ml-2"
                       onChange={() => setTypeOfUni("Unitary")}
                       type="radio"
-                      value="Unitary"
+                      value={typeOfUni}
                       checked={typeOfUni === "Unitary"}
                     />
                   </label>
@@ -1266,7 +1306,7 @@ const ProfileInformation = ({ completedForm }) => {
                       className="ml-2"
                       onChange={() => setTypeOfUni("Affiliating")}
                       type="radio"
-                      value="Affiliating"
+                      value={typeOfUni}
                       checked={typeOfUni === "Affiliating"}
                     />
                   </label>
@@ -1276,7 +1316,254 @@ const ProfileInformation = ({ completedForm }) => {
           </div>
         </div>
 
-        {/* type of college */}
+        {/* University have duly recognised(Campuses/Centres/Institutes) */}
+        <div className="border mt-2 p-3">
+          <div className="flex">
+            <div className="w-2/5 mr-4">
+              <div className="w-full">
+                Does the University have duly
+                recognised(Campuses/Centres/Institutes)
+                <span
+                  data-placement="right"
+                  title="#(If there are multiple files for uploading, they have to be merged and uploaded as a single file. The file format for uploading shall be .pdf format and the size of the file should not exceed 1MB )"
+                ></span>
+              </div>
+            </div>
+            <div className="w-3/5">
+              <div className="flex flex-col justify-start w-full">
+                <div className="flex justify-start w-full">
+                  <label className="w-1/3">
+                    Yes
+                    <input
+                      className="ml-2"
+                      onChange={() => {
+                        setRecogCampus((prevData) => ({
+                          ...prevData,
+                          campusState: true,
+                        }));
+                      }}
+                      type="radio"
+                      value={recogCampus.campusState}
+                      checked={recogCampus.campusState === true}
+                    />
+                  </label>
+                  <label className="w-1/3">
+                    No
+                    <input
+                      id="special_uni_yes"
+                      className="ml-2"
+                      onChange={() => {
+                        setRecogCampus((prevData) => ({
+                          ...prevData,
+                          campusState: false,
+                        }));
+                      }}
+                      type="radio"
+                      value={recogCampus.campusState}
+                      checked={recogCampus.campusState === false}
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-2">
+            {recogCampus.campusState && (
+              <div className="flex">
+                <div className="flex flex-col mr-4">
+                  <label>Campuses/Centres/Institutes</label>
+                  <select
+                    className="py-1 border border-black"
+                    onChange={(e) => {
+                      setRecogCampus((prevData) => ({
+                        ...prevData,
+                        campus: e.target.value,
+                      }));
+                    }}
+                  >
+                    <option>--Select--</option>
+                    <option value={"Satellite Campus"}>Satellite Campus</option>
+                    <option value={"Off Campus"}>Off Campus</option>
+                    <option value={"Offshore Campus"}>Offshore Campus</option>
+                    <option value={"Regional Centres"}>Regional Centres</option>
+                    <option value={"Institutes"}>Institutes</option>
+                    <option value={"PG centre"}>PG centre</option>
+                  </select>
+                </div>
+                <div className="flex flex-col mr-4">
+                  <label>State</label>
+                  <input
+                    type="text"
+                    className="p-1 border border-black"
+                    value={recogCampus.state || ""}
+                    onChange={(e) => {
+                      setRecogCampus((prevData) => ({
+                        ...prevData,
+                        state: e.target.value,
+                      }));
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col mr-4">
+                  <label>City</label>
+                  <input
+                    type="text"
+                    className="p-1 border border-black"
+                    value={recogCampus.city || ""}
+                    onChange={(e) => {
+                      setRecogCampus((prevData) => ({
+                        ...prevData,
+                        city: e.target.value,
+                      }));
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col mr-4">
+                  <label>Address</label>
+                  <textarea
+                    type="textarea"
+                    className="border border-black"
+                    value={recogCampus.address || ""}
+                    onChange={(e) => {
+                      setRecogCampus((prevData) => ({
+                        ...prevData,
+                        address: e.target.value,
+                      }));
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col mr-4">
+                  <button
+                    className="px-3 py-1 rounded-md border border-[#367fa9] bg-[#3c8dbc] hover:bg-[#367fa9]"
+                    onClick={(e) => {
+                      setCampusList((prevList) => [...prevList, recogCampus]);
+                      setRecogCampus({
+                        campusState: true,
+                        campus: "",
+                        state: "",
+                        city: "",
+                        address: "",
+                        doc: "",
+                      });
+                    }}
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          {campusList.length > 0 && (
+            <>
+              <table className="w-full mt-2">
+                <thead>
+                  <tr>
+                    <th className="border border-black">Campus Type</th>
+                    <th className="border border-black">State</th>
+                    <th className="border border-black">City</th>
+                    <th className="border border-black">Address</th>
+                    <th className="border border-black">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {campusList.map((campus, index) => (
+                    <tr key={index}>
+                      <td className="text-center border border-black">
+                        {campus.campus}
+                      </td>
+                      <td className="text-center border border-black">
+                        {campus.state}
+                      </td>
+                      <td className="text-center border border-black">
+                        {campus.city}
+                      </td>
+                      <td className="text-center border border-black">
+                        {campus.address}
+                      </td>
+                      <td className="text-center border border-black">
+                        <div className="flex justify-center">
+                          <span
+                            onClick={() => {
+                              const updatedCampusList = [...campusList];
+                              updatedCampusList.splice(index, 1);
+                              setCampusList(updatedCampusList);
+                            }}
+                          >
+                            <ImBin2 />
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="flex  mt-4">
+                <span className="mr-5">Approval for Campus</span>
+                <div className="w-3/5">
+                  {recogCampusDoc ? (
+                    <div className="flex">
+                      <a
+                        className="cursor-pointer my-auto ml-2"
+                        href={config.RESOURCE_URL + variable.choi.choiDocument}
+                        target="_blank"
+                      >
+                        View Document
+                      </a>
+                      <div
+                        className="ml-2 my-auto cursor-pointer"
+                        name="section2f"
+                        onClick={() =>
+                          handleDocDelete("file-head-of-institution")
+                        }
+                      >
+                        <ImBin2 />
+                      </div>
+                    </div>
+                  ) : (
+                    <label
+                      className="custom-file-upload border  bg-gradient-to-br from-slate-100 to-slate-200
+                  text-black/80
+                  rounded-md
+                  cursor-pointer
+                  shadow-xl shadow-slate-300/60 p-2 w-1/3"
+                      onChange={(e) => setRecogCampusDoc(e.target.value)}
+                    >
+                      <input
+                        type="file"
+                        id="fileInputCE"
+                        name="fileInput"
+                        accept=".pdf"
+                        style={{ display: "none" }}
+                      />
+                      Upload File
+                    </label>
+                  )}
+                  <div id="ugcdoc12" className="text-right flex-col">
+                    <span
+                      data-placement="right"
+                      title="(If there are multiple files for uploading, they have to be merged and uploaded as a single file. The file format for uploading shall be .pdf format and the size of the file should not exceed 1MB )"
+                      className="glyphicon glyphicon-question-sign"
+                    ></span>
+                    <input
+                      type="hidden"
+                      name="checkugc12"
+                      id="checkugc12"
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div
+                    className="col-lg-8"
+                    id="checkugc12_msg"
+                    style={{ color: "red" }}
+                  ></div>
+                  <br />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Type of college */}
         <div className="border mt-2 p-3">
           <div className="flex">
             <div className="w-2/5 mr-4">
@@ -1326,12 +1613,12 @@ const ProfileInformation = ({ completedForm }) => {
           </div>
           {isSpecialUni && (
             <div className="w-full justify-end flex mt-8">
-              <div className="w-3/5">
+              <div className="w-3/4">
                 <div className="input-group">
                   <div id="special_uni flex">
                     {collegeType.map((ele, index) => {
                       return (
-                        <div key={index} className="flex flex-row w-full">
+                        <div key={index} className="flex flex-row w-full ">
                           {ele.map((label, index) => (
                             <div
                               key={index}
@@ -1593,123 +1880,13 @@ const ProfileInformation = ({ completedForm }) => {
           )}
         </div>
 
-        {/* Autonomous College */}
-        <div className="border mt-2 p-3">
-          <div className="flex">
-            <div className="w-2/5 mr-4">
-              <div className="w-full">
-                Is the institution recognised as an Autonomous College by the
-                UGC?
-                {variable.autonomous.autonomousState === "1" && (
-                  <span> (if yes, upload document)</span>
-                )}
-              </div>
-            </div>
-            <div className="w-3/5">
-              <div className="flex justify-start w-full">
-                <div className="flex justify-start w-full">
-                  <label className="w-1/3">
-                    Yes
-                    <input
-                      className="ml-2"
-                      onChange={(e) => handleSection2f(e, "autonomous")}
-                      value="1"
-                      name="autonomousState"
-                      type="radio"
-                      defaultChecked={
-                        variable.autonomous.autonomousState === "1"
-                      }
-                    />
-                  </label>
-                  <label className="w-1/3">
-                    No
-                    <input
-                      className="ml-2"
-                      onChange={(e) => handleSection2f(e, "autonomous")}
-                      name="autonomousState"
-                      type="radio"
-                      value="0"
-                      defaultChecked={
-                        variable.autonomous.autonomousState === "0"
-                      }
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          {variable.autonomous.autonomousState === "1" && (
-            <div className="flex justify-end w-full">
-              <div id="ugcdoc6" className="w-3/5">
-                {variable.autonomous.autonomousDocument ? (
-                  <div className="flex flex-row">
-                    <a
-                      className="cursor-pointer my-auto ml-2"
-                      href={
-                        config.RESOURCE_URL +
-                        variable.autonomous.autonomousDocument
-                      }
-                      target="_blank"
-                    >
-                      View Document
-                    </a>
-                    <div
-                      className="ml-2 my-auto cursor-pointer"
-                      name="section2f"
-                      onClick={() =>
-                        handleDocDelete("file-recognitionAutonomous-documnet")
-                      }
-                    >
-                      <ImBin2 />
-                    </div>
-                  </div>
-                ) : (
-                  <label
-                    className="custom-file-upload border  bg-gradient-to-br from-slate-100 to-slate-200
-                  text-black/80
-                  rounded-md
-                  cursor-pointer
-                  shadow-xl shadow-slate-300/60 p-2"
-                    title={
-                      variable.autonomous.date === "" ? "Please Enter Date" : ""
-                    }
-                    onChange={(e) => handleSection2f(e, "autonomous")}
-                  >
-                    <input
-                      type="file"
-                      id="fileInput"
-                      name="fileInput"
-                      accept=".pdf"
-                      style={{ display: "none" }}
-                    />
-                    Upload File
-                  </label>
-                )}
-
-                <span
-                  data-placement="right"
-                  title="(If there are multiple files for uploading, they have to be merged and uploaded as a single file. The file format for uploading shall be .pdf format and the size of the file should not exceed 1MB )"
-                  className="glyphicon glyphicon-question-sign"
-                ></span>
-                <input
-                  type="hidden"
-                  name="checkugc6"
-                  id="checkugc6"
-                  autoComplete="off"
-                />
-              </div>
-            </div>
-          )}
-        </div>
-
         {/*CPE*/}
         <div className="border mt-2 p-3">
           <div className="flex">
             <div className="w-2/5 mr-4">
               <div className="w-full">
-                Is the institution recognised as a &apos;College with Potential
-                for Excellence (CPE)&apos; by the UGC? (upload document)
-                {variable.cpe.cpeState && <span> (upload document)</span>}
+                Is the institution recognised as a 'University with Potential
+                for Excellence (UPE)' by the UGC? (upload document)
               </div>
             </div>
             <div className="w-3/5">
@@ -1787,100 +1964,13 @@ const ProfileInformation = ({ completedForm }) => {
           )}
         </div>
 
-        {/* COE */}
-        <div className="border mt-2 p-3">
-          <div className="flex">
-            <div className="w-2/5 mr-4">
-              <div className="w-full">
-                Is the institution recognised as a &apos;College of
-                Excellence&apos; by the UGC?
-                {variable.coe.coeState && <span> (upload document)</span>}
-              </div>
-            </div>
-            <div className="w-3/5">
-              <div className="flex justify-start w-full">
-                <div className="flex justify-start w-full">
-                  <label className="w-1/3">
-                    Yes
-                    <input
-                      className="ml-2"
-                      onChange={(e) => handleSection2f(e, "coe")}
-                      value="1"
-                      name="coeState"
-                      type="radio"
-                      defaultChecked={variable.coe.coeState === "1"}
-                    />
-                  </label>
-                  <label className="w-1/3">
-                    No
-                    <input
-                      className="ml-2"
-                      onChange={(e) => handleSection2f(e, "coe")}
-                      value="0"
-                      name="coeState"
-                      type="radio"
-                      defaultChecked={variable.coe.coeState === "0"}
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          {variable.coe.coeState === "1" && (
-            <div className="flex justify-end w-full">
-              <div className="w-3/5">
-                {variable.coe.coeDocument ? (
-                  <div className="flex flex-row">
-                    <a
-                      className="cursor-pointer my-auto ml-2"
-                      href={config.RESOURCE_URL + variable.coe.coeDocument}
-                      target="_blank"
-                    >
-                      View Document
-                    </a>
-                    <div
-                      className="ml-2 my-auto cursor-pointer"
-                      name="section2f"
-                      onClick={() =>
-                        handleDocDelete(
-                          "file-recognition-college-of-Excellence-documnet"
-                        )
-                      }
-                    >
-                      <ImBin2 />
-                    </div>
-                  </div>
-                ) : (
-                  <label
-                    className="custom-file-upload border  bg-gradient-to-br from-slate-100 to-slate-200
-                  text-black/80
-                  rounded-md
-                  cursor-pointer
-                  shadow-xl shadow-slate-300/60 p-2"
-                    onChange={(e) => handleSection2f(e, "coe")}
-                  >
-                    <input
-                      type="file"
-                      id="fileInput"
-                      name="fileInput"
-                      accept=".pdf"
-                      style={{ display: "none" }}
-                    />
-                    Upload File
-                  </label>
-                )}
-              </div>{" "}
-            </div>
-          )}
-        </div>
-
         {/* AISHE */}
         <div className="border mt-2 p-3">
           <div className="flex">
             <div className="flex w-full mr-4">
               <div className="w-2/5">
                 Date of uploading data on MHRD website for All India Survey on
-                Higher Education (AISHE).
+                Higher Education (AISHE). (upload document).
                 {variable.aishe.aisheState && <span> (upload document)</span>}
               </div>
               <div className="w-3/5 flex">
@@ -1943,9 +2033,9 @@ const ProfileInformation = ({ completedForm }) => {
             <div className="flex w-full mr-4">
               <div className="w-2/5">
                 Attach Certification by the Head of the Institution for having
-                complied with Rules &amp; Regulations of Central Government,
-                State Government, UGC, Affiliating University, and other
-                applicable SRA in the prescribed format of NAAC.
+                complied with Rules & Regulations of Central Government, State
+                Government, UGC and other applicable SRA in the prescribed
+                format of NAAC.
                 <br />
                 <a
                   target="_new"

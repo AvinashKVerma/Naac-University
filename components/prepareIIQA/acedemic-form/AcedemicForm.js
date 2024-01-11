@@ -30,6 +30,8 @@ const AcedemicForm = ({ completedForm }) => {
     pgDiploma: iiqa.program_Count_PG_Diploma || "",
     diploma: iiqa.program_Count_Diploma || "",
     cirAware: iiqa.program_Count_Certificate_Awareness || "",
+    MD: "",
+    MS: "",
   });
   const [staff, setStaff] = useState({
     pTS: {
@@ -579,6 +581,35 @@ const AcedemicForm = ({ completedForm }) => {
                       />
                     </td>
                   </tr>
+
+                  {/* MD */}
+                  <tr>
+                    <td>M.D.</td>
+                    <td className="ml-auto w-1/4">
+                      <input
+                        className="numberwidth inputs border rounded-md p-1 w-full"
+                        maxLength="3"
+                        name="MD"
+                        type="number"
+                        value={acadmicData.MD}
+                        onChange={handleChange}
+                      />
+                    </td>
+                  </tr>
+                  {/* MS */}
+                  <tr>
+                    <td>M.S.</td>
+                    <td className="ml-auto w-1/4">
+                      <input
+                        className="numberwidth inputs border rounded-md p-1 w-full"
+                        maxLength="3"
+                        name="MS"
+                        type="number"
+                        value={acadmicData.MS}
+                        onChange={handleChange}
+                      />
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </form>
@@ -674,9 +705,9 @@ const AcedemicForm = ({ completedForm }) => {
                       Specialization
                       <span
                         className="text-blue-600 cursor-pointer"
-                        title="Please use this option only when the program or degree has a specialization included in the parenthesis, Eg:- B.Sc(industrial chemistry), B.Tech(Electrical Engineering), BA(Fine Arts), B.Com(Computers), MBA(Tourism &amp; Management)etc. Also in case of multiple programs offered by the same department please enter specialization for distinguishing the programs i.e., BA(Mathematics), BA(Statistics), MA(English), MA(Literature)."
+                        title="Please use this option only when the program or degree has a specialization included in the parenthesis, Eg:- B.Sc(industrial chemistry), B.Tech(Electrical Engineering), BA(Fine Arts), B.Com(Computers), MBA(Tourism & Management)etc. Also in case of multiple programs offered by same department please enter specialization for distinguishing the programs i.e., BA(Mathematics), BA(Statistics), MA(English), MA(Literature)."
                       >
-                        ?
+                        <b className="ml-2">?</b>
                       </span>
                     </label>
                     <input
@@ -917,7 +948,7 @@ const AcedemicForm = ({ completedForm }) => {
           <div className="w-1/3">
             <div className="p-4">
               <p className="text ">
-                Does the college have an academic MoU with any foreign
+                Does the Univeristy have an academic MoU with any foreign
                 institution? If so, attach the MoU (Upload document)
               </p>
             </div>

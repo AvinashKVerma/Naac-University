@@ -268,11 +268,8 @@ export const sraListItem = [
 ];
 
 export const collegeType = [
-  ["Medical college", "Dental college"],
-  ["Nursing college", "Physiotherapy college"],
-  ["Ayurveda college", "Unani college"],
-  ["Siddha college", "Homeopathy college"],
-  ["Allied Health science college", "Yoga and Naturopathy college"],
-  ["Teacher Education Institutions", "Law PG & Above College"],
-  ["Law UG College", "Sanskrit College"],
+  ["Health Sciences University", "Open Distance Learning (ODL) Universities"],
+  ["Sanskrit University", "Dual Mode University"],
+  ["Law University", "Yoga University"],
+  ["Revised Sanskrit University", "Revised Sanskrit Dual Mode"],
 ];
