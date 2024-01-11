@@ -108,12 +108,10 @@ const ProfileInformation = ({ completedForm }) => {
     choi: "",
   });
   const [nature, setNature] = useState({
-    Government: iiqa.natureOfCollegeGoverment || false,
-    Private: iiqa.natureOfCollegePrivate || false,
-    GrantInAid: iiqa.natureOfCollegeGrantAid || false,
-    SelfFinancing: iiqa.natureOfCollegeSelfFinancing || false,
-    Constituent: iiqa.natureOfCollegeConstitiuent || false,
+    selectedOption: "",
+    doc: "",
   });
+  const [typeOfUni, setTypeOfUni] = useState("");
   const [statutoryCell, setStatutoryCell] = useState({
     commiteeForScSt: iiqa.statutoryCommittees_for_ST_SC === "true" || false,
     minorityCell: iiqa.statutoryCommittees_for_MinorityCell === "true" || false,
@@ -678,37 +676,13 @@ const ProfileInformation = ({ completedForm }) => {
     );
   };
 
-  const handleListChange = (event, field) => {
-    const { name, checked } = event.target;
-    switch (field) {
-      case "nature":
-        if (name === "Government" || name === "Constituent") {
-          setNature((prevNature) => ({
-            ...prevNature,
-            ["Private"]: false,
-          }));
-        }
-        if (name === "Private") {
-          setNature((prevNature) => ({
-            ...prevNature,
-            ["Government"]: false,
-            ["Constituent"]: false,
-          }));
-        }
-        setNature((prevNature) => ({
-          ...prevNature,
-          [name]: checked,
-        }));
-        break;
-      case "statutory":
-        setStatutoryCell((prevState) => ({
-          ...prevState,
-          [name]: checked,
-        }));
-        break;
-      default:
-        break;
-    }
+  const handleListChange = (e, name) => {
+    const { value } = e.target;
+
+    setNature((prevData) => ({
+      ...prevData,
+      selectedOption: value,
+    }));
   };
 
   const handleCheck = (e) => {
@@ -771,8 +745,7 @@ const ProfileInformation = ({ completedForm }) => {
             >
               <option>--Select--</option>
               <option>Vice Chancellor</option>
-              <option>Principal</option>
-              <option>Principal (in-Charge)</option>
+              <option>Chancellor (in-Charge)</option>
               <option>Director</option>
               <option>Director (in-Charge)</option>
             </select>
@@ -996,8 +969,9 @@ const ProfileInformation = ({ completedForm }) => {
                 >
                   <option>--Select--</option>
                   <option>Professor</option>
-                  <option>Associate professor</option>
+                  <option>Dean</option>
                   <option>IQAC / CIQA Coordinator</option>
+                  <option>Registrar</option>
                 </select>
               </div>
               <div className="col-span-1">
@@ -1157,82 +1131,148 @@ const ProfileInformation = ({ completedForm }) => {
           </form>
         </div>
 
-        {/* Nature of college */}
+        {/* Nature of the University */}
         <div className="card border flex flex-row mt-2 p-3">
           <div>
-            Nature of the College
+            <span className="mr-1">Nature of the University</span>
             <span
-              data-placement="right"
-              title="(Classified based on financial management)"
-            ></span>
+              className="text-blue-600 cursor-pointer"
+              title="(Please upload the notification of the government for establishment of the university. In case of private and  deemed universities, upload the UGC/ MHRD approval)"
+            >
+              <b>?</b>
+            </span>
           </div>
           <div className="ml-auto mr-80">
             <div className="mr-40">
               <label>
                 <input
-                  className=""
-                  name="Government"
-                  type="checkbox"
-                  value="Government"
-                  checked={nature.Government}
+                  className="mr-2"
+                  name="nature"
+                  type="radio"
+                  value="Central"
+                  checked={nature.selectedOption === "Central"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
-                Government
+                Central University
               </label>
             </div>
             <div>
               <label>
                 <input
-                  className=""
-                  name="Private"
-                  type="checkbox"
-                  value="Private"
-                  checked={nature.Private}
+                  className="mr-2"
+                  name="nature"
+                  type="radio"
+                  value="State"
+                  checked={nature.selectedOption === "State"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
-                Private
+                State University
               </label>
             </div>
             <div>
               <label>
                 <input
-                  className=""
-                  name="GrantInAid"
-                  type="checkbox"
-                  value="GrantInAid"
-                  checked={nature.GrantInAid}
+                  className="mr-2"
+                  name="nature"
+                  type="radio"
+                  value="StatePrivate"
+                  checked={nature.selectedOption === "StatePrivate"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
-                Grant-in-aid
+                State Private University
               </label>
             </div>
             <div>
               <label>
                 <input
-                  className=""
-                  name="SelfFinancing"
-                  type="checkbox"
-                  value="SelfFinancing"
-                  checked={nature.SelfFinancing}
+                  className="mr-2"
+                  name="nature"
+                  type="radio"
+                  value="Deemed"
+                  checked={nature.selectedOption === "Deemed"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
-                Self Financing
+                Deemed University
               </label>
             </div>
             <div>
               <label>
                 <input
-                  className=""
-                  type="checkbox"
-                  name="Constituent"
-                  value="Constituent"
-                  checked={nature.Constituent}
+                  className="mr-2"
+                  name="nature"
+                  type="radio"
+                  value="National"
+                  checked={nature.selectedOption === "National"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
-                Constituent
+                Institution of National Importance
               </label>
             </div>
-            <div id="nature_msg" style={{ color: "red" }}></div>
+            {nature.selectedOption && (
+              <div className="my-3">
+                <label
+                  className="my-2 custom-file-upload border bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer shadow-xl shadow-slate-300/60 p-2 w-1/3"
+                  onChange={(e) => {
+                    setNature((prevData) => ({
+                      ...prevData,
+                      doc: e.target.value,
+                    }));
+                  }}
+                >
+                  <input
+                    type="file"
+                    id="fileInputCE"
+                    name="fileInput"
+                    accept=".pdf"
+                    style={{ display: "none" }}
+                  />
+                  Upload File
+                </label>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Type of University */}
+        <div className="border mt-2 p-3">
+          <div className="flex">
+            <div className="w-2/5 mr-4">
+              <div className="w-full">
+                Type of University
+                <span
+                  data-placement="right"
+                  title="Health Science and allied institutions and Teacher education institution should use this option and select the appropriate Manual"
+                ></span>
+              </div>
+            </div>
+            <div className="w-3/5">
+              <div className="flex justify-start w-full">
+                <div className="flex justify-start w-full">
+                  <label className="w-1/3">
+                    Unitary
+                    <input
+                      id="special_uni_yes"
+                      className="ml-2"
+                      onChange={() => setTypeOfUni("Unitary")}
+                      type="radio"
+                      value="Unitary"
+                      checked={typeOfUni === "Unitary"}
+                    />
+                  </label>
+                  <label className="w-1/3">
+                    Affiliating
+                    <input
+                      id="special_uni_yes"
+                      className="ml-2"
+                      onChange={() => setTypeOfUni("Affiliating")}
+                      type="radio"
+                      value="Affiliating"
+                      checked={typeOfUni === "Affiliating"}
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
