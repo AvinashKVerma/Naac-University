@@ -9,6 +9,7 @@ import Question from "../Question";
 import { ImBin2 } from "react-icons/im";
 import { config } from "apiCalls/Configuration";
 import { contextManager } from "context/store";
+import { keyIndicators6, option } from "./CriteriaData";
 
 const Criteria6 = (prop, ref) => {
   const { setAnsQs, ansQs } = prop;
@@ -93,202 +94,7 @@ const Criteria6 = (prop, ref) => {
       link: [""],
     },
   });
-  const keyIndicators = {
-    "Institutional Vision and Leadership": {
-      "6.1.1": [
-        "QIM",
-        "The Institutional governance and leadership are in accordance with Vision and mission of the institution and it is visible in various institutional practices such as NEP implementation, sustained institutional growth, de-centralization, participation in the institutional governance and in their Short term and Long term institutional perspective plan.",
-        {
-          "Upload any Additional information": ["Upload", "addInfo_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-    },
-    "Strategy Development and Deployment": {
-      "6.2.1": [
-        "QIM",
-        "The institutional perspective plan is effectively deployed and functioning of the Institutional bodies are effective and efficient as visible from policies, administrative set-up, appointment, service rules, procedures etc.",
-        {
-          "Strategic Plan and deployment documents on the website": [
-            "Upload",
-            "webDocsPlan_doc",
-          ],
-          "Upload any additional information": ["Upload", "addInfo_doc2"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "6.2.2": [
-        "QnM",
-        "Institution implements e-governance in its operations",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "",
-            "6.2.2.1 e-governance is implemented covering the following areas of operations",
-            "select",
-            "",
-            [
-              "Administration including complaint management",
-              "Finance and Accounts",
-              "Student Admission and Support",
-              "Examinations",
-            ],
-          ],
-        ],
-      ],
-    },
-    "Faculty Empowerment Strategies": {
-      "6.3.1": [
-        "QIM",
-        "The institution has performance appraisal system, effective welfare measures for teaching and non-teaching staff and avenues for career development/progression",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc3"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "6.3.2": [
-        "QnM",
-        "Percentage of teachers provided with financial support to attend conferences/workshops and towards membership fee of professional bodies during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "6.3.2.1",
-            "6.3.2.1 Number of teachers provided with financial support to attend conferences/workshops and towards membership fee of professional bodies year wise during the last five years",
-            true,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-        ],
-      ],
-      "6.3.3": [
-        "QnM",
-        "Percentage of teachers undergoing online/ face-to-face Faculty Development Programmes (FDP)/ Management Development Programs (MDP) during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "6.3.3.1",
-            "6.3.3.1: Total number of teachers who have undergone online/ face-toface Faculty Development Programmes (FDP)/ Management Development Programs (MDP) during the last five years",
-            true,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-        ],
-      ],
-    },
-    "Financial Management and Resource Mobilization": {
-      "6.4.1": [
-        "QIM",
-        "Institutional strategies for mobilisation of funds other than salary and fees and the optimal utilisation of resources.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc4"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "6.4.2": [
-        "QnM",
-        "Funds / Grants received from government bodies/non government and philanthropists during the last five years for development and maintenance of infrastructure (not covered under Criteria III and V )",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "6.4.2.1",
-            "6.4.2.1: Total Grants received from government and non-government bodies and philanthropists for development and maintenance of infrastructure (not covered under Criteria III and V) year-wise during the last five years (INR in Lakhs)",
-            true,
-          ],
-        ],
-      ],
-      "6.4.3": [
-        "QIM",
-        "Institution regularly conducts internal and external financial audits",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-      ],
-    },
-    "Internal Quality Assurance System": {
-      "6.5.1": [
-        "QIM",
-        "Internal Quality Assurance Cell (IQAC)/ Internal Quality Assurance System (IQAS) has contributed significantly for institutionalizing the quality assurance strategies and processes, by constantly reviewing the teachinglearning process, structures & methodologies of operations and learning outcomes, at periodic intervals.",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc5"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "6.5.2": [
-        "QnM",
-        "Institution has adopted the following for Quality assurance:",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "",
-            "",
-            "select",
-            "",
-            [
-              "Academic and Administrative Audit (AAA) and follow up action taken",
-              "Conferences, Seminars, Workshops on quality conducted",
-              "Collaborative quality initiatives with other institution(s)",
-              "Orientation programme on quality issues for teachers and students",
-              "Participation in NIRF and other recognized ranking like Shanghai Ranking, QS Ranking Times Ranking etc",
-              "Any other quality audit recognized by state, national or international agencies",
-            ],
-            [
-              "Any 5 or more of the above",
-              "Any 4 of the above",
-              "Any 3 of the above",
-              "Any 2 of the above",
-              "Any 1 of the above",
-            ],
-          ],
-        ],
-      ],
-      "6.5.3": [
-        "QIM",
-        "Incremental improvements made for the preceding five years with regard to quality (in case of first cycle NAAC A/A)",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc5"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-    },
-  };
+
   const [relatedInput, setRelatedInput] = useState({
     "6.3.2.1": {
       year1: "",
@@ -306,13 +112,8 @@ const Criteria6 = (prop, ref) => {
     },
   });
 
-  const options = [
-    "A. All of the above",
-    "B. Any 3 of the above",
-    "C. Any 2 of the above",
-    "D. Any 1 of the above",
-    "E. None of the above",
-  ];
+  const keyIndicators = keyIndicators6;
+  const options = option;
 
   useEffect(() => {
     // (async () => {

@@ -9,6 +9,7 @@ import Question from "../Question";
 import { ImBin2 } from "react-icons/im";
 import { config } from "apiCalls/Configuration";
 import { contextManager } from "context/store";
+import { keyIndicators4 } from "./CriteriaData";
 
 const Criteria4 = (prop, ref) => {
   const { setAnsQs, ansQs } = prop;
@@ -116,172 +117,8 @@ const Criteria4 = (prop, ref) => {
     },
   });
 
-  const keyIndicators = {
-    "Physical Facilities": {
-      "4.1.1": [
-        "QIM",
-        `The Institution has adequate infrastructure and other facilities for (a). teaching learning, viz., classrooms, laboratories, computing equipment etc (b). ICT enabled facilities such as smart class, LMS etc. Facilities for Cultural and sports activities, yoga centre, games (indoor and outdoor), Gymnasium, auditorium etc`,
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "4.1.2": [
-        "QnM",
-        "Percentage of expenditure excluding salary, for infrastructure development and augmentation year wise during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc",
-          ],
-          "Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for infrastructure augmentation should be clearly highlighted)":
-            ["Upload", "AudRep_incomExpendiState_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.1.2.1",
-            "4.1.2.1: Expenditure for infrastructure development and augmentation, excluding salary year wise during last five years (INR in lakhs)",
-            true,
-            "Total Expenditure excluding salary year wise during the last five years (INR in lakhs)",
-          ],
-        ],
-      ],
-    },
-    "Library as a learning Resource": {
-      "4.2.1": [
-        "QIM",
-        "Library is automated with digital facilities using Integrated Library Management System (ILMS), adequate subscription to e-resources and journals are made. The library is optimally used by the faculty and students",
-        {
-          "Upload any additional information": ["Upload", "addInfo_doc2"],
-          "Provide Link for Additional information": ["Link"],
-          "Provide the relevant information in institutional website as part of public disclosure":
-            ["Upload", "dummy"],
-        },
-      ],
-      "4.2.2": [
-        "QnM",
-        "Percentage expenditure for purchase of books/ e-books and subscription to journals/e-journals year wise during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.2.2.1",
-            "4.2.2.1: Annual expenditure for purchase of books and journals yearwise during the last five years (INR in lakhs)",
-            true,
-            "Total Expenditure excluding salary year wise during the last five years (INR in lakhs)",
-          ],
-        ],
-      ],
-    },
-    "IT Infrastructure": {
-      "4.3.1": [
-        "QIM",
-        "Institution frequently updates its IT facilities and provides sufficient bandwidth for internet connection",
-        {
-          "Upload Additional information": ["Upload", "addInfo_doc3"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "4.3.2": [
-        "QnM",
-        "Student Computer ratio (Data for the latest completed academic year)",
-        {
-          "Stock register/extracts highlighting the computers issued to respective departments for student's usage.":
-            ["Upload", "StockRegistryExtractor_doc"],
-          "Purchased Bills/Copies highlighting the number of computers purchased":
-            ["Upload", "numCompPurchased_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.3.2.1",
-            "4.3.2.1: Number of computers available for student use",
-            true,
-            "Number of students year-wise during the last five years",
-          ],
-        ],
-      ],
-      "4.3.3": [
-        "QnM",
-        "Institution has the following Facilities for e-content development and other resource development",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "",
-            "",
-            "select",
-            "",
-            [
-              "Audio visual center, mixing equipment, editing facilities",
-              "Lecture Capturing System(LCS)",
-              "Central Instrumentation Centre",
-              "Animal House",
-              "Museum",
-              "Business Lab",
-              "Research/statistical database",
-              "Moot court",
-              "Theatre",
-              "Art Gallery",
-              "Any other facility to support research",
-            ],
-            [
-              "Any 7 or more of the above",
-              "Any 6 of the above",
-              "Any 5 of the above",
-              "Any 3-4 of the above",
-              "Any 2 or below",
-            ],
-          ],
-        ],
-      ],
-    },
-    "Maintenance of Campus Infrastructure": {
-      "4.4.1": [
-        "QnM",
-        "Percentage expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "4.4.1.1",
-            "4.4.1.1: Expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component year-wise during the last five years (INR in lakhs)",
-            true,
-            "Total Expenditure excluding salary year-wise during the last five years (INR in Lakhs) years",
-          ],
-        ],
-      ],
-      "4.4.2": [
-        "QIM",
-        "There are established s y s t e m s a n d procedures for maintaining and utilising physical, academic and support facilities - laboratory, library, sports complex, computers, classrooms etc.",
-        {
-          "Upload any additional information": ["Upload", "dummy"],
-          "Provide the link for additional information": ["Link"],
-        },
-      ],
-    },
-  };
+  const keyIndicators = keyIndicators4;
+  const options = Option;
 
   useEffect(() => {
     (async () => {
@@ -359,14 +196,6 @@ const Criteria4 = (prop, ref) => {
       setFormData(updatedFormData);
     })();
   }, []);
-
-  const options = [
-    "A. All of the above",
-    "B. Any 3 of the above",
-    "C. Any 2 of the above",
-    "D. Any 1 of the above",
-    "E. None of the above",
-  ];
 
   useEffect(() => {
     const isObjectFilled = (obj) => {

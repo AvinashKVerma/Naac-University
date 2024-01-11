@@ -9,6 +9,7 @@ import Question from "../Question";
 import { ImBin2 } from "react-icons/im";
 import { contextManager } from "context/store";
 import { config } from "apiCalls/Configuration";
+import { keyIndicators2, option } from "./CriteriaData";
 
 const Criteria2 = (prop, ref) => {
   const { setAnsQs, ansQs } = prop;
@@ -233,303 +234,9 @@ const Criteria2 = (prop, ref) => {
       year5: "",
     },
   });
-  const keyIndicators = {
-    "Student Enrolment and Profile ": {
-      "2.1.1": [
-        "QnM",
-        "Enrolment percentage",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Document relating to sanction of intake as approved by competent authority":
-            ["Upload", "intakeSanctionApproval_doc"],
-          "Admission extract signed by the component authority (only fresh admission to be considered":
-            ["Upload", "finalAdmissionList_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.1.1.1",
-            "2.1.1.1 Number of sanctioned seats year wise during last five years",
-            true,
-          ],
-          [
-            "2.1.1.2",
-            "2.1.1.2 Number of seats filled year wise during last five years (Only first year admissions to be considered)",
-            true,
-          ],
-        ],
-      ],
-      "2.1.2": [
-        "QnM",
-        "Percentage of seats filled against reserved categories (SC, ST, OBC etc.) as per applicable reservation policy for the first year admission during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "institutionalDataTemplate_doc",
-          ],
-          "Copy of the letter issued by the State govt. or Central Government Indicating the reserved categories(SC, ST, OBC, Divyangjan, etc.) to be considered as per the state rule (Translated copy in English to be provided as applicable)":
-            ["Upload", "govtLetter_doc"],
-          "Final admission list indicating the category as published by the HEI and endorsed by the competent authority.":
-            ["Upload", "finalAdmissionList_doc2"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.1.2.1",
-            "2.1.2.1. Number of actual students admitted from the reserved categories year wise during last five years (Exclusive of supernumerary seats)",
-            true,
-            "Number of seats earmarked for reserved category as per GOI/State Govt rule year wise during the last five years",
-          ],
-        ],
-      ],
-    },
-    "Catering to Student Diversity": {
-      "2.2.1": [
-        "QIM",
-        "The institution assesses the learning levels of the students and organises special Programmes to cater to differential learning needs of the student",
-        {
-          "Provide Link for Additional information": ["Link"],
-          "Upload Additional information": ["Upload", "additionalInfo_doc2"],
-        },
-      ],
-      "2.2.2": [
-        "QnM",
-        "Student – Full time Teacher Ratio",
-        {
-          "Upload Additional information": ["Upload", "additionalInfo_doc"],
-          "Link for Additional Information": ["Link"],
-        },
-        [
-          [
-            "2.2.1.1",
-            "",
-            false,
-            "Number of students on rolls year-wise during the last five years",
-          ],
-          [
-            "2.2.1.2",
-            "",
-            false,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-        ],
-      ],
-    },
-    "Teaching-Learning Process": {
-      "2.3.1": [
-        "QIM",
-        "Student centric methods, such as experiential learning, participative learning and problem solving methodologies are used for enhancing learning experience and teachers use ICT-enabled tools including online resources for effective teaching learning process",
-        {
-          "Upload Additional information": ["Upload", "additionalInfo_doc2"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-      "2.3.2": [
-        "QIM",
-        "The institution adopts effective Mentor-Mentee Schemes to address academics and student-psychological issues",
-        {
-          "Upload Additional information": ["Upload", "additionalInfo_doc2"],
-          "List of Active mentors": ["Upload", "dummy"],
-          "Provide Link for Additional information": ["Link"],
-        },
-      ],
-    },
-    "Teacher Profile and Quality": {
-      "2.4.1": [
-        "QnM",
-        "Average percentage of full time teachers appointed against the number of sanctioned posts year wise during the last five years",
-        {
-          "Sanction letters indicating number of posts sanctioned by the competent authority (including Management sanctioned posts)":
-            ["Upload", "sanctionedPostsMap_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.4.1.1",
-            "",
-            false,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-        ],
-      ],
-      "2.4.2": [
-        "QnM",
-        "Percentage of full time teachers with Ph.D./D.M/M.Ch./D.N.B/ Superspeciality/L.L.D/D.S.C/D.Litt. during the last five years",
-        {
-          "Institutional data in the prescribed format (data template merged with 2.1)":
-            ["Data Template", "instDataTemplate_doc3"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.4.2.1",
-            "2.4.2.1 Number of full time teachers with Ph.D./D.M/M.Ch./D.N.B/ Superspeciality/L.L.D/D.S.C/D.Litt Superspecialist during the last five years",
-            true,
-            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-          ],
-        ],
-      ],
-      "2.4.3": [
-        "QnM",
-        "Average teaching experience of full time teachers (Data to be provided only for the latest completed academic year, in number of years)",
-        {
-          "Institutional data in the prescribed format (data template merged with 2.1)":
-            ["Data Template", "instDataTemplate_doc3"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.4.3.1",
-            "2.4.3.1: Total teaching experience of full-time teachers (for the latest completed academic year)",
-            true,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-        ],
-      ],
-    },
-    "Evaluation Process and Reforms": {
-      "2.5.1": [
-        "QnM",
-        "Average number of days from the date of last semester-end/ year- end examination till the last date of declaration of results year-wise during last five years",
-        {
-          "Institutional data in the prescribed format (data template merged with 2.1)":
-            ["Data Template", "instDataTemplate_doc3"],
-          "Provide Link for Additional information": ["Link"],
-        },
-        [
-          [
-            "2.5.1.1",
-            "2.5.1.1: Number of days from the date of last semester-end/ year- end examination till the last date declaration of results year-wise during the last five years",
-            true,
-          ],
-        ],
-      ],
-      "2.5.2": [
-        "QnM",
-        "Percentage of student complaints/grievances about evaluation against total number of students appeared in the examinations during the last five years",
-        {
-          "Institutional data in the prescribed format (data template merged with 2.1)":
-            ["Data Template", "instDataTemplate_doc3"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.5.2.1",
-            "2.5.2.1: Number of complaints/grievances about evaluation year-wise during the last five years",
-            true,
-          ],
-          [
-            "2.5.2.2",
-            "2.5.2.2: Number of students appeared in the examination conducted by the institution year wise during the last five years",
-            true,
-          ],
-        ],
-      ],
-      "2.5.3": [
-        "QnM",
-        "Status of automation of Examination division along with approved Examination Manual/ordinance",
-        {
-          "Institutional data in the prescribed format (data template merged with 2.1)":
-            ["Data Template", "instDataTemplate_doc3"],
-          "Provide Link for Additional information": ["Link"],
-        },
-        [
-          [
-            "",
-            "",
-            "select",
-            "",
-            [
-              "100% automation of entire division & implementation of Examination Management System (EMS)",
-              "Only student registration, Hall ticket issue & Result Processing",
-              "Only student registration and result processing",
-              "Only result processing",
-              "Only manual methodology",
-            ],
-          ],
-        ],
-      ],
-    },
-    "Student Performance and Learning Outcome": {
-      "2.6.1": [
-        "QIM",
-        "The institution has stated learning outcomes (Program and Course outcomes)/graduate attributes which are integrated into the assessment process and widely publicized through the website and other documents and the attainment of the same are evaluated by the institution",
-        {
-          "Upload Additional information": ["Upload", "additionalInfo_doc4"],
-          "Provide Link for Additional information": ["Link"],
-          "Upload COs for all courses (exemplars from Glossary)": [
-            "Upload",
-            "dummy",
-          ],
-        },
-      ],
-      "2.6.2": [
-        "QnM",
-        "Pass percentage of students (excluding backlog students) (Data to be provided only for the latest completed academic year)",
-        {
-          "Upload Additional information": ["Upload", "additionalInfo_doc5"],
-          "Provide Link for Additional information": ["Link"],
-        },
-        [
-          [
-            "2.6.2.1",
-            "2.6.2.1: Total number of final year students who passed the examination conducted by Institution",
-            true,
-            "Number of final year outgoing students year wise during last five years",
-          ],
-        ],
-      ],
-      "2.6.3": [
-        "QnM",
-        "Pass percentage of Students during last five years (excluding backlog students)",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc4",
-          ],
-          "Annual report of Controller of Examinations ( COE) highlighting the pass percentage of final year students":
-            ["Upload", "coeReportPassPercentage_doc"],
-          "Certified report from the COE indicating the pass percentage of students of the final year (final semester) eligible for the degree program-wise / year wise":
-            ["Upload", "coePassPercentReport_doc"],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "2.6.3.1",
-            "2.6.3.1 Number of final year students who passed the university examination year wise during the last five years",
-            true,
-          ],
-          [
-            "2.6.3.2",
-            "2.6.3.2 Number of final year students who appeared for the university examination year wise during the last five years",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Student Satisfaction Survey": {
-      "2.7.1": [
-        "QnM",
-        "Online Student Satisfaction Survey regarding the teaching-learning process.",
-        {
-          "Upload any additional information": ["Upload", "dummy"],
-          "Upload database of all currently enrolled students (Data Template)":
-            ["Data Template", "dummy"],
-        },
-      ],
-    },
-  };
 
+  const keyIndicators = keyIndicators2;
+  const options = option;
   useEffect(() => {
     (async () => {
       const response = await config.ssrAPIRequest(
@@ -875,6 +582,48 @@ const Criteria2 = (prop, ref) => {
                           5
                         </div>
                       </div>
+                      {keyIndicators[ele][e][3][0][2] === "select" && (
+                        <div className="my-4 rounded-lg flex bg-slate-300">
+                          <ul className="my-2 p-2 w-3/4">
+                            {keyIndicators[ele][e][3][0][4].map(
+                              (item, index) => (
+                                <li key={index}>
+                                  {index + 1}. {item}
+                                </li>
+                              )
+                            )}
+                          </ul>
+                          <ul className="pb-4 w-1/4">
+                            {options.map((option, index) => (
+                              <li className="px-2 " key={index}>
+                                <label>
+                                  <input
+                                    className="mr-2"
+                                    type="radio"
+                                    name="option"
+                                    value={`option${index + 1}`}
+                                    checked={
+                                      formData[e].select ===
+                                      `option${index + 1}`
+                                    }
+                                    onChange={(event) => {
+                                      setFormData((prevData) => {
+                                        const updatedFormData = {
+                                          ...prevData,
+                                        };
+                                        updatedFormData[e].select =
+                                          event.target.value;
+                                        return updatedFormData;
+                                      });
+                                    }}
+                                  />
+                                  {option}
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       {keyIndicators[ele][e][3] &&
                         keyIndicators[ele][e][3].map((elem, index) => {
                           return (

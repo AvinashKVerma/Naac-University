@@ -9,747 +9,92 @@ import Question from "../Question";
 import { ImBin2 } from "react-icons/im";
 import { config } from "apiCalls/Configuration";
 import { contextManager } from "context/store";
+import { keyIndicators3, option } from "./CriteriaData";
 
 const Criteria3 = (prop, ref) => {
   const { setAnsQs, ansQs } = prop;
   const { collegeData, ssrID } = contextManager();
   const [formData, setFormData] = useState({
-    "3.1.1": {
-      para: "",
-      doc: ["", ""],
-      link: [""],
-    },
-    "3.1.2": {
-      doc: [""],
-      link: [""],
-      "3.1.2.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
-    "3.1.3": {
-      doc: [""],
-      link: [""],
-      "3.1.3.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
+    "3.1.1": { para: "", doc: ["", ""], link: [""] },
+    "3.1.2": { doc: [""], link: [""], "3.1.2.1": createYearObject() },
+    "3.1.3": { doc: [""], link: [""], "3.1.3.1": createYearObject() },
     "3.1.4": {
       doc: [""],
       link: [""],
-      "3.1.4.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-      "3.1.4.2": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
+      "3.1.4.1": createYearObject(),
+      "3.1.4.2": createYearObject(),
     },
-    "3.2.1": {
-      doc: [""],
-      link: [""],
-      "3.2.1.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
+    "3.2.1": { doc: [""], link: [""], "3.2.1.1": createYearObject() },
     "3.2.2": {
       doc: [""],
       link: [""],
-      "3.2.2.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-      "3.2.2.2": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
+      "3.2.2.1": createYearObject(),
+      "3.2.2.2": createYearObject(),
     },
-    "3.3.1": {
-      doc: ["", ""],
-      para: "",
-      link: [""],
-    },
-    "3.3.2": {
-      doc: [""],
-      "3.3.2.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-      link: [""],
-    },
-    "3.4.1": {
-      doc: [""],
-      link: [""],
-      select: "",
-    },
-    "3.4.2": {
-      doc: [""],
-      link: [""],
-      "3.4.2.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
+    "3.3.1": { doc: ["", ""], para: "", link: [""] },
+    "3.3.2": { doc: [""], "3.3.2.1": createYearObject(), link: [""] },
+    "3.4.1": { doc: [""], link: [""], select: "" },
+    "3.4.2": { doc: [""], link: [""], "3.4.2.1": createYearObject() },
     "3.4.3": {
       doc: [""],
-      "3.4.3.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-      "3.4.3.2": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
+      "3.4.3.1": createYearObject(),
+      "3.4.3.2": createYearObject(),
       link: [""],
     },
-    "3.4.4": {
-      doc: [""],
-      link: [""],
-      "3.4.4.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
-    "3.4.5": {
-      doc: [""],
-      link: [""],
-      "3.4.5.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
-    "3.4.6": {
-      doc: [""],
-      link: [""],
-      select: "",
-    },
-    "3.5.1": {
-      doc: [""],
-      "3.5.1.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-      link: [""],
-    },
-    "3.6.1": {
-      para: "",
-      doc: ["", ""],
-      link: [""],
-    },
-    "3.6.2": {
-      doc: [""],
-      link: [""],
-      "3.6.2.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
-    "3.7.1": {
-      doc: [""],
-      link: [""],
-      "3.7.1.1": {
-        year1: "",
-        year2: "",
-        year3: "",
-        year4: "",
-        year5: "",
-      },
-    },
+    "3.4.4": { doc: [""], link: [""], "3.4.4.1": createYearObject() },
+    "3.4.5": { doc: [""], link: [""], "3.4.5.1": createYearObject() },
+    "3.4.6": { doc: [""], link: [""], select: "" },
+    "3.5.1": { doc: [""], "3.5.1.1": createYearObject(), link: [""] },
+    "3.6.1": { para: "", doc: ["", ""], link: [""] },
+    "3.6.2": { doc: [""], link: [""], "3.6.2.1": createYearObject() },
+    "3.7.1": { doc: [""], link: [""], "3.7.1.1": createYearObject() },
   });
-  const [relatedInput, setRelatedInput] = useState({
-    "3.1.2.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.1.3.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.1.4.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.1.4.2": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.2.1.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.2.2.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.2.2.2": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.3.2.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.1.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.2.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.3.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.3.2": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.4.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.5.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.5.2": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.6.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.4.6.2": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.5.1.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.6.2.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
-    "3.7.1.1": {
-      year1: "",
-      year2: "",
-      year3: "",
-      year4: "",
-      year5: "",
-    },
+  function createYearObject() {
+    return { year1: "", year2: "", year3: "", year4: "", year5: "" };
+  }
+
+  const [relatedInput, setRelatedInput] = useState(() => {
+    const levels = [
+      "3.1.2",
+      "3.1.3",
+      "3.1.4",
+      "3.2.1",
+      "3.2.2",
+      "3.3.2",
+      "3.4.1",
+      "3.4.2",
+      "3.4.3",
+      "3.4.4",
+      "3.4.5",
+      "3.4.6",
+      "3.5.1",
+      "3.6.2",
+      "3.7.1",
+    ];
+
+    const initialState = {};
+    levels.forEach((level) => {
+      initialState[level + ".1"] = {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      };
+      initialState[level + ".2"] = {
+        year1: "",
+        year2: "",
+        year3: "",
+        year4: "",
+        year5: "",
+      };
+    });
+
+    return initialState;
   });
 
-  const keyIndicators = {
-    "Promotions of Research and Facilities": {
-      "3.1.1": [
-        "QIM",
-        "The institution's Research facilities are frequently updated and there are well defined policy for promotion of research which is uploaded on the institutional website and implemented",
-        {
-          "Upload any additional information": [
-            "Upload",
-            "instDataTemplate_doc",
-          ],
-          "Provide links as Additional Information": ["Upload", "dummy"],
-          "Upload supporting document": ["Upload", "supporting_doc"],
-        },
-      ],
-      "3.1.2": [
-        "QnM",
-        "The institution provides seed money to its teachers for research (average per year)",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.1.2.1",
-            "3.1.2.1: Amount of seed money provided by institution to its teachers for research year- wise during the last five years(INR in lakhs)",
-            true,
-          ],
-        ],
-      ],
-      "3.1.3": [
-        "QnM",
-        "Percentage of teachers receiving national/ international fellowship/financial support by various agencies for advanced studies/ research during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.1.3.1",
-            "3.1.3.1: Number of teachers who received national/ international fellowship/financial support from various agencies, for advanced studies /research, year-wise during the last five years",
-            true,
-            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-          ],
-        ],
-      ],
-      "3.1.4": [
-        "QnM",
-        "Percentage of JRFs, SRFs among the enrolled PhD scholars in the institution during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.1.4.1",
-            "3.1.4.1: The Number of JRFs, SRFs among the enrolled PhD scholars in the institution during the last five years",
-            true,
-          ],
-          [
-            "3.1.4.2",
-            "3.1.4.2: Number of PhD Scholars enrolled during last five years",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Resource Mobilization for Research": {
-      "3.2.1": [
-        "QnM",
-        "Research funding received by the institution and its faculties through Government and non-government sources such as industry, corporate houses, international bodies for research project, Endowment Research Chairs during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.2.1.1",
-            "3.2.1.1: Total Grants for Research funding received by the institution and its faculties through Government and non-government sources such as industry, corporate houses, international bodies for research project, Endowment Research Chairs during the last five years (INR in Lakhs)",
-            true,
-          ],
-        ],
-      ],
-      "3.2.2": [
-        "QnM",
-        "Number of research projects per teacher funded by government, nongovernment, industry, corporate houses, international bodies during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.2.2.1",
-            "3.2.2.1: Number of research projects funded by government and nongovernment agencies during the last five years",
-            true,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-          [
-            "3.2.2.2",
-            "",
-            "",
-            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-          ],
-        ],
-      ],
-    },
-    "Innovation Ecosystem": {
-      "3.3.1": [
-        "QIM",
-        "Institution has created an ecosystem for innovations, Indian Knowledge System (IKS) including awareness about IPR, establishment of IPR cell, Incubation centre and other initiatives for the creation and transfer of technology/knowledge and the outcomes the same are evident",
-        {
-          "Upload any additional information": ["Upload", "dummy"],
-          "Upload database of all currently enrolled students (data template)":
-            ["Data Template", "institutionalDataFormat_doc2"],
-        },
-      ],
-      "3.3.2": [
-        "QnM",
-        "Number of awards received for research/innovations by the institution/teachers/research scholars/students during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.3.2.1",
-            "3.3.2.1: Total number of awards received for research/innovations by institution/teachers/research scholars/students during the last five years",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Research Publications and Awards": {
-      "3.4.1": [
-        "QnM",
-        "The institution ensures implementation of its stated Code of Ethics for research",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.4.1.1",
-            "3.4.1.1 The institution has a stated Code of Ethics for research and the implementation of which is ensured through the following",
-            "select",
-            "",
-            [
-              "Inclusion of research ethics in the research methodology course work",
-              "Presence of institutional Ethics committees (Animal, chemical,bio-ethics etc.,)",
-              "Plagiarism check through sofware",
-              "Research Advisory Committee",
-            ],
-          ],
-        ],
-      ],
-      "3.4.2": [
-        "QnM",
-        "Number of Patents awarded during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.4.2.1",
-            "3.4.2.1: Total number of Patents awarded during the last five years",
-            true,
-          ],
-        ],
-      ],
-      "3.4.3": [
-        "QnM",
-        "Number of Ph.Ds awarded per recognized guide during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.4.3.1",
-            "3.4.3.1 How many Ph.D s were awarded during last 5 years",
-            true,
-          ],
-          [
-            "3.4.3.2",
-            "3.4.3.2 Number of teachers recognized as guides during the last five years",
-            true,
-          ],
-        ],
-      ],
-      "3.4.4": [
-        "QnM",
-        "Number of research papers published per teacher in the Journals as notified on UGC CARE list during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.4.4.1",
-            "3.4.4.1 Number of research papers published in the Journals as notified on UGC CARE list during the last five years",
-            true,
-            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-          ],
-        ],
-      ],
-      "3.4.5": [
-        "QnM",
-        "Number of books and chapters in edited volumes published per teacher during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.4.5.1",
-            "3.4.5.1 Total number of books and chapters in edited volumes / books published during the last five years",
-            true,
-            "Number of Full-time teachers in the institution year-wise during last five year",
-          ],
-          [
-            "3.4.5.2",
-            "",
-            "",
-            "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-          ],
-        ],
-      ],
-      "3.4.6": [
-        "QnM",
-        "E-content is developed by teachers :",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.4.6.1",
-            "",
-            "select",
-            "Number of Full-time teachers in the institution year-wise during last five year",
-            [
-              "For e-PG-Pathshala",
-              "For CEC (Undergraduate)",
-              "For SWAYAM",
-              "For other MOOCs platforms",
-              "Any other Government Initiatives",
-              "For Institutional LMS",
-            ],
-          ],
-          [
-            [
-              "3.4.6.2",
-              "",
-              "",
-              "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-            ],
-          ],
-        ],
-      ],
-      // "3.4.7": [
-      //   "QnM",
-      //   "Bibliometrics of the publications during the last five years based on average Citation Index in Scopus/ Web of Science",
-      //   {
-      //     "Institutional data in the prescribed format (data template)": [
-      //       "Data Template",
-      //       "instDataTemplate_doc",
-      //     ],
-      //     "Provide Links for any other relevant document to support the claim (if any)":
-      //       ["Link"],
-      //   },
-      //   [
-      //     [
-      //       "3.4.4.1",
-      //       "3.4.4.1 Number of research papers published in the Journals as notified on UGC CARE list during the last five years",
-      //       true,
-      //       "Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years",
-      //     ],
-      //   ],
-      // ],
-      // 3.4.8 also left
-    },
-    Consultancy: {
-      "3.5.1": [
-        "QnM",
-        "Revenue generated from consultancy and corporate training during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.5.1.1",
-            "3.5.1.1 Total amount generated from consultancy and corporate training year-wise during the last five years (INR in lakhs)",
-            true,
-          ],
-        ],
-      ],
-    },
-    "Extension Activities": {
-      "3.6.1": [
-        "QIM",
-        "Outcomes of Extension activities in the neighborhood community in terms of impact and sensitizing the students to social issues for their holistic development and awards received if any during the last five years.",
-        {
-          "Provide Link for Additional information": ["Link"],
-          "Upload Additional information": ["Upload", "addInfo_doc"],
-          "Provide the relevant information in intitutional website as part of public disclosure":
-            ["Upload", "dummy"],
-        },
-      ],
-      "3.6.2": [
-        "QnM",
-        "Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.6.2.1",
-            "3.6.2.1 Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community year wise during the last five years.",
-            true,
-          ],
-        ],
-      ],
-    },
-    Collaboration: {
-      "3.7.1": [
-        "QnM",
-        "Number of functional MoUs/linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
-        {
-          "Institutional data in the prescribed format (data template)": [
-            "Data Template",
-            "instDataTemplate_doc",
-          ],
-          "Provide Links for any other relevant document to support the claim (if any)":
-            ["Link"],
-        },
-        [
-          [
-            "3.7.1.1",
-            "3.7.1.1 Number of functional MoUs with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
-            true,
-          ],
-        ],
-      ],
-    },
-  };
+  const keyIndicators = keyIndicators3;
+  const options = option;
 
   useEffect(() => {
     // (async () => {
@@ -1107,6 +452,48 @@ const Criteria3 = (prop, ref) => {
                           5
                         </div>
                       </div>
+                      {keyIndicators[ele][e][3][0][2] === "select" && (
+                        <div className="my-4 rounded-lg flex bg-slate-300">
+                          <ul className="my-2 p-2 w-3/4">
+                            {keyIndicators[ele][e][3][0][4].map(
+                              (item, index) => (
+                                <li key={index}>
+                                  {index + 1}. {item}
+                                </li>
+                              )
+                            )}
+                          </ul>
+                          <ul className="pb-4 w-1/4">
+                            {options.map((option, index) => (
+                              <li className="px-2 " key={index}>
+                                <label>
+                                  <input
+                                    className="mr-2"
+                                    type="radio"
+                                    name="option"
+                                    value={`option${index + 1}`}
+                                    checked={
+                                      formData[e].select ===
+                                      `option${index + 1}`
+                                    }
+                                    onChange={(event) => {
+                                      setFormData((prevData) => {
+                                        const updatedFormData = {
+                                          ...prevData,
+                                        };
+                                        updatedFormData[e].select =
+                                          event.target.value;
+                                        return updatedFormData;
+                                      });
+                                    }}
+                                  />
+                                  {option}
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       {keyIndicators[ele][e][3] &&
                         keyIndicators[ele][e][3].map((elem, index) => {
                           return (
