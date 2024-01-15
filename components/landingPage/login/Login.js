@@ -37,27 +37,29 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const collegeEmailID = email;
 
     if (generatedCaptcha === captchaInput) {
       try {
+        const formsData = new FormData();
+        formsData.append("email", email);
+        formsData.append("role", "ROLE_COLLEGE");
+        formsData.append("password", password);
         const response = await fetch(`${config.BASE_URL}/api/auth/login`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ collegeEmailID, password }),
+          body: formsData,
         });
 
         if (response.status === 200) {
           const data = await response.json();
-
+          console.log(data.user.role);
           document.cookie = `token=${JSON.stringify(
             data.token
           )}; SameSite=None; Secure;`;
-          document.cookie = `collegeData=${JSON.stringify(
-            data.college
-          )}; SameSite=None; Secure;`;
+          if (data.user.role === "ROLE_COLLEGE") {
+            document.cookie = `collegeData=${JSON.stringify(
+              data.user
+            )}; SameSite=None; Secure;`;
+          }
           push("/components");
         } else {
           setRefreshCaptcha(!refreshCaptcha);
@@ -152,7 +154,7 @@ const Login = () => {
               </div>
             </div>
             <div className="inputsec">
-              <button type="submit" className="logbtn" id="hei_loginbtn">
+              <button type="submit" className="logbtn">
                 LOG IN
               </button>
             </div>

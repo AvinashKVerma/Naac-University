@@ -51,13 +51,19 @@ const Login = () => {
 
         if (response.status === 200) {
           const data = await response.json();
-
+          console.log(data);
           document.cookie = `token=${JSON.stringify(
             data.token
           )}; SameSite=None; Secure;`;
-          document.cookie = `collegeData=${JSON.stringify(
-            data.college
-          )}; SameSite=None; Secure;`;
+          if (JSON.stringify(data.user.collegID)) {
+            document.cookie = `collegeData=${JSON.stringify(
+              data.user
+            )}; SameSite=None; Secure;`;
+          } else {
+            document.cookie = `studentData=${JSON.stringify(
+              data.user
+            )}; SameSite=None; Secure;`;
+          }
           push("/components");
         } else {
           setRefreshCaptcha(!refreshCaptcha);

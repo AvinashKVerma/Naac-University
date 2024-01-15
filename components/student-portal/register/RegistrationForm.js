@@ -1,15 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import { config } from "apiCalls/Configuration";
-import VerifyEmail from "../verify-email/VerifyEmail";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import VerifyStuEmail from "../verify-email/VerifyEmail";
 
-export default function RegistrationForm({ formSwap }) {
+export default function RegistrationForm() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
-    collegeCode: "",
+    stdRegNo: "",
     department: "",
     emailID: "",
     conf_email: "",
@@ -45,28 +45,27 @@ export default function RegistrationForm({ formSwap }) {
   };
 
   const handleSubmit = async () => {
-    const finalData = {
-      collegeCode: formData.collegeCode,
-      emailID: formData.emailID,
-      mobileNo: formData.mobileNo,
-      password: formData.password,
-    };
+    const formsData = new FormData();
+    formsData.append("stdName", formData.name);
+    formsData.append("stdRegNo", formData.stdRegNo);
+    formsData.append("stdEmail", formData.emailID);
+    formsData.append("stdMobile", formData.mobileNo);
+    formsData.append("stdDep", formData.department);
+    formsData.append("password", formData.password);
+
     try {
-      fetch(`${config.BASE_URL}/api/auth/registration`, {
+      const response = await fetch(`${config.BASE_URL}/api/student/register`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(finalData),
-      }).then(
-        (res) => {
-          router.push("/login");
-        },
-        (err) => {
-          config.notify("Something Went Wrong", "error");
-          // console.log(err);
-        }
-      );
+        body: formsData,
+      });
+
+      console.log(response);
+
+      if (response.ok) {
+        router.push("/student-portal/login");
+      } else {
+        config.notify("Something Went Wrong", "error");
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -95,6 +94,7 @@ export default function RegistrationForm({ formSwap }) {
       ) {
         window.alert(data);
         closeModel();
+        return;
       }
 
       if (!response) {
@@ -146,16 +146,16 @@ export default function RegistrationForm({ formSwap }) {
         {/* University Registration number */}
         <div className="mb-4 flex">
           <label
-            htmlFor="collegeCode"
+            htmlFor="stdRegNo"
             className="flex text-base items-center font-semibold text-gray-900 w-2/5"
           >
             University Registration Number
           </label>
           <input
             type="text"
-            id="collegeCode"
-            name="collegeCode"
-            value={formData.collegeCode}
+            id="stdRegNo"
+            name="stdRegNo"
+            value={formData.stdRegNo}
             onChange={handleInputChange}
             className="mt-1 p-2 border rounded-md w-3/5 border-slate-500"
             placeholder="Enter your University Registration Number"
@@ -277,7 +277,7 @@ export default function RegistrationForm({ formSwap }) {
         </button>
       </div>
       {emailVerifyModal && (
-        <VerifyEmail
+        <VerifyStuEmail
           closeModel={closeModel}
           email={formData.emailID}
           handleSubmit={handleSubmit}

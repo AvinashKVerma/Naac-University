@@ -12,7 +12,9 @@ const IndexLayout = ({ children }) => {
   let collegeData = getCookie("collegeData");
 
   useEffect(() => {
-    setCollegeData(JSON.parse(collegeData));
+    if (collegeData) {
+      setCollegeData(JSON.parse(collegeData));
+    }
 
     if (!token) {
       redirect("/");

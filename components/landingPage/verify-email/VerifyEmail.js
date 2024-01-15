@@ -11,6 +11,7 @@ const VerifyEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
     const otpForm = new FormData();
     otpForm.append("otp", otp);
     otpForm.append("email", email);
+    otpForm.append("role", "ROLE_COLLEGE");
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/otp/verify-otp`,
       {

@@ -3,7 +3,7 @@ import { config } from "apiCalls/Configuration";
 import { AiFillCloseCircle } from "react-icons/ai";
 import CountdownTimer from "../forgot-password/CountdownTimer";
 
-const VerifyEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
+const VerifyStuEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
   const [otp, setOtp] = useState("");
   const [invalidOtp, setInvalidOtp] = useState(false);
 
@@ -11,6 +11,7 @@ const VerifyEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
     const otpForm = new FormData();
     otpForm.append("otp", otp);
     otpForm.append("email", email);
+    otpForm.append("role", "ROLE_STUDENT");
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/otp/verify-otp`,
       {
@@ -113,4 +114,4 @@ const VerifyEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
   );
 };
 
-export default VerifyEmail;
+export default VerifyStuEmail;

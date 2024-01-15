@@ -79,6 +79,7 @@ export default function RegistrationForm() {
       ) {
         window.alert(data);
         closeModel();
+        return;
       }
 
       if (!response) {
