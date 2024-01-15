@@ -164,7 +164,7 @@ const Login = () => {
             </div>
             <div className="cursor-pointer">
               <BsFillFileEarmarkTextFill color="#3b82f6" />{" "}
-              <Link href="/register">New Registration</Link>
+              <Link href="/student-portal/register">New Registration</Link>
             </div>
           </div>
           <div

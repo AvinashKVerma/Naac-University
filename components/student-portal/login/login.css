@@ -2,7 +2,7 @@ body {
   background-color: #faf8fd;
 }
 .loginpage {
-  background: url(/loginbg.jpg) center top no-repeat;
+  background: url(/img/loginbg.jpg) center top no-repeat;
   padding-top: 0px;
 }
 .loginlogo {

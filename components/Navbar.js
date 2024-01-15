@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav className="topnavsec">
       <div className="headersec">
         <div className="sitelogo">
-          <img src="/img/logo.png" alt="NAAC" />
+          <img src="logo.png" alt="NAAC" />
         </div>
         {/* <img src={img} alt="Profile" className="w-10 h-10 rounded-full mr-2" /> */}
         <div
