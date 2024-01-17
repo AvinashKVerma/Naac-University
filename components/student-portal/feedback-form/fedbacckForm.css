@@ -1,0 +1,30 @@
+.container {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+  list-style: 1.2;
+}
+.tablesec {
+  border-collapse: collapse;
+}
+.tablesec tr td,
+.tablesec tr th {
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+.formfield {
+  padding: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 4px;
+}
+.flexboxes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.flexboxes > div {
+  min-width: 25%;
+  padding: 5px;
+}

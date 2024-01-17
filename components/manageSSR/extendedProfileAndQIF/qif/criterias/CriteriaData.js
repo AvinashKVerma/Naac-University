@@ -59,6 +59,7 @@ export const keyIndicators1 = {
       },
     ],
     "1.3.2": [
+      "QnM",
       "Number of certificate / value-added courses / Diploma Programmes offered by the institutions and online courses of MOOCs, SWAYAM / e_Pathshala/ NPTEL and other recognised platforms where the students of the institution have enrolled and successfully completed during the last five years",
       {
         "Institutional data in the prescribed format": [

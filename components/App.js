@@ -11,8 +11,12 @@ export default function App() {
   useEffect(() => {
     setBaseURL(environ);
     const token = getCookie("token");
-    if (token) {
+    const colledata = getCookie("collegeData");
+    const studentData = getCookie("studentData");
+    if (token && colledata) {
       redirect("/components");
+    } else if (token && studentData) {
+      redirect("/student-portal/feedback-form");
     } else {
       redirect("/login");
     }

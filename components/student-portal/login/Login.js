@@ -37,21 +37,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const collegeEmailID = email;
-
+    const formsData = new FormData();
+    formsData.append("email", email);
+    formsData.append("role", "ROLE_STUDENT");
+    formsData.append("password", password);
     if (generatedCaptcha === captchaInput) {
       try {
         const response = await fetch(`${config.BASE_URL}/api/auth/login`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ collegeEmailID, password }),
+          body: formsData,
         });
 
         if (response.status === 200) {
           const data = await response.json();
-          console.log(data);
           document.cookie = `token=${JSON.stringify(
             data.token
           )}; SameSite=None; Secure;`;
@@ -64,7 +62,7 @@ const Login = () => {
               data.user
             )}; SameSite=None; Secure;`;
           }
-          push("/components");
+          push("/student-portal/feedback-form");
         } else {
           setRefreshCaptcha(!refreshCaptcha);
           setCaptchaInput("");

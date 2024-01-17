@@ -1563,16 +1563,25 @@ const ProfileInformation = ({ completedForm }) => {
           )}
         </div>
 
-        {/* Type of college */}
+        {/* Type of University */}
         <div className="border mt-2 p-3">
           <div className="flex">
             <div className="w-2/5 mr-4">
               <div className="w-full">
-                Are you a specific type of college?
+                Are you a specific type of university?
                 <span
+                  className="text-blue-600 cursor-pointer ml-2"
                   data-placement="right"
-                  title="Health Science and allied institutions and Teacher education institution should use this option and select the appropriate Manual"
-                ></span>
+                  title="Please select Yes, if you are a Health science / ODL /Sanskrit institution
+
+                  - Universities with more than 60% of their departments and their teaching programmes under the Health science faculties will have to mandatorily adopt Health sciences universities manual
+                  
+                  - Universities with less than 60% of their departments and their teaching programmes under the Health science faculties can choose either manual as per their preference"
+                >
+                  <b>
+                    <i>i</i>
+                  </b>
+                </span>
               </div>
             </div>
             <div className="w-3/5">

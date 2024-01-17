@@ -582,48 +582,49 @@ const Criteria2 = (prop, ref) => {
                           5
                         </div>
                       </div>
-                      {keyIndicators[ele][e][3][0][2] === "select" && (
-                        <div className="my-4 rounded-lg flex bg-slate-300">
-                          <ul className="my-2 p-2 w-3/4">
-                            {keyIndicators[ele][e][3][0][4].map(
-                              (item, index) => (
-                                <li key={index}>
-                                  {index + 1}. {item}
+                      {keyIndicators[ele][e][3] &&
+                        keyIndicators[ele][e][3][0][2] === "select" && (
+                          <div className="my-4 rounded-lg flex bg-slate-300">
+                            <ul className="my-2 p-2 w-3/4">
+                              {keyIndicators[ele][e][3][0][4].map(
+                                (item, index) => (
+                                  <li key={index}>
+                                    {index + 1}. {item}
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                            <ul className="pb-4 w-1/4">
+                              {options.map((option, index) => (
+                                <li className="px-2 " key={index}>
+                                  <label>
+                                    <input
+                                      className="mr-2"
+                                      type="radio"
+                                      name="option"
+                                      value={`option${index + 1}`}
+                                      checked={
+                                        formData[e].select ===
+                                        `option${index + 1}`
+                                      }
+                                      onChange={(event) => {
+                                        setFormData((prevData) => {
+                                          const updatedFormData = {
+                                            ...prevData,
+                                          };
+                                          updatedFormData[e].select =
+                                            event.target.value;
+                                          return updatedFormData;
+                                        });
+                                      }}
+                                    />
+                                    {option}
+                                  </label>
                                 </li>
-                              )
-                            )}
-                          </ul>
-                          <ul className="pb-4 w-1/4">
-                            {options.map((option, index) => (
-                              <li className="px-2 " key={index}>
-                                <label>
-                                  <input
-                                    className="mr-2"
-                                    type="radio"
-                                    name="option"
-                                    value={`option${index + 1}`}
-                                    checked={
-                                      formData[e].select ===
-                                      `option${index + 1}`
-                                    }
-                                    onChange={(event) => {
-                                      setFormData((prevData) => {
-                                        const updatedFormData = {
-                                          ...prevData,
-                                        };
-                                        updatedFormData[e].select =
-                                          event.target.value;
-                                        return updatedFormData;
-                                      });
-                                    }}
-                                  />
-                                  {option}
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       {keyIndicators[ele][e][3] &&
                         keyIndicators[ele][e][3].map((elem, index) => {
                           return (

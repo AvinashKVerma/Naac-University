@@ -23,7 +23,7 @@ const VerifyStuEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
     // Check if the response status is OK (200)
     if (response.status === 200) {
       handleSubmit();
-      config.notify("Email Verified", "success");
+      // config.notify("Email Verified", "success");
     } else {
       setInvalidOtp(true);
       config.notify("Incorrect otp", "error");
@@ -41,11 +41,6 @@ const VerifyStuEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
       body: otpForm,
     }).then((response) => {
       if (response.ok) {
-        const [username, domain] = email.split("@");
-        const len = username.length;
-        const maskedUsername =
-          username.charAt(0) + "*****" + username.charAt(len - 1);
-        setShortEmail(`${maskedUsername}@${domain}`);
       }
       if (!response.ok) {
         // setOtpProcessing(false);

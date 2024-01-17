@@ -454,51 +454,6 @@ const Criteria1 = (prop, ref) => {
                               )
                             )}
                           </ul>
-                          {/* {keyIndicators[ele][e][3][0][2] === "select" && (
-                          <>
-                            <div className="p-4 bg-slate-300 rounded-md flex">
-                              <div className="flex flex-col">
-                                <b>
-                                  <i>{keyIndicators[ele][e][4][0]}</i>
-                                </b>
-                                <table>
-                                  <tbody>
-                                    {Array.from({ length: 5 }, (_, index) => (
-                                      <tr key={`A${index}`}>
-                                        <td>
-                                          <input
-                                            type="radio"
-                                            name="option"
-                                            value={`option${index + 1}`}
-                                            checked={
-                                              formData[e].select ===
-                                              `option${index + 1}`
-                                            }
-                                            // onChange={handleChange}
-                                          />
-                                        </td>
-                                        <td className="align-middle">
-                                          &nbsp;&nbsp;
-                                          <b>{index + 1}. </b>
-                                          &nbsp;
-                                        </td>
-                                        <td>
-                                          <label className="text-sm">
-                                            {
-                                              keyIndicators[ele][e][3][0][3][
-                                                index + 1
-                                              ]
-                                            }
-                                          </label>
-                                        </td>
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </>
-                          )} */}
                           <ul className="pb-4 w-1/4">
                             {options.map((option, index) => (
                               <li className="px-2 " key={index}>

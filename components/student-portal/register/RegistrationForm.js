@@ -54,14 +54,17 @@ export default function RegistrationForm() {
     formsData.append("password", formData.password);
 
     try {
-      const response = await fetch(`${config.BASE_URL}/api/student/register`, {
+      const response = await fetch(`${config.BASE_URL}/api/auth/std/register`, {
         method: "POST",
         body: formsData,
       });
+      const responseTxt = await response.text();
 
-      console.log(response);
-
-      if (response.ok) {
+      if (responseTxt === "Student with the given details already exists") {
+        config.notify("User already exist", "error");
+        closeModel();
+        return;
+      } else if (response.ok) {
         router.push("/student-portal/login");
       } else {
         config.notify("Something Went Wrong", "error");

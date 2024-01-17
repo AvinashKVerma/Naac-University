@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
-const protectedRoutes = ["/components", "/components/Main"];
+const protectedRoutes = [
+  "/components",
+  "/components/Main",
+  "/student-portal/feedback-form",
+];
 
 export default function middleware(req) {
   let cookie = req.cookies.get("token");

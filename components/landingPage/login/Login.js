@@ -51,7 +51,6 @@ const Login = () => {
 
         if (response.status === 200) {
           const data = await response.json();
-          console.log(data.user.role);
           document.cookie = `token=${JSON.stringify(
             data.token
           )}; SameSite=None; Secure;`;
