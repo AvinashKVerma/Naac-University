@@ -7,21 +7,11 @@ import ExtendedComponent from "./ExtendedComponent";
 const ExtendedProfile = ({ setActiveButton }) => {
   const { collegeData, ssrID } = contextManager();
   const [formData, setFormData] = useState({
-    programCourseYear: createYearlyData(),
-    programYear: createYearlyData(),
     studentYear: createYearlyData(),
-    stuAppearedYear: createYearlyData(),
-    stuRevalApplicationsYear: createYearlyData(),
     stuOutgoingYear: createYearlyData(),
-    acadCoursesInAllProgsYear: createYearlyData(),
     acadFullTimeTeachYear: createYearlyData(),
     acadSanctionedPostsYear: createYearlyData(),
-    addmAppliReceviedYear: createYearlyData(),
-    addmReservedSeatsYear: createYearlyData(),
-    addmNumOfComputer: 0,
     expenditureWithoutSalaryYear: createYearlyData(),
-    addmNumOfClassrooms: 0,
-    addmNumOfSeminarHall: 0,
     extendedProfileSSRId: "",
   });
 
@@ -66,74 +56,24 @@ const ExtendedProfile = ({ setActiveButton }) => {
           }
         }
       });
-
-      Object.assign(updatedFormData, {
-        addmNumOfClassrooms: response.addmNumOfClassrooms
-          ? response.addmNumOfClassrooms
-          : "",
-        addmNumOfSeminarHall: response.addmNumOfSeminarHall
-          ? response.addmNumOfSeminarHall
-          : "",
-        addmNumOfComputer: response.addmNumOfComputer
-          ? response.addmNumOfComputer
-          : "",
-        extendedProfileSSRId: response.extendedProfileSSRId,
-      });
-
       setFormData(updatedFormData);
     }
 
     fetchExtendedData();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    const numericValue = parseFloat(value);
-
-    if (!isNaN(numericValue)) {
-      setFormData((prevFormdata) => ({
-        ...prevFormdata,
-        [name]: numericValue,
-      }));
-    } else {
-      setFormData((prevFormdata) => ({
-        ...prevFormdata,
-        [name]: "",
-      }));
-    }
-  };
-
   const handleSubmit = async () => {
     const formKeys = [
-      "programCourseYear",
-      "programYear",
       "studentYear",
-      "stuAppearedYear",
-      "stuRevalApplicationsYear",
       "stuOutgoingYear",
-      "acadCoursesInAllProgsYear",
       "acadFullTimeTeachYear",
       "acadSanctionedPostsYear",
-      "addmAppliReceviedYear",
-      "addmReservedSeatsYear",
       "expenditureWithoutSalaryYear",
     ];
 
     const formsData = new FormData();
     formsData.append("collegeId", collegeData.collegId);
     formsData.append("ssrID", ssrID);
-    formsData.append(
-      "addmNumOfClassrooms",
-      formData.addmNumOfClassrooms ? formData.addmNumOfClassrooms : 0
-    );
-    formsData.append(
-      "addmNumOfComputer",
-      formData.addmNumOfComputer ? formData.addmNumOfComputer : 0
-    );
-    formsData.append(
-      "addmNumOfSeminarHall",
-      formData.addmNumOfSeminarHall ? formData.addmNumOfSeminarHall : 0
-    );
     formKeys.map((ele) => {
       for (let i = 1; i < 6; i++) {
         formsData.append(ele + i, formData[ele]["year" + i]);
@@ -158,11 +98,13 @@ const ExtendedProfile = ({ setActiveButton }) => {
               formData[key] === "" ||
               formData[key] === 0
             ) {
+              console.log(formData[key]);
               return true; // Field is empty
             }
           } else {
             // Recursively check nested objects
             if (isFormDataEmpty(formData[key])) {
+              console.log(formData[key], key);
               return true; // Field is empty
             }
           }
@@ -209,13 +151,13 @@ const ExtendedProfile = ({ setActiveButton }) => {
                 "1.1 . Number of students on rolls year-wise during the last five years"
               }
               index={"1.1"}
-              formData={formData.programCourseYear}
+              formData={formData.studentYear}
               setFormData={setFormData}
-              field={"programCourseYear"}
+              field={"studentYear"}
               upload={true}
               doc={[
                 "programCourseInstDataDoc",
-                `document-programInstructional`,
+                `document-studentInstructional`,
               ]}
               extendedID={formData.extendedProfileSSRId}
             />
@@ -225,13 +167,13 @@ const ExtendedProfile = ({ setActiveButton }) => {
               title={
                 "1.2 . Number of final year outgoing students year wise during last five years"
               }
-              formData={formData.programYear}
+              formData={formData.stuOutgoingYear}
               setFormData={setFormData}
-              field={"programYear"}
+              field={"stuOutgoingYear"}
               upload={true}
               doc={[
                 "programCourseInstDataDoc",
-                `document-programInstructional`,
+                `document-stu-outgoing-instructional`,
               ]}
               extendedID={formData.extendedProfileSSRId}
             />
@@ -251,11 +193,11 @@ const ExtendedProfile = ({ setActiveButton }) => {
                 "2.1 . Number of Full-time teachers in the institution year-wise during last five year"
               }
               index={"2.1"}
-              formData={formData.studentYear}
+              formData={formData.acadFullTimeTeachYear}
               setFormData={setFormData}
-              field={"studentYear"}
+              field={"acadFullTimeTeachYear"}
               upload={true}
-              doc={["studentInstDataDoc", `document-studentInstructional`]}
+              doc={["studentInstDataDoc", `acad-full-time-teach-inst`]}
               extendedID={formData.extendedProfileSSRId}
             />
           </li>
@@ -265,13 +207,10 @@ const ExtendedProfile = ({ setActiveButton }) => {
                 "2.2 . Total Number of full time teachers worked/working in the institution (without repeat count) during the last five years"
               }
               index={"2.2"}
-              formData={formData.stuAppearedYear}
+              formData={formData.acadSanctionedPostsYear}
               setFormData={setFormData}
-              field={"stuAppearedYear"}
-              doc={[
-                "stuAppearedInstDataDoc",
-                `document-stuAppeared-instructional`,
-              ]}
+              field={"acadSanctionedPostsYear"}
+              doc={["stuAppearedInstDataDoc", `acad-sanctioned-posts-inst`]}
               extendedID={formData.extendedProfileSSRId}
             />
           </li>
@@ -290,12 +229,12 @@ const ExtendedProfile = ({ setActiveButton }) => {
                 "3.1 . Total Expenditure excluding salary year wise during the last five years (INR in lakhs)"
               }
               index={"3.1"}
-              formData={formData.acadCoursesInAllProgsYear}
+              formData={formData.expenditureWithoutSalaryYear}
               setFormData={setFormData}
-              field={"acadCoursesInAllProgsYear"}
+              field={"expenditureWithoutSalaryYear"}
               doc={[
                 "acadCoursesInAllProgsInstDataDoc",
-                `acad-courses-in-all-progs-inst-data-doc`,
+                `expenditure-without-salary-inst`,
               ]}
               extendedID={formData.extendedProfileSSRId}
             />

@@ -54,6 +54,7 @@ const ProfileInformation = ({ completedForm }) => {
     altFacultyAlternateEmail: iiqa.alternateFacultyAltenateEmail || "",
     website: iiqa.collegeWebsite || "",
     special_university: iiqa.isSpecificTypeOfCollege || "",
+    univType: iiqa.univType || "",
   });
 
   const [isSpecialUni, setIsSpecialUni] = useState(
@@ -62,17 +63,17 @@ const ProfileInformation = ({ completedForm }) => {
       : true
   );
 
-  const [recogCampus, setRecogCampus] = useState([
-    {
-      campusState: false,
-      campus: "",
-      state: "",
-      city: "",
-      address: "",
-    },
-  ]);
-
-  const [recogCampusDoc, setRecogCampusDoc] = useState("");
+  const [recogCampus, setRecogCampus] = useState({
+    campusState: false,
+    campusType: "",
+    state: "",
+    city: "",
+    address: "",
+  });
+  const [recogCampusDoc, setRecogCampusDoc] = useState({
+    doc: "",
+    universityRecoginsedId: "",
+  });
 
   const [campusList, setCampusList] = useState([]);
 
@@ -122,10 +123,9 @@ const ProfileInformation = ({ completedForm }) => {
     choi: "",
   });
   const [nature, setNature] = useState({
-    selectedOption: "",
-    doc: "",
+    selectedOption: iiqa.natureOfCollege || "",
+    doc: iiqa.natureOfCollegeDoc || "",
   });
-  const [typeOfUni, setTypeOfUni] = useState("");
   const [statutoryCell, setStatutoryCell] = useState({
     commiteeForScSt: iiqa.statutoryCommittees_for_ST_SC === "true" || false,
     minorityCell: iiqa.statutoryCommittees_for_MinorityCell === "true" || false,
@@ -393,6 +393,33 @@ const ProfileInformation = ({ completedForm }) => {
   };
 
   useEffect(() => {
+    (async () => {
+      const response = await config.apiRequest(
+        "GET",
+        `${iiqa.iiqa_ID}/recongnised-univ`
+      );
+
+      if (response) {
+        if (response[0].recognisedUniv.length > 0) {
+          response[0].recognisedUniv.map((ele) => {
+            if (ele.campusApprovalDoc) {
+              setRecogCampusDoc({
+                doc: ele.campusApprovalDoc,
+                universityRecoginsedId: ele.universityRecoginsedId,
+              });
+            }
+          });
+          setRecogCampus((prevData) => ({
+            ...prevData,
+            campusState: true,
+          }));
+          setCampusList(response[0].recognisedUniv);
+        }
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
     switch (true) {
       case variable.section2f.state:
         sendData(
@@ -619,6 +646,8 @@ const ProfileInformation = ({ completedForm }) => {
       alternateFacultyAltenateEmail: formData.altFacultyAlternateEmail,
       collegeWebsite: formData.website,
       isSpecificTypeOfCollege: formData.special_university,
+      natureOfCollege: nature.selectedOption,
+      univType: formData.univType,
     };
     const updatedData = JSON.stringify(data);
     const response = await config.apiRequest(
@@ -659,22 +688,7 @@ const ProfileInformation = ({ completedForm }) => {
       statutoryFormData
     );
 
-    const natureData = {
-      natureOfCollegeGoverment: nature.Government,
-      natureOfCollegePrivate: nature.Private,
-      natureOfCollegeGrantAid: nature.GrantInAid,
-      natureOfCollegeSelfFinancing: nature.SelfFinancing,
-      natureOfCollegeConstitiuent: nature.Constituent,
-    };
-
-    const natureResponse = await config.apiRequest(
-      "PUT",
-      `${iiqa.iiqa_ID}/update-natures-of-college`,
-      JSON.stringify(natureData),
-      "json"
-    );
-
-    if (response && statutoryResponse && natureResponse) {
+    if (response && statutoryResponse) {
       completedForm("Profile Information");
       setIIQAUpdate(!iiqaUpdate);
       config.notify("Saved", "success");
@@ -690,13 +704,25 @@ const ProfileInformation = ({ completedForm }) => {
     );
   };
 
-  const handleListChange = (e, name) => {
-    const { value } = e.target;
+  const handleListChange = (e, field) => {
+    const { name, checked, value } = e.target;
 
-    setNature((prevData) => ({
-      ...prevData,
-      selectedOption: value,
-    }));
+    switch (field) {
+      case "nature":
+        setNature((prevData) => ({
+          ...prevData,
+          ["selectedOption"]: value,
+        }));
+        break;
+      case "statutory":
+        setStatutoryCell((prevState) => ({
+          ...prevState,
+          [name]: checked,
+        }));
+        break;
+      default:
+        break;
+    }
   };
 
   const handleCheck = (e) => {
@@ -705,6 +731,138 @@ const ProfileInformation = ({ completedForm }) => {
       inputValue.startsWith("http://") || inputValue.startsWith("https://");
     if (!isValidHTTP) {
       config.notify("Put valid URL", "error");
+    }
+  };
+
+  const handleAddCampus = async () => {
+    const formsData = new FormData();
+    formsData.append("campusType", recogCampus.campusType);
+    formsData.append("state", recogCampus.state);
+    formsData.append("city", recogCampus.city);
+    formsData.append("address", recogCampus.address);
+    const response = await config.apiRequest(
+      "POST",
+      `${iiqa.iiqa_ID}/recognised-universities`,
+      formsData
+    );
+    if (response) {
+      setCampusList((prevList) => [...prevList, response]);
+      setRecogCampus({
+        campusState: true,
+        campusType: "",
+        state: "",
+        city: "",
+        address: "",
+        doc: "",
+      });
+    }
+  };
+
+  const handleDeleteCampus = async (index) => {
+    console.log(campusList[index]);
+    const response = await config.deleteRequest(
+      "DELETE",
+      `${campusList[index].universityRecoginsedId}/affiliatingUniversity`
+    );
+    const restext = await response.text();
+    if (restext === "University Deleted Successfully") {
+      const updatedCampusList = [...campusList];
+      updatedCampusList.splice(index, 1);
+      setCampusList(updatedCampusList);
+    }
+  };
+
+  const handleRecogUnivDoc = async (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (!selectedFile) {
+      config.notify("No File Selected", "info");
+      return;
+    }
+
+    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
+
+    if (fileExtension !== "pdf") {
+      config.notify("File Must be pdf", "error");
+      e.target.value = ""; // Clear the file input
+      return;
+    }
+    const formsData = new FormData();
+    formsData.append("pdf", selectedFile);
+    formsData.append(
+      "UniversityRecoginsedId",
+      campusList[0].universityRecoginsedId
+    );
+    const response = await config.methodForFile(
+      "upload-document-recog-universities",
+      "POST",
+      formsData
+    );
+
+    if (response) {
+      console.log(response);
+      setRecogCampusDoc({
+        doc: response,
+        universityRecoginsedId: campusList[0].universityRecoginsedId,
+      });
+    }
+  };
+
+  const handleRecogCampDocDelete = async () => {
+    const response = await config.deleteRequest(
+      "POST",
+      `${recogCampusDoc.universityRecoginsedId}/remove-file`
+    );
+    const resText = await response.text();
+    if (resText === "Deleted Successfully") {
+      setRecogCampusDoc({
+        doc: "",
+        universityRecoginsedId: "",
+      });
+    }
+  };
+
+  const handleNatureDoc = async (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (!selectedFile) {
+      config.notify("No File Selected", "info");
+      return;
+    }
+
+    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
+
+    if (fileExtension !== "pdf") {
+      config.notify("File Must be pdf", "error");
+      e.target.value = ""; // Clear the file input
+      return;
+    }
+    const formsData = new FormData();
+    formsData.append("pdf", selectedFile);
+    const response = await config.methodForFile(
+      `document-nature-college/${iiqa.iiqa_ID}`,
+      "POST",
+      formsData
+    );
+
+    if (response) {
+      setNature((prevData) => ({
+        ...prevData,
+        doc: e.target.value,
+      }));
+    }
+  };
+  const handleNatureDocDelete = async () => {
+    const response = await config.deleteRequest(
+      "POST",
+      `${iiqa.iiqa_ID}/document-nature-college`
+    );
+    const resText = await response.text();
+    if (resText === "Deleted Successfully") {
+      setNature((prevData) => ({
+        ...prevData,
+        doc: "",
+      }));
     }
   };
 
@@ -1163,8 +1321,8 @@ const ProfileInformation = ({ completedForm }) => {
                   className="mr-2"
                   name="nature"
                   type="radio"
-                  value="Central"
-                  checked={nature.selectedOption === "Central"}
+                  value="Central University"
+                  checked={nature.selectedOption === "Central University"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
                 Central University
@@ -1176,8 +1334,8 @@ const ProfileInformation = ({ completedForm }) => {
                   className="mr-2"
                   name="nature"
                   type="radio"
-                  value="State"
-                  checked={nature.selectedOption === "State"}
+                  value="State University"
+                  checked={nature.selectedOption === "State University"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
                 State University
@@ -1189,8 +1347,8 @@ const ProfileInformation = ({ completedForm }) => {
                   className="mr-2"
                   name="nature"
                   type="radio"
-                  value="StatePrivate"
-                  checked={nature.selectedOption === "StatePrivate"}
+                  value="State Private University"
+                  checked={nature.selectedOption === "State Private University"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
                 State Private University
@@ -1202,8 +1360,8 @@ const ProfileInformation = ({ completedForm }) => {
                   className="mr-2"
                   name="nature"
                   type="radio"
-                  value="Deemed"
-                  checked={nature.selectedOption === "Deemed"}
+                  value="Deemed University"
+                  checked={nature.selectedOption === "Deemed University"}
                   onChange={(e) => handleListChange(e, "nature")}
                 />
                 Deemed University
@@ -1215,8 +1373,11 @@ const ProfileInformation = ({ completedForm }) => {
                   className="mr-2"
                   name="nature"
                   type="radio"
-                  value="National"
-                  checked={nature.selectedOption === "National"}
+                  value="Institution of National Importance"
+                  checked={
+                    nature.selectedOption ===
+                    "Institution of National Importance"
+                  }
                   onChange={(e) => handleListChange(e, "nature")}
                 />
                 Institution of National Importance
@@ -1236,12 +1397,7 @@ const ProfileInformation = ({ completedForm }) => {
                     <div
                       className="ml-2 my-auto cursor-pointer"
                       name="mouDocument"
-                      onClick={() => {
-                        setNature((prevData) => ({
-                          ...prevData,
-                          doc: "",
-                        }));
-                      }}
+                      onClick={handleNatureDocDelete}
                     >
                       <ImBin2 />
                     </div>
@@ -1250,12 +1406,7 @@ const ProfileInformation = ({ completedForm }) => {
                   <div className="my-3">
                     <label
                       className="my-2 custom-file-upload border bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer shadow-xl shadow-slate-300/60 p-2 w-1/3"
-                      onChange={(e) => {
-                        setNature((prevData) => ({
-                          ...prevData,
-                          doc: e.target.value,
-                        }));
-                      }}
+                      onChange={handleNatureDoc}
                     >
                       <input
                         type="file"
@@ -1291,23 +1442,23 @@ const ProfileInformation = ({ completedForm }) => {
                   <label className="w-1/3">
                     Unitary
                     <input
-                      id="special_uni_yes"
-                      className="ml-2"
-                      onChange={() => setTypeOfUni("Unitary")}
+                      name="univType"
                       type="radio"
-                      value={typeOfUni}
-                      checked={typeOfUni === "Unitary"}
+                      value={"Unitary"}
+                      checked={formData.univType === "Unitary"}
+                      onChange={handleInputChange}
+                      className="ml-2"
                     />
                   </label>
                   <label className="w-1/3">
                     Affiliating
                     <input
-                      id="special_uni_yes"
-                      className="ml-2"
-                      onChange={() => setTypeOfUni("Affiliating")}
+                      name="univType"
                       type="radio"
-                      value={typeOfUni}
-                      checked={typeOfUni === "Affiliating"}
+                      onChange={handleInputChange}
+                      value={"Affiliating"}
+                      checked={formData.univType === "Affiliating"}
+                      className="ml-2"
                     />
                   </label>
                 </div>
@@ -1350,7 +1501,6 @@ const ProfileInformation = ({ completedForm }) => {
                   <label className="w-1/3">
                     No
                     <input
-                      id="special_uni_yes"
                       className="ml-2"
                       onChange={() => {
                         setRecogCampus((prevData) => ({
@@ -1377,9 +1527,10 @@ const ProfileInformation = ({ completedForm }) => {
                     onChange={(e) => {
                       setRecogCampus((prevData) => ({
                         ...prevData,
-                        campus: e.target.value,
+                        campusType: e.target.value,
                       }));
                     }}
+                    value={recogCampus.campusType}
                   >
                     <option>--Select--</option>
                     <option value={"Satellite Campus"}>Satellite Campus</option>
@@ -1435,16 +1586,8 @@ const ProfileInformation = ({ completedForm }) => {
                 <div className="flex flex-col mr-4">
                   <button
                     className="px-3 py-1 rounded-md border border-[#367fa9] bg-[#3c8dbc] hover:bg-[#367fa9]"
-                    onClick={(e) => {
-                      setCampusList((prevList) => [...prevList, recogCampus]);
-                      setRecogCampus({
-                        campusState: true,
-                        campus: "",
-                        state: "",
-                        city: "",
-                        address: "",
-                        doc: "",
-                      });
+                    onClick={() => {
+                      handleAddCampus();
                     }}
                   >
                     Add
@@ -1469,7 +1612,7 @@ const ProfileInformation = ({ completedForm }) => {
                   {campusList.map((campus, index) => (
                     <tr key={index}>
                       <td className="text-center border border-black">
-                        {campus.campus}
+                        {campus.campusType}
                       </td>
                       <td className="text-center border border-black">
                         {campus.state}
@@ -1484,9 +1627,7 @@ const ProfileInformation = ({ completedForm }) => {
                         <div className="flex justify-center">
                           <span
                             onClick={() => {
-                              const updatedCampusList = [...campusList];
-                              updatedCampusList.splice(index, 1);
-                              setCampusList(updatedCampusList);
+                              handleDeleteCampus(index);
                             }}
                           >
                             <ImBin2 />
@@ -1500,11 +1641,11 @@ const ProfileInformation = ({ completedForm }) => {
               <div className="flex  mt-4">
                 <span className="mr-5">Approval for Campus</span>
                 <div className="w-3/5">
-                  {recogCampusDoc ? (
+                  {recogCampusDoc.doc ? (
                     <div className="flex">
                       <a
                         className="cursor-pointer my-auto ml-2"
-                        href={config.RESOURCE_URL + variable.choi.choiDocument}
+                        href={config.RESOURCE_URL + recogCampusDoc.doc}
                         target="_blank"
                       >
                         View Document
@@ -1512,9 +1653,7 @@ const ProfileInformation = ({ completedForm }) => {
                       <div
                         className="ml-2 my-auto cursor-pointer"
                         name="section2f"
-                        onClick={() =>
-                          handleDocDelete("file-head-of-institution")
-                        }
+                        onClick={handleRecogCampDocDelete}
                       >
                         <ImBin2 />
                       </div>
@@ -1526,7 +1665,9 @@ const ProfileInformation = ({ completedForm }) => {
                   rounded-md
                   cursor-pointer
                   shadow-xl shadow-slate-300/60 p-2 w-1/3"
-                      onChange={(e) => setRecogCampusDoc(e.target.value)}
+                      onChange={(e) => {
+                        handleRecogUnivDoc(e);
+                      }}
                     >
                       <input
                         type="file"

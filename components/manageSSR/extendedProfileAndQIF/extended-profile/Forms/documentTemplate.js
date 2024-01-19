@@ -11,7 +11,6 @@ const DocumentTemplate = ({
   extendedID,
   index,
 }) => {
-  const {} = contextManager;
   const handleDocDelete = () => {
     (async () => {
       const response = await config.ssrAPIRequest(
@@ -38,7 +37,7 @@ const DocumentTemplate = ({
     const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
 
     if (fileExtension !== "pdf") {
-      config.notify("info", "File must be in PDF format.");
+      config.notify("File must be in PDF format.", "error");
       e.target.value = ""; // Clear the file input
       return;
     } else {

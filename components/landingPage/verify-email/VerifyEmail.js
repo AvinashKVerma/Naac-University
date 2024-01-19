@@ -102,7 +102,7 @@ const VerifyEmail = ({ closeModel, email, handleSubmit, shortEmail }) => {
             <button
               className="bg-red-400 rounded text-white px-6 py-2 hover:bg-blue-700 focus:outline-none"
               onClick={() => {
-                // setOtpStatus(false);
+                closeModel();
               }}
             >
               Back

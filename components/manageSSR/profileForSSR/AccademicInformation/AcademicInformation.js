@@ -43,7 +43,7 @@ const AcademicInformation = () => {
       language: [],
     },
   });
-
+  const [collegeList, setCollegeList] = useState([]);
   const [finalsubmitState, setFinalSubmitState] = useState(false);
 
   function createEmptyQualification() {
@@ -646,125 +646,67 @@ const AcademicInformation = () => {
               </div>
             </div>
 
-            {/*Details Of Program Offered by the college (give the data for current accademic year)*/}
-            {/* <div className="border rounded-lg mb-4">
+            <div className="border rounded-lg mb-4">
               <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-                Details Of Program Offered by the college (give the data for
-                current accademic year)
+                Institutions affiliated to the University
+                <b
+                  className="text-blue-600 cursor-pointer ml-2"
+                  title="(Not applicable for private and deemed to be
+                    Universities)"
+                >
+                  ?
+                </b>
               </h3>
               <div className="container p-3">
-                <table className="w-full rounded-lg">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border border-black">
+                      <th className="border-r border-black p-1">
+                        Type of Colleges
+                      </th>
+                      <th className="border-r border-black p-1">Permanent</th>
+                      <th className="border-r border-black p-1">Temporary</th>
+                      <th className="border-r border-black p-1">Total</th>
+                    </tr>
+                  </thead>
                   <tbody>
-                    <tr className="text-sm">
-                      <td className="w-1/12 pl-2 pr-3 py-1">
-                        <span className="">Level of program</span>
-                      </td>
-                      <td className="w-2/12 pl-2 pr-3 py-1">
-                        <span className="">Name of Program/Course</span>
-                      </td>
-                      <td className="w-1/12 pl-2 pr-3 py-1">
-                        <span className="">Duration in months</span>
-                      </td>
-                      <td className="w-2/12 pl-2 pr-3 py-1">
-                        <span className="">Entry Qualification</span>
-                      </td>
-                      <td className="w-2/12 pl-2 pr-3 py-1">
-                        <span className="">Medium Of Instruction</span>
-                      </td>
-                      <td className="w-2/12 pl-2 pr-3 py-1">
-                        <span className="">Sectioned Strength</span>
-                      </td>
-                      <td className="w-2/12 pl-2 pr-3 py-1">
-                        <span className="">Number of student admited</span>
-                      </td>
-                    </tr>
-                    <tr className="">
-                      <td className="w-1/12 pl-2 pr-2 py-1">
-                        <input
-                          className="border block w-16"
-                          type="text"
-                          name="level"
-                          value={formData.progDetails.level || ""}
-                          onChange={(e) => handleChange("progDetails", e)}
-                        />
-                      </td>
-                      <td className="w-2/12 pl-2 pr-2 py-1">
-                        <input
-                          className="border block w-36"
-                          type="text"
-                          name="name"
-                          value={formData.progDetails.name || ""}
-                          onChange={(e) => handleChange("progDetails", e)}
-                        />
-                      </td>
-                      <td className="w-1/12 pl-2 pr-2 py-1">
-                        <input
-                          className="border block w-16"
-                          type="text"
-                          name="duration"
-                          value={formData.progDetails.duration || ""}
-                          onChange={(e) => handleChange("progDetails", e)}
-                        />
-                      </td>
-                      <td className="w-2/12 pl-2 pr-2 py-1">
-                        <input
-                          className="border block w-36"
-                          type="text"
-                          name="qualification"
-                          value={formData.progDetails.qualification || ""}
-                          onChange={(e) => handleChange("progDetails", e)}
-                        />
-                      </td>
-                      <td className="w-2/12 pl-2 pr-2 py-1">
-                        <select
-                          className="border block w-36"
-                          name="language"
-                          onChange={handleLangChange}
-                          value={
-                            formData.progDetails.language.length === 0 && ""
-                          }
-                        >
-                          <option defaultValue="">Select Language</option>
-                          <option
-                            value="English"
-                            className="hover:bg-green-500"
-                          >
-                            English
-                          </option>
-                          <option value="Hindi" className="hover:bg-green-500">
-                            Hindi
-                          </option>
-                          <option
-                            value="Sanskrit"
-                            className="hover:bg-green-500"
-                          >
-                            Sanskrit
-                          </option>
-                        </select>
-                      </td>
-                      <td className="w-2/12 pl-2 pr-2 py-1">
-                        <input
-                          className="border block w-36"
-                          type="text"
-                          name="strength"
-                          value={formData.progDetails.strength || ""}
-                          onChange={(e) => handleChange("progDetails", e)}
-                        />
-                      </td>
-                      <td className="w-2/12 pl-2 pr-2 py-1">
-                        <input
-                          className="border block w-36"
-                          type="text"
-                          name="stuAdmitted"
-                          value={formData.progDetails.stuAdmitted || ""}
-                          onChange={(e) => handleChange("progDetails", e)}
-                        />
-                      </td>
-                    </tr>
+                    {collegeList.map((ele, i) => {
+                      <tr className="border border-black">
+                        <td className="border-r border-black p-1">
+                          <input
+                            type="text"
+                            className="border border-black w-[100%] p-1"
+                          />
+                        </td>
+                        <td className="border-r border-black p-1">
+                          <input
+                            type="text"
+                            className="border border-black w-[100%] p-1"
+                          />
+                        </td>
+                        <td className="border-r border-black p-1">
+                          <input
+                            type="text"
+                            className="border border-black w-[100%] p-1"
+                          />
+                        </td>
+                        <td className="border-r border-black p-1">
+                          <input
+                            type="text"
+                            className="border border-black w-[100%] p-1"
+                          />
+                        </td>
+                      </tr>;
+                    })}
                   </tbody>
                 </table>
+                <div className="w-full flex justify-end">
+                  <button className="border px-4 rounded-md bg-blue-400 mt-2">
+                    Add Row
+                  </button>
+                </div>
               </div>
-            </div> */}
+            </div>
 
             {/*Position Details of Faculity & Staff in the College*/}
             <Form1

@@ -18,20 +18,32 @@ const BasicInformation = ({ setActiveButton }) => {
     govRecognized: "NO",
     agencyName: "",
     recognitionDate: "",
-    location: "",
-    campusArea: "",
-    builtInArea: "",
     "doc-of-minority": "",
     "doc-of-autonomy": "",
   });
-  const [universityList, setUniversityList] = useState("");
-  const [sraList, setSraList] = useState([]);
 
-  const handleChange = (e) => {
-    setFormdata({
-      ...formdata,
-      [e.target.name]: e.target.value,
-    });
+  const [sraList, setSraList] = useState([]);
+  const [campusList, setCampusList] = useState([]);
+
+  // if (state === "formdata") {
+  //   setFormdata({
+  //     ...formdata,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // } else
+
+  const handleChange = (e, state, i) => {
+    const { name, value } = e.target;
+    if (state === "campusList") {
+      setCampusList((prevCampusList) => {
+        const updatedData = [...prevCampusList];
+        updatedData[i] = {
+          ...updatedData[i],
+          [name]: value,
+        };
+        return updatedData;
+      });
+    }
   };
 
   useEffect(() => {
@@ -40,15 +52,26 @@ const BasicInformation = ({ setActiveButton }) => {
       if (iiqa.iiqa_ID) {
         const response = await config.apiRequest(
           "GET",
-          `${iiqa.iiqa_ID}/getAffiliation`
+          `${iiqa.iiqa_ID}/recongnised-univ`
         );
 
         if (response) {
-          if (response[0].AffiliatingUniversity.length > 0) {
-            setUniversityList(response[0].AffiliatingUniversity);
-          }
           if (response[1].SraList.length > 0) {
             setSraList(response[1].SraList);
+          }
+        }
+      }
+    })();
+    (async () => {
+      if (iiqa.iiqa_ID) {
+        const response = await config.apiRequest(
+          "GET",
+          `${iiqa.iiqa_ID}/recongnised-univ`
+        );
+
+        if (response) {
+          if (response[0].recognisedUniv.length > 0) {
+            setCampusList(response[0].recognisedUniv);
           }
         }
       }
@@ -132,7 +155,7 @@ const BasicInformation = ({ setActiveButton }) => {
         }));
       }
     })();
-  }, []);
+  }, [iiqa]);
 
   const handleSave = async () => {
     const finalData = new FormData();
@@ -163,47 +186,47 @@ const BasicInformation = ({ setActiveButton }) => {
     setActiveButton("Academic Information");
   };
 
-  const handleFileUpload = async (e) => {
-    if (e.target.files !== null) {
-      const file = e.target.files[0];
-      const fileExtension = file.name.split(".").pop().toLowerCase();
+  // const handleFileUpload = async (e) => {
+  //   if (e.target.files !== null) {
+  //     const file = e.target.files[0];
+  //     const fileExtension = file.name.split(".").pop().toLowerCase();
 
-      if (fileExtension !== "pdf") {
-        config.notify("File must be in PDF format.", "info");
-        e.target.value = "";
-        return;
-      }
-      config.notify("File Uploaded", "success");
-    }
+  //     if (fileExtension !== "pdf") {
+  //       config.notify("File must be in PDF format.", "info");
+  //       e.target.value = "";
+  //       return;
+  //     }
+  //     config.notify("File Uploaded", "success");
+  //   }
 
-    const docToUpload = new FormData();
-    docToUpload.append("pdf", e.target.files[0]);
+  //   const docToUpload = new FormData();
+  //   docToUpload.append("pdf", e.target.files[0]);
 
-    const response = await config.ssrAPIRequest(
-      "POST",
-      `${collegeData.collegId}/${e.target.name}`,
-      docToUpload
-    );
-    if (response) {
-      setFormdata((pervState) => ({
-        ...pervState,
-        [e.target.name]: response,
-      }));
-    }
-  };
+  //   const response = await config.ssrAPIRequest(
+  //     "POST",
+  //     `${collegeData.collegId}/${e.target.name}`,
+  //     docToUpload
+  //   );
+  //   if (response) {
+  //     setFormdata((pervState) => ({
+  //       ...pervState,
+  //       [e.target.name]: response,
+  //     }));
+  //   }
+  // };
 
-  const handleDocDelete = async (url, variable) => {
-    const response = await config.ssrAPIRequest(
-      "POST",
-      `${collegeData.collegId}/${url}`
-    );
-    if (response === "Deleted Successfully") {
-      setFormdata((pervState) => ({
-        ...pervState,
-        [variable]: "",
-      }));
-    }
-  };
+  // const handleDocDelete = async (url, variable) => {
+  //   const response = await config.ssrAPIRequest(
+  //     "POST",
+  //     `${collegeData.collegId}/${url}`
+  //   );
+  //   if (response === "Deleted Successfully") {
+  //     setFormdata((pervState) => ({
+  //       ...pervState,
+  //       [variable]: "",
+  //     }));
+  //   }
+  // };
 
   return (
     <div className="p-2 ">
@@ -215,7 +238,7 @@ const BasicInformation = ({ setActiveButton }) => {
           {/*Name and Address of the College*/}
           <div className="border rounded-lg mb-4">
             <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Name and Address of the College
+              Name and Address of the University
             </h3>
             <div className="container p-3">
               <table className="w-full">
@@ -239,7 +262,7 @@ const BasicInformation = ({ setActiveButton }) => {
                     <td className="border-r">
                       <div className=" w-3/4 p-2">{iiqa.city}</div>
                     </td>
-                    <td className="border-r text-left w-1/4 p-2">Pin</td>
+                    <td className="border-r text-left w-1/4 p-2">Pin Code</td>
                     <td>
                       <div className=" w-3/4 p-2">{iiqa.collegePincode}</div>
                     </td>
@@ -353,234 +376,30 @@ const BasicInformation = ({ setActiveButton }) => {
             </table>
           </div>
 
-          {/* Status Of the Institution */}
-          <div className="border rounded-lg mb-4">
-            <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Status Of the Institution
-            </h3>
-            <div className="container p-3">
-              <table className="w-full">
-                <tbody>
-                  {iiqa.natureOfCollegeGoverment && (
-                    <tr className="border">
-                      <td className="p-1">Government</td>
-                    </tr>
-                  )}
-                  {iiqa.natureOfCollegePrivate && (
-                    <tr className="border">
-                      <td className="p-1">Private</td>
-                    </tr>
-                  )}
-                  {iiqa.natureOfCollegeGrantAid && (
-                    <tr className="border">
-                      <td className="p-1">Grant in Aid </td>
-                    </tr>
-                  )}
-                  {iiqa.natureOfCollegeSelfFinancing && (
-                    <tr className="border">
-                      <td className="p-1">Self Financing</td>
-                    </tr>
-                  )}
-                  {iiqa.natureOfCollegeConstitiuent && (
-                    <tr className="border">
-                      <td className="p-1">Constitiuent</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
           {/* Type Of the Institution */}
           <div className="border rounded-lg mb-4">
             <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Type Of the Institution
-            </h3>
-            <div className="container p-3">
-              <table className="w-full">
-                <tbody>
-                  <tr className="border">
-                    <td className="border-r w-1/2 p-2">By Gender</td>
-                    <td className="w-1/2 p-1">
-                      <select
-                        className="w-full p-1 border border-gray-400"
-                        value={formdata.bygender || "-Select"}
-                        name="bygender"
-                        onChange={handleChange}
-                      >
-                        <option defaultValue disabled>
-                          -Select-
-                        </option>
-                        <option value="1">For Men</option>
-                        <option value="2">For Women</option>
-                        <option value="3">Co-education</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr className="border">
-                    <td className="border-r w-1/2 p-2">By Shift</td>
-                    <td className="w-1/2 p-1">
-                      <div className="flex items-center">
-                        <label htmlFor="myCheckbox1" className="text-gray-700">
-                          <input
-                            type="checkbox"
-                            id="myCheckbox1"
-                            name="byshift"
-                            value="Regular"
-                            className="form-checkbox mr-2 h-4 w-4 text-blue-600"
-                            checked={formdata.byshift === "Regular"}
-                            onChange={handleChange}
-                          />
-                          Regular
-                        </label>
-
-                        <label
-                          htmlFor="myCheckbox2"
-                          className="ml-2 text-gray-700"
-                        >
-                          <input
-                            type="checkbox"
-                            id="myCheckbox2"
-                            name="byshift"
-                            value="Day"
-                            className="form-checkbox mr-2 h-4 w-4 text-blue-600"
-                            checked={formdata.byshift === "Day"}
-                            onChange={handleChange}
-                          />
-                          Day
-                        </label>
-
-                        <label
-                          htmlFor="myCheckbox3"
-                          className="ml-2 text-gray-700"
-                        >
-                          <input
-                            type="checkbox"
-                            id="myCheckbox3"
-                            name="byshift"
-                            value="Evening"
-                            className="form-checkbox mr-2 h-4 w-4 text-blue-600"
-                            checked={formdata.byshift === "Evening"}
-                            onChange={handleChange}
-                          />
-                          Evening
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Recognized Minority Institution */}
-          <div className="border rounded-lg mb-4">
-            <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Recognized Minority Institution
+              Type Of the University
             </h3>
             <div className="container p-3">
               <table className="w-full">
                 <tbody>
                   <tr className="border">
                     <td className="border-r w-1/2 p-2">
-                      If it is a recognized Minority Institution
+                      Nature of the University{" "}
                     </td>
-                    <td className="w-1/2 p-1">
-                      <select
-                        className="w-full p-1 border border-gray-400"
-                        name="minorityStatus"
-                        onChange={handleChange}
-                        value={formdata.minorityStatus || "NO"}
-                      >
-                        <option value="YES">Yes</option>
-                        <option value="NO">No</option>
-                      </select>
-                      <>
-                        {formdata.minorityStatus === "YES" && (
-                          <div className="m-2 mt-3">
-                            {formdata["doc-of-minority"] === "" ? (
-                              <label className="custom-file-upload border  bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer p-2">
-                                <input
-                                  className="hidden"
-                                  type="file"
-                                  name="doc-of-minority"
-                                  accept=".pdf"
-                                  onChange={(e) => handleFileUpload(e)}
-                                />
-                                Upload File
-                              </label>
-                            ) : (
-                              <div className="flex">
-                                <a
-                                  target="blank"
-                                  href={
-                                    config.RESOURCE_URL +
-                                    formdata["doc-of-minority"]
-                                  }
-                                >
-                                  View Document
-                                </a>
-                                <div
-                                  className="ml-2 my-auto cursor-pointer"
-                                  name="doc-of-minority-detach"
-                                  onClick={() =>
-                                    handleDocDelete(
-                                      "doc-of-minority-detach",
-                                      "doc-of-minority"
-                                    )
-                                  }
-                                >
-                                  <ImBin2 />
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </>
-                    </td>
-                  </tr>
-                  <tr className="border">
-                    <td className="w-1/2 p-2">
-                      If Yes, specific minority status
-                    </td>
-                  </tr>
-                  <tr className="border">
-                    <td className="w-1/2 pl-2 border-r">Religious</td>
                     <td className="w-1/2 p-1">
                       <input
-                        className="border p-1 w-full"
-                        name="religiousStatus"
-                        value={formdata.religiousStatus || ""}
-                        onChange={handleChange}
                         type="text"
-                        disabled={formdata.minorityStatus === "NO"}
+                        value={iiqa.natureOfCollege || ""}
+                        disabled
                       />
                     </td>
                   </tr>
                   <tr className="border">
-                    <td className="w-1/2 pl-2  border-r">Linguistic</td>
+                    <td className="border-r w-1/2 p-2">Type of University </td>
                     <td className="w-1/2 p-1">
-                      <input
-                        className="border p-1 w-full"
-                        name="linguisticStatus"
-                        value={formdata.linguisticStatus || ""}
-                        onChange={handleChange}
-                        type="text"
-                        disabled={formdata.minorityStatus === "NO"}
-                      />
-                    </td>
-                  </tr>
-                  <tr className="border">
-                    <td className="w-1/2 pl-2  border-r">Any Other</td>
-                    <td className="w-1/2 p-1">
-                      <input
-                        className="border p-1 w-full"
-                        name="otherStatus"
-                        value={formdata.otherStatus || ""}
-                        onChange={handleChange}
-                        type="text"
-                        disabled={formdata.minorityStatus === "NO"}
-                      />
+                      <input type="text" value={iiqa.univType || ""} disabled />
                     </td>
                   </tr>
                 </tbody>
@@ -596,7 +415,7 @@ const BasicInformation = ({ setActiveButton }) => {
             <div className="w-full p-2 ">
               <div className="w-full flex border">
                 <div className="w-1/2 border-r p-2">
-                  Date Of Establishment of the college
+                  Date Of Establishment of the University
                 </div>
                 <div className="w-1/2 p-2">
                   <div className="w-full">
@@ -604,62 +423,47 @@ const BasicInformation = ({ setActiveButton }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-full flex border border-t-0">
+              <div className="w-full flex border">
                 <div className="w-1/2 border-r p-2">
-                  Number of academic years completed till date
+                  Status Prior to Establishment (If applicable)
                 </div>
                 <div className="w-1/2 p-2">
-                  <div className="w-full">
-                    {new Date().getFullYear() -
-                      new Date(
-                        iiqa.date_of_establishment_of_the_Institution
-                      ).getFullYear() || 0}
-                  </div>
+                  <select
+                    className="w-full p-1 border border-gray-400"
+                    value={formdata.bygender || "-Select"}
+                    name="bygender"
+                    onChange={(e) => handleChange(e, "formdata")}
+                  >
+                    <option defaultValue disabled>
+                      -Select-
+                    </option>
+                    <option value="1">Autonomous</option>
+                    <option value="2">Constituent</option>
+                    <option value="3">PG Centre</option>
+                    <option value="4">Any other</option>
+                  </select>
                 </div>
               </div>
-              <h3 className="bg-gray-400 text-black mb-2 p-1">
-                University to which the college is affiliated or which governs
-                the college (if it is a constituent college)
-              </h3>
-              <table className="mt-3 w-full mb-2">
-                <tbody>
-                  <tr className="bg-gray-400 border-gray-400 border">
-                    <td className="w-1/3 border-r border-white p-1">State</td>
-                    <td className="w-1/3 border-r border-white p-1">
-                      University Name
-                    </td>
-                    <td className="w-1/3 p-1">View Document</td>
-                  </tr>
-                  {universityList.length > 0 &&
-                    universityList.map((ele, index) => {
-                      return (
-                        <tr key={index}>
-                          <td className="border p-1">
-                            <div className="w-full">{ele.state}</div>
-                          </td>
-                          <td className="border p-1">
-                            <div className="w-full">{ele.universityName}</div>
-                          </td>
-                          <td className="border p-1">
-                            <a
-                              href={config.RESOURCE_URL + ele.documentName}
-                              target="_blank"
-                              className="w-full cursor-pointer"
-                            >
-                              View Document
-                            </a>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
+              <div className="w-full flex border">
+                <div className="w-1/2 border-r p-2">
+                  Establishment date of the above status
+                </div>
+                <div className="w-1/2 p-2">
+                  <input
+                    type="date"
+                    value={formdata.bygender}
+                    name="bygender"
+                    onChange={(e) => handleChange(e, "formdata")}
+                  />
+                </div>
+              </div>
 
               {(iiqa.documentOfRecognitionByUGC_2f ||
                 iiqa.documentOfRecognitionByUGC_12B) && (
                 <>
                   <h3 className="bg-gray-400 text-black p-1 mt-3 mb-2">
-                    Details of UGC Recognition
+                    Date of Recognition as a University by UGC or Any Other
+                    National Agency
                   </h3>
                   <>
                     <div className="border border-gray-400 bg-gray-400 flex mt-3">
@@ -776,107 +580,18 @@ const BasicInformation = ({ setActiveButton }) => {
             </div>
           </div>
 
-          {/* Details of Autonomy */}
-          <div className="border rounded-lg mb-4">
-            <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Details of Autonomy
-            </h3>
-            <table className="border m-2">
-              <tbody>
-                <tr className="border">
-                  <td className="border border-r w-1/2">
-                    Does the affiliating university Act provide for conferment
-                    of Autonomy (as recognized by UGC), on its affiliated
-                    colleges?
-                  </td>
-                  <td className="w-1/2 p-1">
-                    <select
-                      className="w-full p-1 border border-gray-400"
-                      name="autonomyConferment"
-                      onChange={handleChange}
-                      value={formdata.autonomyConferment}
-                      disabled
-                    >
-                      <option value="YES">Yes</option>
-                      <option value="NO">No</option>
-                    </select>
-                    <>
-                      {formdata.autonomyConferment === "YES" && (
-                        <div className="m-2 mt-3">
-                          {formdata.autonomyConferment === "" ? (
-                            <label className="custom-file-upload border  bg-gradient-to-br from-slate-100 to-slate-200 text-black/80 rounded-md cursor-pointer p-2">
-                              <input
-                                className="hidden"
-                                type="file"
-                                name="doc-of-autonomy"
-                                accept=".pdf"
-                                onChange={(e) => handleFileUpload(e)}
-                              />
-                              Upload File
-                            </label>
-                          ) : (
-                            <div className="flex">
-                              <a
-                                target="blank"
-                                href={
-                                  config.RESOURCE_URL +
-                                  formdata["doc-of-autonomy"]
-                                }
-                              >
-                                View Document
-                              </a>
-                              <div
-                                className="ml-2 my-auto cursor-pointer"
-                                name="doc-of-minority-detach"
-                                onClick={() =>
-                                  handleDocDelete(
-                                    "doc-of-autonomy-detach",
-                                    "doc-of-autonomy"
-                                  )
-                                }
-                              >
-                                <ImBin2 />
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </>
-                  </td>
-                </tr>
-                <tr className="mt-2">
-                  <td className="border border-r w-1/2">
-                    If Yes, has the College applied for availing the autonomous
-                    status?
-                  </td>
-                  <td className="w-1/2 p-1">
-                    <select
-                      className="w-full p-1 border border-gray-400"
-                      name="autonomyApplication"
-                      onChange={handleChange}
-                      value={formdata.autonomyApplication || "NO"}
-                    >
-                      <option value="YES">Yes</option>
-                      <option value="NO">No</option>
-                    </select>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
           {/* Recognitions */}
           <div className="border rounded-lg mb-4">
             <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Recognitions
+              University with Potential for Excellence
             </h3>
             <div className="container p-3">
               <table className="w-full">
                 <tbody>
                   <tr className="border">
                     <td className="border-r w-1/2 p-2">
-                      Is the College recognized by UGC as a college with
-                      Potential for Excellence(CPE)?
+                      Is the University Recognised as a 'University with
+                      Potential for Excellence (UPE)' by the UGC?
                     </td>
                     <td className="w-1/2 p-1">
                       <select
@@ -891,115 +606,117 @@ const BasicInformation = ({ setActiveButton }) => {
                       </select>
                     </td>
                   </tr>
-                  <tr className="border">
-                    <td className="border-r w-1/2 p-2">
-                      Is the College recognized for its performance by any other
-                      governmental agency ?
-                    </td>
-                    <td className="w-1/2 p-1">
-                      <select
-                        className="w-full p-1 border border-gray-400"
-                        name="govRecognized"
-                        onChange={handleChange}
-                        value={formdata.govRecognized || "NO"}
-                      >
-                        <option value="YES">Yes</option>
-                        <option value="NO">No</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr className="border">
-                    <td className="border-r w-1/2 p-2">
-                      If yes, Name of the agency
-                    </td>
-                    <td className="w-1/2 p-1">
-                      <input
-                        type="text"
-                        className="border w-full"
-                        name="agencyName"
-                        value={formdata.agencyName || ""}
-                        disabled={formdata.govRecognized === "NO"}
-                        onChange={handleChange}
-                      />
-                    </td>
-                  </tr>
-                  <tr className="border">
-                    <td className="border-r w-1/2 p-2">Date of Recognition</td>
-                    <td className="w-1/2 p-1">
-                      <input
-                        type="date"
-                        name="recognitionDate"
-                        value={formdata.recognitionDate || ""}
-                        className="border w-full"
-                        onChange={handleChange}
-                      />
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
+
           {/* Location and Area of Campus */}
           <div className="border rounded-lg">
             <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-              Location and Area of Campus
+              Location, Campus Area and Programmes offered
             </h3>
             <div className="container p-3">
               <table className="w-full">
                 <tbody>
-                  <tr className="border border-gray-400 bg-gray-400">
-                    <td className="w-1/5 p-1">Campus Type</td>
-                    <td className="w-1/5 p-1 border  border-y-gray-400 border-x-white">
+                  <tr
+                    className="border bg-gray-400 flex p-0"
+                    style={{ borderBottom: "1px" }}
+                  >
+                    <td className="flex-1 p-1">Campus Type</td>
+                    <td className="flex-1 p-1 border  border-y-gray-400 border-x-white">
                       Address
                     </td>
-                    <td className="w-1/5 p-1">Location</td>
-                    <td className="w-1/5 p-1 border border-y-gray-400  border-x-white">
+                    <td className="flex-1 p-1">Location</td>
+                    <td className="flex-1 p-1 border border-y-gray-400  border-x-white">
                       Campus Area in Acres
                     </td>
-                    <td className="w-1/5 p-1">Built up Area in sq. mts.</td>
-                  </tr>
-                  <tr>
-                    <td className="border p-1">
-                      {iiqa.isCollegeFunctionFromOwnCampus === "YES"
-                        ? "Main Campus"
-                        : "Type nown"}
+                    <td className="flex-1 p-1">Built up Area in sq. mts.</td>
+                    <td className="flex-1 p-1 border border-y-gray-400  border-x-white">
+                      Programmes Offered
                     </td>
-                    <td className="border p-1">{iiqa.collegeAddress}</td>
-                    <td className="border p-1">
-                      <select
-                        name="location"
-                        className="w-full p-1 border border-gray-400"
-                        onChange={handleChange}
-                        defaultValue="select"
+                    <td className="flex-1 p-1">Date of Establishment </td>
+                    <td className="flex-1 p-1 border border-y-gray-400  border-l-white">
+                      Date of Recognition by UGC/MHRD
+                    </td>
+                  </tr>
+                  {campusList.map((ele, i) => {
+                    return (
+                      <tr
+                        className={`bg-gray-400 flex ${
+                          i < campusList.length && "border border-b-white"
+                        }`}
+                        style={{ borderBottom: "1px" }}
+                        key={i}
                       >
-                        <option value="select">--Select--</option>
-                        <option value="Rural">Rural</option>
-                        <option value="Urban">Urban</option>
-                        <option value="SemiUrban">Semi Urban</option>
-                        <option value="city">City</option>
-                        <option value="tribal">Tribal</option>
-                        <option value="hill">Hill</option>
-                      </select>
-                    </td>
-                    <td className="border p-1">
-                      <input
-                        className="border"
-                        name="campusArea"
-                        type="text"
-                        onChange={handleChange}
-                        value={formdata.campusArea || ""}
-                      />
-                    </td>
-                    <td className="border p-1">
-                      <input
-                        className="border"
-                        name="builtInArea"
-                        type="text"
-                        onChange={handleChange}
-                        value={formdata.builtInArea || ""}
-                      />
-                    </td>
-                  </tr>
+                        <td className="flex-1 p-1">{ele.campusType}</td>
+                        <td className="flex-1 p-1 border  border-y-gray-400 overflow-auto">
+                          {ele.address}
+                        </td>
+                        <td className="flex-1 p-1">
+                          <select
+                            name="location"
+                            className="w-full p-1 border border-gray-400"
+                            onChange={(e) => handleChange(e, "campusList", i)}
+                            defaultValue="select"
+                          >
+                            <option value="select">--Select--</option>
+                            <option value="Rural">Rural</option>
+                            <option value="Urban">Urban</option>
+                            <option value="SemiUrban">Semi Urban</option>
+                            <option value="city">City</option>
+                            <option value="tribal">Tribal</option>
+                            <option value="hill">Hill</option>
+                          </select>
+                        </td>
+                        <td className="flex-1 p-1 border border-y-gray-400  border-x-white flex justify-center">
+                          <input
+                            className="border w-11/12 h-fit"
+                            name="campusArea"
+                            type="text"
+                            onChange={(e) => handleChange(e, "campusList", i)}
+                            value={campusList[i]["campusArea"] || ""}
+                          />
+                        </td>
+                        <td className="flex-1 p-1 flex justify-center">
+                          <input
+                            className="border w-11/12 h-fit"
+                            name="builtInArea"
+                            type="text"
+                            onChange={(e) => handleChange(e, "campusList", i)}
+                            value={campusList[i]["builtInArea"] || ""}
+                          />
+                        </td>
+                        <td className="flex-1 p-1 border border-y-gray-400  border-x-white flex justify-center">
+                          <input
+                            className="border w-11/12 h-fit"
+                            name="progOffered"
+                            type="text"
+                            onChange={(e) => handleChange(e, "campusList", i)}
+                            value={campusList[i]["progOffered"] || ""}
+                          />
+                        </td>
+                        <td className="flex-1 p-1 flex justify-center">
+                          <input
+                            className="border w-11/12 h-fit"
+                            name="dateOfEstb"
+                            type="text"
+                            onChange={(e) => handleChange(e, "campusList", i)}
+                            value={campusList[i]["dateOfEstb"] || ""}
+                          />
+                        </td>
+                        <td className="flex-1 p-1 border border-y-gray-400  border-l-white flex justify-center">
+                          <input
+                            className="border w-11/12 h-fit"
+                            name="dateOfRecog"
+                            type="text"
+                            onChange={(e) => handleChange(e, "campusList", i)}
+                            value={campusList[i]["dateOfRecog"] || ""}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

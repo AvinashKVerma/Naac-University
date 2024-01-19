@@ -57,7 +57,7 @@ const IIQA = (prop, ref) => {
       (async () => {
         const response = await config.apiRequest(
           "GET",
-          `${IIQA.iiqa.iiqa_ID}/getAffiliation`
+          `${IIQA.iiqa.iiqa_ID}/recongnised-univ`
         );
         if (response) {
           setIIQA((prevdata) => ({
@@ -377,8 +377,8 @@ const IIQA = (prop, ref) => {
                                     type === "total"
                                       ? "5"
                                       : type === "transgender"
-                                      ? "2"
-                                      : "4"
+                                        ? "2"
+                                        : "4"
                                   }
                                   className="form-input w-full p-2 border"
                                   name={type}

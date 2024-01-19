@@ -30,9 +30,10 @@ const AcedemicForm = ({ completedForm }) => {
     pgDiploma: iiqa.program_Count_PG_Diploma || "",
     diploma: iiqa.program_Count_Diploma || "",
     cirAware: iiqa.program_Count_Certificate_Awareness || "",
-    MD: "",
-    MS: "",
+    Md: iiqa.md || "",
+    Ms: iiqa.ms || "",
   });
+
   const [staff, setStaff] = useState({
     pTS: {
       male: "",
@@ -139,7 +140,7 @@ const AcedemicForm = ({ completedForm }) => {
       })();
       (async () => {
         if (iiqa.iiqa_ID) {
-          const url = `${iiqa.iiqa_ID}/getAffiliation`;
+          const url = `${iiqa.iiqa_ID}/recongnised-univ`;
           const response = await config.apiRequest("GET", url);
 
           if (response) {
@@ -369,7 +370,7 @@ const AcedemicForm = ({ completedForm }) => {
       completedForm("Academic Information");
       setIIQAUpdate(!iiqaUpdate);
     } else {
-      config.notify("Please Upload Self Declaration", "info");
+      config.notify("Please Upload Self Declaration", "error");
     }
   };
 
@@ -582,30 +583,30 @@ const AcedemicForm = ({ completedForm }) => {
                     </td>
                   </tr>
 
-                  {/* MD */}
+                  {/* Md */}
                   <tr>
                     <td>M.D.</td>
                     <td className="ml-auto w-1/4">
                       <input
                         className="numberwidth inputs border rounded-md p-1 w-full"
                         maxLength="3"
-                        name="MD"
+                        name="Md"
                         type="number"
-                        value={acadmicData.MD}
+                        value={acadmicData.Md}
                         onChange={handleChange}
                       />
                     </td>
                   </tr>
-                  {/* MS */}
+                  {/* Ms */}
                   <tr>
                     <td>M.S.</td>
                     <td className="ml-auto w-1/4">
                       <input
                         className="numberwidth inputs border rounded-md p-1 w-full"
                         maxLength="3"
-                        name="MS"
+                        name="Ms"
                         type="number"
-                        value={acadmicData.MS}
+                        value={acadmicData.Ms}
                         onChange={handleChange}
                       />
                     </td>

@@ -86,7 +86,7 @@ const Login = () => {
         <div className="leftlogin">
           <div className="loginlogo">
             {" "}
-            <img src="logo.png" alt="NAAC" />{" "}
+            <img src="/logo.png" alt="NAAC" />{" "}
           </div>
         </div>
         <div className="righttlogin">

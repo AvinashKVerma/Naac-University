@@ -4,7 +4,7 @@ export const keyIndicators1 = {
       "QIM",
       "Curricula developed and implemented have relevance to the local, regional, national, and global developmental needs, which is reflected in the Programme outcomes (POs), and Course Outcomes(COs) of the Programmes offered by the University",
       {
-        "Upload Additional information": ["Upload", "documents_CA"],
+        "Upload Additional information": ["Upload", "uploadAdditionalInfoDoc"],
         "Provide Link for Additional information": ["Link"],
       },
     ],
@@ -12,7 +12,7 @@ export const keyIndicators1 = {
       "QIM",
       "The Programmes offered by the institution focus on employability/ entrepreneurship/ skill development and their course syllabi are adequately revised to incorporate contemporary requirements",
       {
-        "Upload Additional information": ["Upload", "documents_CA"],
+        "Upload Additional information": ["Upload", "uploadAdditionalInfoDoc2"],
         "Provide Link for Additional information": ["Link"],
       },
     ],
@@ -24,7 +24,7 @@ export const keyIndicators1 = {
       {
         "Institutional data in the prescribed format": [
           "Data Template",
-          "institutionalDataFormatDocs_AF",
+          "institutionalDataFormatDoc",
         ],
         "Provide the relevant information in institutional website as part of public disclosure":
           ["Upload", "programBrochureDoc_AF"],
@@ -467,7 +467,7 @@ export const keyIndicators3 = {
       "The institution's Research facilities are frequently updated and there are well defined policy for promotion of research which is uploaded on the institutional website and implemented",
       {
         "Upload any additional information": ["Upload", "instDataTemplate_doc"],
-        "Provide links as Additional Information": ["Upload", "dummy"],
+        "Provide links as Additional Information": ["Link"],
         "Upload supporting document": ["Upload", "supporting_doc"],
       },
     ],
@@ -1020,7 +1020,7 @@ export const keyIndicators4 = {
     ],
     "4.4.2": [
       "QIM",
-      "There are established s y s t e m s a n d procedures for maintaining and utilising physical, academic and support facilities - laboratory, library, sports complex, computers, classrooms etc.",
+      "There are established systems and procedures for maintaining and utilising physical, academic and support facilities - laboratory, library, sports complex, computers, classrooms etc.",
       {
         "Upload any additional information": ["Upload", "dummy"],
         "Provide the link for additional information": ["Link"],
@@ -1054,8 +1054,8 @@ export const keyIndicators5 = {
       "QIM",
       "Efforts taken by the institution to provide career counseling including e-counseling and guidance for competitive examinations during the last five years",
       {
-        "Provide the link for additional information": ["Upload", "dummy"],
-        "Upload any additional information": ["Link"],
+        "Provide the link for additional information": ["Link"],
+        "Upload any additional information": ["Upload", "dummy"],
       },
     ],
     "5.1.3": [

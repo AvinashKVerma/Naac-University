@@ -8,10 +8,6 @@ import YourComponent from "./Modal";
 
 const AffiliationComplianceForm = ({ completedForm }) => {
   const { iiqa, iiqaUpdate, setIIQAUpdate } = contextManager();
-  const [universityList, setUniversityList] = useState("");
-  const [isAffiliated, setIsAffiliated] = useState("NO");
-  const [state, setState] = useState("");
-  const [universityName, setUniversityName] = useState("");
   const [isSRARecognized, setIsSRARecognized] = useState(false);
   const [isNADRegistered, setIsNADRegistered] = useState(
     (iiqa.institutionisRegistereNAD_Document && true) || false
@@ -21,19 +17,14 @@ const AffiliationComplianceForm = ({ completedForm }) => {
   const [nadDocument, setNadDocument] = useState(
     iiqa.institutionisRegistereNAD_Document || ""
   );
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       if (iiqa.iiqa_ID) {
-        const url = `${iiqa.iiqa_ID}/getAffiliation`;
+        const url = `${iiqa.iiqa_ID}/recongnised-univ`;
         const response = await config.apiRequest("GET", url);
 
         if (response) {
-          setUniversityList(response[0].AffiliatingUniversity);
-          if (response[0].AffiliatingUniversity.length > 0) {
-            setIsAffiliated("YES");
-          }
           setSraList(response[1].SraList);
           if (response[1].SraList.length > 0) {
             setIsSRARecognized(true);
@@ -43,114 +34,6 @@ const AffiliationComplianceForm = ({ completedForm }) => {
     };
     fetchData();
   }, [iiqa]);
-
-  const addUniversity = async (ele) => {
-    // Make the function asynchronous to handle the API request
-    if (state && universityName) {
-      try {
-        const formdata = new FormData();
-
-        const newUniversity = {
-          state: state,
-          universityName: universityName,
-        };
-
-        formdata.append("state", state);
-        formdata.append("universityName", universityName);
-
-        // Send a POST request and wait for the response
-        const response = await config.apiRequest(
-          "POST",
-          `${iiqa.iiqa_ID}/affiliating-universities`,
-          formdata
-        );
-
-        if (response) {
-          // Check if the response is successful
-          config.notify("Affiliating University Added", "success");
-          newUniversity.affiliatingUniversityId =
-            response.affiliatingUniversityId;
-          // Update universityList with the new university
-          setUniversityList([...universityList, newUniversity]);
-
-          // Reset state and universityName
-          setState("");
-          setUniversityName("");
-        } else {
-          window.alert("Failed to add university");
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
-      }
-    }
-  };
-
-  const handleUniversityDoc = async (e, i) => {
-    const selectedFile = e.target.files[0];
-    if (!selectedFile) {
-      return config.notify("No file selected.", "error");
-    }
-
-    // Get the file extension
-    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
-
-    if (fileExtension !== "pdf") {
-      config.notify("File must be in PDF format.", "info");
-      e.target.value = ""; // Clear the file input
-      return;
-    }
-
-    // If the file is a PDF, you can proceed with the POST request
-
-    const newUniversityList = [...universityList];
-    newUniversityList[i].documentName = selectedFile.name;
-    setUniversityList(newUniversityList);
-
-    const formData = new FormData();
-    formData.append(
-      "AffiliatingUniversityId",
-      newUniversityList[i].affiliatingUniversityId
-    );
-    formData.append("pdf", selectedFile);
-
-    const response = config.methodForFile(
-      "upload-document-affiliating-universities",
-      "POST",
-      formData
-    );
-    if (response) {
-      const resp = await response;
-      const newuniversityList = [...universityList];
-      newuniversityList[i].documentName = resp;
-      setUniversityList(newuniversityList);
-    }
-  };
-
-  const handleAffiliateDelete = async (e, i) => {
-    const response = await config.deleteRequest(
-      "DELETE",
-      `${universityList[i].affiliatingUniversityId}/affiliatingUniversity`
-    );
-    if (response.status === 200) {
-      config.notify("Deleted SuccessFully", "error");
-      const newUniversityList = [...universityList];
-      newUniversityList.splice(i, 1);
-      setUniversityList(newUniversityList);
-    }
-  };
-
-  const handleAffiliateDocDelete = async (e, i) => {
-    const response = await config.deleteRequest(
-      "POST",
-      `${universityList[i].affiliatingUniversityId}/remove-file`
-    );
-    if (response) {
-      const newUniversityList = [...universityList];
-      newUniversityList[i].documentName = "";
-      setUniversityList(newUniversityList);
-      config.notify("File Deleted SuccessFully", "error");
-    }
-  };
 
   const handleSelectedSRA = async (e) => {
     const checklist = sraList.map((e) => {
@@ -196,14 +79,14 @@ const AffiliationComplianceForm = ({ completedForm }) => {
   const handleSraDoc = async (e, i) => {
     const selectedFile = e.target.files[0];
 
-    const newSraList = [...sraList];
-    newSraList[i].sraDocumentName = selectedFile.name;
-    setSraList(newSraList);
-
     if (!selectedFile) {
       config.notify("No File Selected", "info");
       return;
     }
+
+    const newSraList = [...sraList];
+    newSraList[i].sraDocumentName = selectedFile.name;
+    setSraList(newSraList);
 
     // Get the file extension
     const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
@@ -297,13 +180,6 @@ const AffiliationComplianceForm = ({ completedForm }) => {
 
   const handleSaveAndNext = () => {
     async function checkConditions() {
-      for (const ele of universityList) {
-        if (ele.documentName === "") {
-          alert(`Please Upload Document of ${ele.universityName}`);
-          return null; // Return early when the condition is met
-        }
-      }
-
       for (const ele of sraList) {
         if (ele.sraDocumentName === "") {
           window.alert(`Please Upload Document of ${ele.sraType}`);

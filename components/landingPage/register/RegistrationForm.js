@@ -339,6 +339,7 @@ export default function RegistrationForm() {
           closeModel={closeModel}
           email={formData.collegeEmailID}
           handleSubmit={handleSubmit}
+          shortEmail={shortEmail}
         />
       )}
     </div>

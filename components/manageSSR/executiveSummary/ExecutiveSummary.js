@@ -33,7 +33,7 @@ export const ExecutiveSummary = () => {
       if (iiqa.iiqa_ID) {
         const response = await config.apiRequest(
           "GET",
-          `${iiqa.iiqa_ID}/getAffiliation`
+          `${iiqa.iiqa_ID}/recongnised-univ`
         );
 
         if (response) {
