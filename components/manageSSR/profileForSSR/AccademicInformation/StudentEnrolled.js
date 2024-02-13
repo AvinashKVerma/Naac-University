@@ -1,20 +1,27 @@
 import React from "react";
 
-const StudentEnrolled = ({ type, formdata, setFormData, total }) => {
+const StudentEnrolled = ({ type, formdata, setFormData, total, title }) => {
   return (
     <tr className="border border-black">
       <td className="w-1/4 border-black border-r border-b-0 p-0 relative">
         <ul className="flex h-full">
-          <li className="absolute w-3/5">{type}</li>
+          <li
+            className="absolute w-3/5 ml-1"
+            style={title ? { top: "20%" } : {}}
+          >
+            {title ? title : type}
+          </li>
           <li className="absolute top-0 h-full left-[calc(60%+1px)] w-2/5">
             <ul className="h-full">
-              <li className="border border-black h-[calc(33.333%-1px)] border-t-0 border-b-0">
+              <li className="border border-black h-[calc(33.333%-1px)] border-t-0 border-b-0 pl-1">
                 Male
               </li>
-              <li className="border border-black h-[calc(33.333%+1px)] border-b-0">
+              <li className="border border-black h-[calc(33.333%+1px)] border-b-0 pl-1">
                 Female
               </li>
-              <li className="border border-black h-1/3 border-b-0">Others</li>
+              <li className="border border-black h-1/3 border-b-0 pl-1">
+                Others
+              </li>
             </ul>
           </li>
         </ul>

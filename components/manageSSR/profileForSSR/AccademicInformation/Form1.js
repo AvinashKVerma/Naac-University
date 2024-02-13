@@ -150,10 +150,10 @@ const Form1 = ({ formData, setFormData }) => {
   return (
     <div className="border rounded-lg mb-4">
       <h3 className="border-slate-200 bg-gray-200 rounded-lg rounded-b-none text-black font-semibold p-3">
-        Position Details of Faculity & Staff in the College
+        Details of the Number of Teaching & Non-Teaching Staff in the University
       </h3>
       <div className="container p-3">
-        <h3 className="font-bold">Teaching Staff</h3>
+        <h3 className="font-bold">Teaching Faculty</h3>
         <table className="w-full">
           <tbody>
             <tr className="w-full">
@@ -218,6 +218,7 @@ const Form1 = ({ formData, setFormData }) => {
               isModalOpen={isModalOpen}
               setModalOpen={setModalOpen}
               setFormData={setFormData}
+              sanctionBody={"Recruited"}
             />
             {/* Yet to Recruit */}
             <YetToRecruit
@@ -227,12 +228,6 @@ const Form1 = ({ formData, setFormData }) => {
               setFormData={setFormData}
             />
 
-            {/* Sanctioned by the Management/Society or Other Authorized Bodies */}
-            <Sanctioned
-              formData={formData}
-              type="management"
-              handleChange={handleChange}
-            />
             {/* Recruited */}
             <Recruited
               formData={formData}
@@ -241,12 +236,7 @@ const Form1 = ({ formData, setFormData }) => {
               isModalOpen={isModalOpen}
               setModalOpen={setModalOpen}
               setFormData={setFormData}
-            />
-            {/* Yet to Recruit */}
-            <YetToRecruit
-              formData={formData}
-              type="management"
-              handleChange={handleChange}
+              sanctionBody={"Contractual"}
             />
           </tbody>
         </table>
@@ -324,6 +314,7 @@ export const Recruited = ({
   isModalOpen,
   setModalOpen,
   setFormData,
+  sanctionBody,
 }) => {
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -378,7 +369,7 @@ export const Recruited = ({
     <>
       {/* Check here */}
       <tr className="w-full">
-        <td className="border border-black">Recruited</td>
+        <td className="border border-black">{sanctionBody}</td>
         <td className="border border-black p-0">
           <div className="flex">
             <div className="w-1/4 border-black border-r">
@@ -583,9 +574,7 @@ export const Recruited = ({
 export const Sanctioned = ({ formData, type, handleChange }) => {
   return (
     <tr className="w-full">
-      <td className="border border-black">
-        Sanctioned by UGC /University State Government
-      </td>
+      <td className="border border-black">Sanctioned</td>
       <td className="border border-black border-t-0">
         <input
           type="text"
@@ -696,14 +685,12 @@ export const StaffForm = ({
           </td>
         </tr>
         <tr className="w-full">
-          <td className="border border-black">
-            Sanctioned by UGC /University State Government
-          </td>
-          <td className="border border-black border-t-0 relative">
-            <ul className="flex absolute h-full top-0 w-full">
-              <li className="w-1/4 border-black border-r p-2 flex justify-center "></li>
-              <li className="w-1/4 border-black border-r p-2 flex justify-center "></li>
-              <li className="w-1/4 border-black border-r p-2 flex justify-center "></li>
+          <td className="border border-black p-1">Sanctioned</td>
+          <td className="border border-black border-t-0 p-0">
+            <ul className="flex w-full">
+              <li className="w-1/4 border-black border-r p-1 flex justify-center "></li>
+              <li className="w-1/4 border-black border-r p-1 flex justify-center "></li>
+              <li className="w-1/4 border-black border-r p-1 flex justify-center "></li>
               <li className="w-1/4 border-black p-1 flex justify-center ">
                 <input
                   type="text"
@@ -713,7 +700,7 @@ export const StaffForm = ({
                     handleChange(staffType, e);
                     handleFormChange(staffType, `ugcYetToRecruited`, e, "ugc");
                   }}
-                  className="border border-black w-full pl-1"
+                  className="border border-black w-full p-1"
                 />
               </li>
             </ul>
@@ -785,36 +772,7 @@ export const StaffForm = ({
           </td>
         </tr>
         <tr className="w-full">
-          <td className="border border-black">
-            Sanctioned by the Management/Society or Other Authorized Bodies
-          </td>
-          <td className="border border-black border-t-0 relative">
-            <ul className="flex absolute h-full top-0 w-full">
-              <li className="w-1/4 border-black border-r p-2 flex justify-center "></li>
-              <li className="w-1/4 border-black border-r p-2 flex justify-center "></li>
-              <li className="w-1/4 border-black border-r p-2 flex justify-center "></li>
-              <li className="w-1/4 border-black p-1 flex justify-center ">
-                <input
-                  type="text"
-                  name="management"
-                  value={formData[staffType].management}
-                  onChange={(e) => {
-                    handleChange(staffType, e);
-                    handleFormChange(
-                      staffType,
-                      `managementYetToRecruited`,
-                      e,
-                      "management"
-                    );
-                  }}
-                  className="border border-black w-full p-1"
-                />
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr className="w-full">
-          <td className="border border-black p-1">Recruited</td>
+          <td className="border border-black p-1">Contractual</td>
           <td className="border border-black border-t-0 p-0">
             <ul className="flex w-full">
               <li className="w-1/4 border-black border-r p-1 flex justify-center ">
@@ -873,21 +831,6 @@ export const StaffForm = ({
                   {(parseFloat(formData[staffType].managementMale) || 0) +
                     (parseFloat(formData[staffType].managementFemale) || 0) +
                     (parseFloat(formData[staffType].managementOthers) || 0)}
-                </div>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr className="w-full">
-          <td className="border border-black p-1">Yet to Recruit </td>
-          <td className="border border-black border-t-0 p-0">
-            <ul className="flex w-full">
-              <li className="w-1/4 border-black border-r p-1 flex justify-center "></li>
-              <li className="w-1/4 border-black border-r p-1 flex justify-center "></li>
-              <li className="w-1/4 border-black border-r p-1 flex justify-center "></li>
-              <li className="w-1/4 border-black p-1 flex justify-center ">
-                <div className="border border-black w-full p-1">
-                  {formData[staffType].managementYetToRecruited || 0}
                 </div>
               </li>
             </ul>
